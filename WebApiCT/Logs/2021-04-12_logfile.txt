@@ -1,1 +1,2 @@
 2021-04-12 10:36:07.6247 DEBUG its debug message
+2021-04-12 16:19:11.8034 INFO Exercise with id: 291bf3d3-9c56-4f6c-b78e-9b100a2e7b53 doesn't exist in the database

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using NLog;
 using Repositories;
 using System.IO;
+using WebApiCT.Extensions;
 
 namespace WebApiCT
 {
@@ -35,12 +36,13 @@ namespace WebApiCT
             services.AddControllers();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigureExceptionHandler(logger);
 
             app.UseHttpsRedirection();
 
