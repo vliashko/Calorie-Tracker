@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities.Models
 {
-    /// <summary>
-    /// Продукт
-    /// </summary>
     public class Ingredient
     {
         public Guid Id { get; set; }
@@ -13,5 +11,7 @@ namespace Entities.Models
         public double Proteins { get; set; }
         public double Fats { get; set; }
         public double Carbohydrates { get; set; }
+        public virtual ICollection<IngredientEating> IngredientEating { get; set; } = new List<IngredientEating>();
+        public virtual ICollection<IngredientRecipe> IngredientRecipe { get; set; } = new List<IngredientRecipe>();
     }
 }

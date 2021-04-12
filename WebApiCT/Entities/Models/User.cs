@@ -11,8 +11,9 @@ namespace Entities.Models
         public int Height { get; set; }
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public virtual ICollection<Eating> Eatings { get; set; }
-        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Eating> Eatings { get; set; } = new List<Eating>();
+        public virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();
+        public virtual ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
 
         public User()
         {
