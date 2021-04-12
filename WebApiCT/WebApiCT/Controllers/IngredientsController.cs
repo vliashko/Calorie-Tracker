@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,7 +27,7 @@ namespace WebApiCT.Controllers
         public async Task<IActionResult> GetIngredients()
         {
             var ingredients = await repositoryManager.Ingredient.GetAllIngredientsAsync(trackChanges: false);
-            var ingredientsDto = mapper.Map<IEnumerable<Ingredient>>(ingredients);
+            var ingredientsDto = mapper.Map<IEnumerable<IngredientForReadDto>>(ingredients);
             return Ok(ingredientsDto);
         }
         [HttpGet("{id}")]
@@ -38,7 +39,7 @@ namespace WebApiCT.Controllers
                 logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
                 return NotFound();
             }
-            var ingredientDto = mapper.Map<Ingredient>(ingredient);
+            var ingredientDto = mapper.Map<IngredientForReadDto>(ingredient);
             return Ok(ingredientDto);
         }
     }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Contracts;
-using Entities.Models;
+using Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace WebApiCT.Controllers
         public async Task<IActionResult> GetUsers()
         {
             var users = await repositoryManager.User.GetAllUsersAsync(trackChanges: false);
-            var usersDto = mapper.Map<IEnumerable<User>>(users);
+            var usersDto = mapper.Map<IEnumerable<UserForReadDto>>(users);
             return Ok(usersDto);
         }
         [HttpGet("{id}")]
@@ -38,7 +38,7 @@ namespace WebApiCT.Controllers
                 logger.LogInfo($"User with id: {id} doesn't exist in the database");
                 return NotFound();
             }
-            var userDto = mapper.Map<User>(user);
+            var userDto = mapper.Map<UserForReadDto>(user);
             return Ok(userDto);
         }
     }

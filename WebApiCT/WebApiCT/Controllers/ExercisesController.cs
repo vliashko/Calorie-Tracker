@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
-using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,7 @@ namespace WebApiCT.Controllers
         public async Task<IActionResult> GetExercises()
         {
             var exercises = await repositoryManager.Exercise.GetAllExercisesAsync(trackChanges: false);
-            var exercisesDto = mapper.Map<IEnumerable<Exercise>>(exercises);
+            var exercisesDto = mapper.Map<IEnumerable<ExerciseForReadDto>>(exercises);
             return Ok(exercisesDto);
         }
         [HttpGet("{id}")]
