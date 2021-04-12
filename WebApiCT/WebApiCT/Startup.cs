@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
+using Repositories;
 using System.IO;
 
 namespace WebApiCT
@@ -25,9 +26,12 @@ namespace WebApiCT
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ILoggerManager, LoggerManager>();
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+
             services.AddDbContext<RepositoryDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"), 
                     b => b.MigrationsAssembly("WebApiCT")));
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
         }
 
@@ -46,7 +50,9 @@ namespace WebApiCT
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}");
             });
         }
     }

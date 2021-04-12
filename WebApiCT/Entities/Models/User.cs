@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Models
 {
     public class User
     {
         public Guid Id { get; set; }
-        [Required(ErrorMessage = "Логин является обязательным полем.")]
         public string Login { get; set; }
-        [Required(ErrorMessage = "Вес является обязательным полем.")]
         public double Weight { get; set; }
-        [Required(ErrorMessage = "Рост является обязательным полем.")]
         public int Height { get; set; }
-        [Required(ErrorMessage = "Пол является обязательным полем.")]
         public Gender Gender { get; set; }
-        [Required(ErrorMessage = "Дата рождения является обязательным полем.")]
         public DateTime DateOfBirth { get; set; }
         public virtual ICollection<Eating> Eatings { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
