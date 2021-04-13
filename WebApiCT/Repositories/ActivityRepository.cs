@@ -30,6 +30,8 @@ namespace Repositories
             await FindAll(trackChanges).OrderBy(activ => activ.Name).ToListAsync();
 
         public async Task<IEnumerable<Activity>> GetAllActivitiesForUserAsync(Guid userId, bool trackChanges) =>
-            await FindAll(trackChanges).Where(activ => activ.ActivityUser.SingleOrDefault(au => au.UserId == userId) != null).ToListAsync();
+            await FindAll(trackChanges)
+            .Where(activ => activ.ActivityUser.SingleOrDefault(au => au.UserId == userId) != null)
+            .OrderBy(activ => activ.Start).ToListAsync();
     }
 }
