@@ -8,6 +8,8 @@ namespace Contracts
         IIngredientRepository Ingredient { get; }
         IExerciseRepository Exercise { get; }
         IActivityRepository Activity { get; }
+        IEatingRepository Eating { get; }
+        IRecipeRepository Recipe { get; }
 
         Task SaveAsync();
     }

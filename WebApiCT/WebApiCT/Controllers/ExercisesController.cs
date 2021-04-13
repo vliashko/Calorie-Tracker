@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApiCT.Controllers
 {
-    [Route("api/exercises")]
+    [Route("api/users/{userId}/activities/{activityId}/exercises")]
     [ApiController]
     public class ExercisesController : ControllerBase
     {

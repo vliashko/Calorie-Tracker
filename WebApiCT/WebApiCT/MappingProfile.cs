@@ -16,6 +16,9 @@ namespace WebApiCT
             CreateMap<UserForUpdateDto, User>().ReverseMap();
             CreateMap<ActivityForCreateDto, Activity>();
             CreateMap<ActivityForUpdateDto, Activity>().ReverseMap();
+            CreateMap<Eating, EatingForReadDto>();
+            CreateMap<EatingForCreateDto, Eating>();
+            CreateMap<EatingForUpdateDto, Eating>().ReverseMap();
         }
     }
 }

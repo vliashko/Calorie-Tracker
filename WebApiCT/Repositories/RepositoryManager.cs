@@ -11,7 +11,9 @@ namespace Repositories
         private IActivityRepository activityRepository;
         private IIngredientRepository ingredientRepository;
         private IExerciseRepository exerciseRepository;
-        private UserRepository userRepository;
+        private IEatingRepository eatingRepository;
+        private IUserRepository userRepository;
+        private IRecipeRepository recipeRepository;
 
         public RepositoryManager(RepositoryDbContext context)
         {
@@ -63,6 +65,30 @@ namespace Repositories
                     activityRepository = new ActivityRepository(context);
                 }
                 return activityRepository;
+            }
+        }
+
+        public IEatingRepository Eating
+        {
+            get
+            {
+                if(eatingRepository == null)
+                {
+                    eatingRepository = new EatingRepository(context);
+                }
+                return eatingRepository;
+            }
+        }
+
+        public IRecipeRepository Recipe
+        {
+            get
+            {
+                if(recipeRepository == null)
+                {
+                    recipeRepository = new RecipeRepository(context);
+                }
+                return recipeRepository;
             }
         }
 
