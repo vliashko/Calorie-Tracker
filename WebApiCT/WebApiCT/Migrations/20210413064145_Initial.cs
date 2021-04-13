@@ -186,9 +186,9 @@ namespace WebApiCT.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -228,12 +228,26 @@ namespace WebApiCT.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Activities",
+                columns: new[] { "Id", "Finish", "Name", "Start" },
+                values: new object[] { new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"), new DateTime(2021, 4, 13, 8, 50, 0, 0, DateTimeKind.Unspecified), "Утреняя тренировка", new DateTime(2021, 4, 13, 8, 30, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Eating",
+                columns: new[] { "Id", "Moment", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"), new DateTime(2021, 4, 13, 8, 55, 0, 0, DateTimeKind.Unspecified), "Завтрак" },
+                    { new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"), new DateTime(2021, 4, 13, 13, 0, 0, 0, DateTimeKind.Unspecified), "Обед" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Exercises",
                 columns: new[] { "Id", "CaloriesPerMinute", "Description", "Name", "NumberOfRepetitions", "NumberOfSets", "RestBetweenSets" },
                 values: new object[,]
                 {
-                    { new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 5.0, "Выполняются на перекладине. Длительность 40 секунд", "Подтягивания", 0, 0, 0 },
-                    { new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55"), 10.0, "20 раз за минуту", "Приседания", 0, 0, 0 }
+                    { new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 5.0, "Выполняются на перекладине. Длительность 40 секунд", "Подтягивания", 10, 4, 20 },
+                    { new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55"), 10.0, "Из положения стоя, ноги на ширине плеч", "Приседания", 20, 3, 60 }
                 });
 
             migrationBuilder.InsertData(
@@ -250,6 +264,31 @@ namespace WebApiCT.Migrations
                 table: "Users",
                 columns: new[] { "Id", "DateOfBirth", "Gender", "Height", "Login", "Weight" },
                 values: new object[] { new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e"), new DateTime(2002, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, 175, "vlyashko02", 84.200000000000003 });
+
+            migrationBuilder.InsertData(
+                table: "IngredientEating",
+                columns: new[] { "Id", "EatingId", "Grams", "IngredientId" },
+                values: new object[,]
+                {
+                    { new Guid("3e687ead-a71c-4ea3-9bd4-d8596e6a5339"), new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"), 300.0, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870") },
+                    { new Guid("5ef0d854-3d0f-4b99-bff0-4545a236236a"), new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"), 200.0, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3") },
+                    { new Guid("f71f6aa0-a6a3-49d7-8cb9-a7e0b7c261b9"), new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"), 100.0, new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Recipe",
+                columns: new[] { "Id", "Description", "Name", "UserId" },
+                values: new object[] { new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0"), "Также просто, как и макароны, но необычно", "Картошка с курицей", new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e") });
+
+            migrationBuilder.InsertData(
+                table: "IngredientRecipe",
+                columns: new[] { "Id", "Grams", "IngredientId", "RecipeId" },
+                values: new object[] { new Guid("2fc02eb0-b6dd-46e7-aefc-d71f14b5ecbd"), 200.0, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0") });
+
+            migrationBuilder.InsertData(
+                table: "IngredientRecipe",
+                columns: new[] { "Id", "Grams", "IngredientId", "RecipeId" },
+                values: new object[] { new Guid("2fc02eb0-b6dd-46e7-aefc-d71f14b5ecdb"), 100.0, new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d"), new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActivityExercise_ExercisesId",

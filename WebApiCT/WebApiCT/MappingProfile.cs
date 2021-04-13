@@ -12,6 +12,8 @@ namespace WebApiCT
             CreateMap<Activity, ActivityForReadDto>();
             CreateMap<Ingredient, IngredientForReadDto>();
             CreateMap<Exercise, ExerciseForReadDto>();
+            CreateMap<UserForCreateDto, User>();
+            CreateMap<UserForUpdateDto, User>().ReverseMap();
         }
     }
 }
