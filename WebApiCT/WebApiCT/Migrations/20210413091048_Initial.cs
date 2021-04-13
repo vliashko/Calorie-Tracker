@@ -87,21 +87,22 @@ namespace WebApiCT.Migrations
                 name: "ActivityExercise",
                 columns: table => new
                 {
-                    ActivitiesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ExercisesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ExerciseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ActivityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityExercise", x => new { x.ActivitiesId, x.ExercisesId });
+                    table.PrimaryKey("PK_ActivityExercise", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ActivityExercise_Activities_ActivitiesId",
-                        column: x => x.ActivitiesId,
+                        name: "FK_ActivityExercise_Activities_ActivityId",
+                        column: x => x.ActivityId,
                         principalTable: "Activities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityExercise_Exercises_ExercisesId",
-                        column: x => x.ExercisesId,
+                        name: "FK_ActivityExercise_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
                         principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -137,21 +138,22 @@ namespace WebApiCT.Migrations
                 name: "ActivityUser",
                 columns: table => new
                 {
-                    ActivitiesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ActivityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityUser", x => new { x.ActivitiesId, x.UsersId });
+                    table.PrimaryKey("PK_ActivityUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ActivityUser_Activities_ActivitiesId",
-                        column: x => x.ActivitiesId,
+                        name: "FK_ActivityUser_Activities_ActivityId",
+                        column: x => x.ActivityId,
                         principalTable: "Activities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityUser_Users_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_ActivityUser_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -161,21 +163,22 @@ namespace WebApiCT.Migrations
                 name: "EatingUser",
                 columns: table => new
                 {
-                    EatingsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EatingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EatingUser", x => new { x.EatingsId, x.UsersId });
+                    table.PrimaryKey("PK_EatingUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EatingUser_Eating_EatingsId",
-                        column: x => x.EatingsId,
+                        name: "FK_EatingUser_Eating_EatingId",
+                        column: x => x.EatingId,
                         principalTable: "Eating",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EatingUser_Users_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_EatingUser_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -266,6 +269,29 @@ namespace WebApiCT.Migrations
                 values: new object[] { new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e"), new DateTime(2002, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, 175, "vlyashko02", 84.200000000000003 });
 
             migrationBuilder.InsertData(
+                table: "ActivityExercise",
+                columns: new[] { "Id", "ActivityId", "ExerciseId" },
+                values: new object[,]
+                {
+                    { new Guid("398f8ada-bf2a-491e-bce9-9cca15f45120"), new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"), new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e") },
+                    { new Guid("eac5d895-df3d-41aa-abcc-2915be0bb837"), new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"), new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ActivityUser",
+                columns: new[] { "Id", "ActivityId", "UserId" },
+                values: new object[] { new Guid("d3f8f77c-089e-425e-b79e-eb329456463c"), new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"), new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e") });
+
+            migrationBuilder.InsertData(
+                table: "EatingUser",
+                columns: new[] { "Id", "EatingId", "UserId" },
+                values: new object[,]
+                {
+                    { new Guid("1b3039d0-7372-47d8-bff2-5205bf580c39"), new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"), new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e") },
+                    { new Guid("10ec2edc-e38c-40b1-a83f-216c1992a457"), new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"), new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e") }
+                });
+
+            migrationBuilder.InsertData(
                 table: "IngredientEating",
                 columns: new[] { "Id", "EatingId", "Grams", "IngredientId" },
                 values: new object[,]
@@ -291,19 +317,34 @@ namespace WebApiCT.Migrations
                 values: new object[] { new Guid("2fc02eb0-b6dd-46e7-aefc-d71f14b5ecdb"), 100.0, new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d"), new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0") });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityExercise_ExercisesId",
+                name: "IX_ActivityExercise_ActivityId",
                 table: "ActivityExercise",
-                column: "ExercisesId");
+                column: "ActivityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityUser_UsersId",
+                name: "IX_ActivityExercise_ExerciseId",
+                table: "ActivityExercise",
+                column: "ExerciseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivityUser_ActivityId",
                 table: "ActivityUser",
-                column: "UsersId");
+                column: "ActivityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EatingUser_UsersId",
+                name: "IX_ActivityUser_UserId",
+                table: "ActivityUser",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EatingUser_EatingId",
                 table: "EatingUser",
-                column: "UsersId");
+                column: "EatingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EatingUser_UserId",
+                table: "EatingUser",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IngredientEating_EatingId",

@@ -22,7 +22,14 @@ namespace Repositories
         public async Task<Activity> GetActivityAsync(Guid activityId, bool trackChanges) =>
             await FindByCondition(activ => activ.Id.Equals(activityId), trackChanges).SingleOrDefaultAsync();
 
+        public async Task<Activity> GetActivityForUserAsync(Guid userId, Guid activityId, bool trackChanges) =>
+            await FindByCondition(activ => activ.Id.Equals(activityId), trackChanges)
+            .Where(activ => activ.ActivityUser.SingleOrDefault(au => au.UserId == userId) != null).SingleOrDefaultAsync();
+
         public async Task<IEnumerable<Activity>> GetAllActivitiesAsync(bool trackChanges) =>
             await FindAll(trackChanges).OrderBy(activ => activ.Name).ToListAsync();
+
+        public async Task<IEnumerable<Activity>> GetAllActivitiesForUserAsync(Guid userId, bool trackChanges) =>
+            await FindAll(trackChanges).Where(activ => activ.ActivityUser.SingleOrDefault(au => au.UserId == userId) != null).ToListAsync();
     }
 }

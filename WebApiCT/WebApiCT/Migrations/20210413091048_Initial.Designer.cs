@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebApiCT.Migrations
 {
     [DbContext(typeof(RepositoryDbContext))]
-    [Migration("20210413064145_Initial")]
+    [Migration("20210413091048_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,51 +20,6 @@ namespace WebApiCT.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ActivityExercise", b =>
-                {
-                    b.Property<Guid>("ActivitiesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ExercisesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ActivitiesId", "ExercisesId");
-
-                    b.HasIndex("ExercisesId");
-
-                    b.ToTable("ActivityExercise");
-                });
-
-            modelBuilder.Entity("ActivityUser", b =>
-                {
-                    b.Property<Guid>("ActivitiesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ActivitiesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("ActivityUser");
-                });
-
-            modelBuilder.Entity("EatingUser", b =>
-                {
-                    b.Property<Guid>("EatingsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("EatingsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("EatingUser");
-                });
 
             modelBuilder.Entity("Entities.Models.Activity", b =>
                 {
@@ -92,6 +47,70 @@ namespace WebApiCT.Migrations
                             Finish = new DateTime(2021, 4, 13, 8, 50, 0, 0, DateTimeKind.Unspecified),
                             Name = "Утреняя тренировка",
                             Start = new DateTime(2021, 4, 13, 8, 30, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ActivityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ExerciseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.ToTable("ActivityExercise");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("eac5d895-df3d-41aa-abcc-2915be0bb837"),
+                            ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
+                            ExerciseId = new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55")
+                        },
+                        new
+                        {
+                            Id = new Guid("398f8ada-bf2a-491e-bce9-9cca15f45120"),
+                            ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
+                            ExerciseId = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e")
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.ActivityUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ActivityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ActivityUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d3f8f77c-089e-425e-b79e-eb329456463c"),
+                            ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
+                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -123,6 +142,41 @@ namespace WebApiCT.Migrations
                             Id = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
                             Moment = new DateTime(2021, 4, 13, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Обед"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.EatingUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EatingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EatingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EatingUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1b3039d0-7372-47d8-bff2-5205bf580c39"),
+                            EatingId = new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"),
+                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                        },
+                        new
+                        {
+                            Id = new Guid("10ec2edc-e38c-40b1-a83f-216c1992a457"),
+                            EatingId = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
+                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -387,49 +441,61 @@ namespace WebApiCT.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ActivityExercise", b =>
+            modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
                 {
-                    b.HasOne("Entities.Models.Activity", null)
-                        .WithMany()
-                        .HasForeignKey("ActivitiesId")
+                    b.HasOne("Entities.Models.Activity", "Activity")
+                        .WithMany("ActivityExercise")
+                        .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Exercise", null)
-                        .WithMany()
-                        .HasForeignKey("ExercisesId")
+                    b.HasOne("Entities.Models.Exercise", "Exercise")
+                        .WithMany("ActivityExercise")
+                        .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("Exercise");
                 });
 
-            modelBuilder.Entity("ActivityUser", b =>
+            modelBuilder.Entity("Entities.Models.ActivityUser", b =>
                 {
-                    b.HasOne("Entities.Models.Activity", null)
-                        .WithMany()
-                        .HasForeignKey("ActivitiesId")
+                    b.HasOne("Entities.Models.Activity", "Activity")
+                        .WithMany("ActivityUser")
+                        .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany("ActivityUser")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("EatingUser", b =>
+            modelBuilder.Entity("Entities.Models.EatingUser", b =>
                 {
-                    b.HasOne("Entities.Models.Eating", null)
-                        .WithMany()
-                        .HasForeignKey("EatingsId")
+                    b.HasOne("Entities.Models.Eating", "Eating")
+                        .WithMany("EatingUser")
+                        .HasForeignKey("EatingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany("EatingUser")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Eating");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Models.IngredientEating", b =>
@@ -481,9 +547,23 @@ namespace WebApiCT.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Entities.Models.Activity", b =>
+                {
+                    b.Navigation("ActivityExercise");
+
+                    b.Navigation("ActivityUser");
+                });
+
             modelBuilder.Entity("Entities.Models.Eating", b =>
                 {
+                    b.Navigation("EatingUser");
+
                     b.Navigation("IngredientEating");
+                });
+
+            modelBuilder.Entity("Entities.Models.Exercise", b =>
+                {
+                    b.Navigation("ActivityExercise");
                 });
 
             modelBuilder.Entity("Entities.Models.Ingredient", b =>
@@ -500,6 +580,10 @@ namespace WebApiCT.Migrations
 
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
+                    b.Navigation("ActivityUser");
+
+                    b.Navigation("EatingUser");
+
                     b.Navigation("Recipes");
                 });
 #pragma warning restore 612, 618

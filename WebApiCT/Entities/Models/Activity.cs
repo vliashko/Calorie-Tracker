@@ -9,7 +9,7 @@ namespace Entities.Models
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
-        public virtual ICollection<Exercise> Exercises { get; set; } = new List<Exercise>();
-        public virtual ICollection<User> Users { get; set; } = new List<User>();
+        public virtual ICollection<ActivityExercise> ActivityExercise { get; set; } = new List<ActivityExercise>();
+        public virtual ICollection<ActivityUser> ActivityUser { get; set; } = new List<ActivityUser>();
     }
 }

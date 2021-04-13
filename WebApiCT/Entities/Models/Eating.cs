@@ -9,6 +9,6 @@ namespace Entities.Models
         public string Name { get; set; }
         public DateTime Moment { get; set; }
         public virtual ICollection<IngredientEating> IngredientEating { get; set; } = new List<IngredientEating>();
-        public virtual ICollection<User> Users { get; set; } = new List<User>();
+        public virtual ICollection<EatingUser> EatingUser { get; set; } = new List<EatingUser>();
     }
 }

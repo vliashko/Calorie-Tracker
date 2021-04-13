@@ -19,6 +19,10 @@ namespace Entities
             modelBuilder.ApplyConfiguration(new EatingConfiguration());
             modelBuilder.ApplyConfiguration(new ExerciseConfiguration());
             modelBuilder.ApplyConfiguration(new IngredientRecipeConfiguration());
+            modelBuilder.ApplyConfiguration(new ActivityUserConfiguration());
+            modelBuilder.ApplyConfiguration(new ActivityExerciseConfiguration());
+            modelBuilder.ApplyConfiguration(new EatingUserConfiguration());
+
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }

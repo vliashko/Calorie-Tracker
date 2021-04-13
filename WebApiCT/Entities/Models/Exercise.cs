@@ -12,6 +12,6 @@ namespace Entities.Models
         public int NumberOfRepetitions { get; set; }
         public int NumberOfSets { get; set; }
         public int RestBetweenSets { get; set; }
-        public virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();
+        public virtual ICollection<ActivityExercise> ActivityExercise { get; set; } = new List<ActivityExercise>();
     }
 }
