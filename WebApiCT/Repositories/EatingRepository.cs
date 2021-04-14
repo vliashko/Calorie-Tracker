@@ -22,16 +22,21 @@ namespace Repositories
 
         public async Task<IEnumerable<Eating>> GetAllEatingsForUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(eat => eat.EatingUser.SingleOrDefault(eu => eu.UserId == userId) != null, trackChanges)
-            .OrderBy(eat => eat.Moment).ToListAsync();
+                .OrderBy(eat => eat.Moment)
+                .ToListAsync();
 
         public async Task<IEnumerable<Eating>> GetAllEatingsAsync(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(eat => eat.Moment).ToListAsync();
+            await FindAll(trackChanges)
+                .OrderBy(eat => eat.Moment)
+                .ToListAsync();
 
         public async Task<Eating> GetEatingAsync(Guid eatingId, bool trackChanges) =>
-            await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges).SingleOrDefaultAsync();
+            await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
+                .SingleOrDefaultAsync();
 
         public async Task<Eating> GetEatingForUserAsync(Guid userId, Guid eatingId, bool trackChanges) =>
             await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
-            .Where(eat => eat.EatingUser.SingleOrDefault(eu => eu.UserId == userId) != null).SingleOrDefaultAsync();
+                .Where(eat => eat.EatingUser.SingleOrDefault(eu => eu.UserId == userId) != null)
+                .SingleOrDefaultAsync();
     }
 }

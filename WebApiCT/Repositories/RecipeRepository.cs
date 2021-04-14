@@ -20,16 +20,22 @@ namespace Repositories
         public void DeleteRecipe(Recipe recipe) => Delete(recipe);
 
         public async Task<IEnumerable<Recipe>> GetAllRecipesAsync(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(rec => rec.Name).ToListAsync();
+            await FindAll(trackChanges)
+                .OrderBy(rec => rec.Name)
+                .ToListAsync();
 
         public async Task<IEnumerable<Recipe>> GetAllRecipesForUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(rec => rec.UserId.Equals(userId), trackChanges).OrderBy(rec => rec.Name).ToListAsync();
+            await FindByCondition(rec => rec.UserId.Equals(userId), trackChanges)
+                .OrderBy(rec => rec.Name)
+                .ToListAsync();
 
         public async Task<Recipe> GetRecipeAsync(Guid recipeId, bool trackChanges) =>
-            await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges).SingleOrDefaultAsync();
+            await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
+                .SingleOrDefaultAsync();
 
         public async Task<Recipe> GetRecipeForUserAsync(Guid userId, Guid recipeId, bool trackChanges) =>
             await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
-            .Where(rec => rec.UserId.Equals(userId)).SingleOrDefaultAsync();
+                .Where(rec => rec.UserId.Equals(userId))
+                .SingleOrDefaultAsync();
     }
 }

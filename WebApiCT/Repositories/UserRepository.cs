@@ -20,9 +20,12 @@ namespace Repositories
         public void DeleteUser(User user) => Delete(user);
 
         public async Task<IEnumerable<User>> GetAllUsersAsync(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(user => user.Login).ToListAsync();
+            await FindAll(trackChanges)
+                .OrderBy(user => user.Login)
+                .ToListAsync();
 
         public async Task<User> GetUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(user => user.Id.Equals(userId), trackChanges).SingleOrDefaultAsync();
+            await FindByCondition(user => user.Id.Equals(userId), trackChanges)
+                .SingleOrDefaultAsync();
     }
 }

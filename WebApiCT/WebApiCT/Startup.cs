@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using NLog;
 using Repositories;
 using System.IO;
@@ -31,6 +32,11 @@ namespace WebApiCT
             services.AddScoped<IRepositoryManager, RepositoryManager>();
             services.AddScoped<ValidationFilterAttribute>();
 
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+            });
+
             services.AddDbContext<RepositoryDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"), 
                     b => b.MigrationsAssembly("WebApiCT")));
@@ -47,6 +53,13 @@ namespace WebApiCT
             app.ConfigureExceptionHandler(logger);
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+            });
 
             app.UseRouting();
 

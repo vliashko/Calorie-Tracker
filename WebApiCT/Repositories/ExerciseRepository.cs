@@ -23,6 +23,7 @@ namespace Repositories
             await FindAll(trackChanges).OrderBy(exer => exer.Name).ToListAsync();
 
         public async Task<Exercise> GetExerciseAsync(Guid exerciseId, bool trackChanges) =>
-            await FindByCondition(exer => exer.Id.Equals(exerciseId), trackChanges).SingleOrDefaultAsync();
+            await FindByCondition(exer => exer.Id.Equals(exerciseId), trackChanges)
+                .SingleOrDefaultAsync();
     }
 }

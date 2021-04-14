@@ -20,9 +20,12 @@ namespace Repositories
         public void DeleteIngredient(Ingredient ingredient) => Delete(ingredient);
 
         public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(ingr => ingr.Name).ToListAsync();
+            await FindAll(trackChanges)
+                .OrderBy(ingr => ingr.Name)
+                .ToListAsync();
 
         public async Task<Ingredient> GetIngredientAsync(Guid ingredientId, bool trackChanges) =>
-            await FindByCondition(ingr => ingr.Id.Equals(ingredientId), trackChanges).SingleOrDefaultAsync();
+            await FindByCondition(ingr => ingr.Id.Equals(ingredientId), trackChanges)
+                .SingleOrDefaultAsync();
     }
 }
