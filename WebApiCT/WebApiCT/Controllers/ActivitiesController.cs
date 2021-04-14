@@ -31,7 +31,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var activities = await repositoryManager.Activity.GetAllActivitiesForUserAsync(userId, trackChanges: false);
@@ -44,7 +44,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: false);
@@ -67,15 +67,15 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
-            ActivityUser activityUser = new ActivityUser
+            ActivityUserProfile activityUser = new ActivityUserProfile
             {
                 ActivityId = activityView.Id,
-                UserId = userId
+                UserProfileId = userId
             };
-            user.ActivityUser.Add(activityUser);
+            user.ActivityUserProfile.Add(activityUser);
             await repositoryManager.SaveAsync();
             return CreatedAtRoute("GetActivity", new { userId, activityId = activityView.Id }, activityView);
         }
@@ -85,7 +85,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: false);
@@ -105,7 +105,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: true);
@@ -124,7 +124,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: true);

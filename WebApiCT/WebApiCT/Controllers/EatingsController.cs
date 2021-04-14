@@ -33,7 +33,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var eatings = await repositoryManager.Eating.GetAllEatingsForUserAsync(userId, trackChanges: false);
@@ -46,7 +46,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: false);
@@ -69,15 +69,15 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
-            EatingUser eatingUser = new EatingUser
+            EatingUserProfile eatingUser = new EatingUserProfile
             {
                 EatingId = eatingView.Id,
-                UserId = userId
+                UserProfileId = userId
             };
-            user.EatingUser.Add(eatingUser);
+            user.EatingUserProfile.Add(eatingUser);
             await repositoryManager.SaveAsync();
             return CreatedAtRoute("GetEating", new { userId, eatingId = eatingView.Id }, eatingView);
         }
@@ -87,7 +87,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: false);
@@ -107,7 +107,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: true);
@@ -126,7 +126,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: true);

@@ -83,7 +83,7 @@ namespace WebApiCT.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityUser", b =>
+            modelBuilder.Entity("Entities.Models.ActivityUserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,23 +92,23 @@ namespace WebApiCT.Migrations
                     b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserProfileId");
 
-                    b.ToTable("ActivityUser");
+                    b.ToTable("ActivityUserProfile");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("d3f8f77c-089e-425e-b79e-eb329456463c"),
                             ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -126,7 +126,7 @@ namespace WebApiCT.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Eating");
+                    b.ToTable("Eatings");
 
                     b.HasData(
                         new
@@ -143,7 +143,7 @@ namespace WebApiCT.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Entities.Models.EatingUser", b =>
+            modelBuilder.Entity("Entities.Models.EatingUserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,29 +152,29 @@ namespace WebApiCT.Migrations
                     b.Property<Guid>("EatingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EatingId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserProfileId");
 
-                    b.ToTable("EatingUser");
+                    b.ToTable("EatingUserProfile");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("1b3039d0-7372-47d8-bff2-5205bf580c39"),
                             EatingId = new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"),
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         },
                         new
                         {
                             Id = new Guid("10ec2edc-e38c-40b1-a83f-216c1992a457"),
                             EatingId = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -383,14 +383,14 @@ namespace WebApiCT.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserProfileId");
 
-                    b.ToTable("Recipe");
+                    b.ToTable("Recipes");
 
                     b.HasData(
                         new
@@ -398,11 +398,82 @@ namespace WebApiCT.Migrations
                             Id = new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0"),
                             Description = "Также просто, как и макароны, но необычно",
                             Name = "Картошка с курицей",
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Entities.Models.UserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -425,7 +496,7 @@ namespace WebApiCT.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UserProfiles");
 
                     b.HasData(
                         new
@@ -437,6 +508,160 @@ namespace WebApiCT.Migrations
                             Login = "vlyashko02",
                             Weight = 84.200000000000003
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0878c5ec-d7f6-407d-b5a4-81a8c7a97c38",
+                            ConcurrencyStamp = "b72724b7-55f0-45fd-9edd-bf932eae8131",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "c1fcb727-fc82-4920-9cb5-cc4fd5e93d6a",
+                            ConcurrencyStamp = "193af257-5a27-4a5b-a97d-e7a786b5c397",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "a3a24f45-aa3d-47ef-92cc-065b120c1737",
+                            ConcurrencyStamp = "b690af6b-4af0-40b7-a6dd-944ec8c3d7be",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
@@ -458,42 +683,42 @@ namespace WebApiCT.Migrations
                     b.Navigation("Exercise");
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityUser", b =>
+            modelBuilder.Entity("Entities.Models.ActivityUserProfile", b =>
                 {
                     b.HasOne("Entities.Models.Activity", "Activity")
-                        .WithMany("ActivityUser")
+                        .WithMany("ActivityUserProfile")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.User", "User")
-                        .WithMany("ActivityUser")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
+                        .WithMany("ActivityUserProfile")
+                        .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Activity");
 
-                    b.Navigation("User");
+                    b.Navigation("UserProfile");
                 });
 
-            modelBuilder.Entity("Entities.Models.EatingUser", b =>
+            modelBuilder.Entity("Entities.Models.EatingUserProfile", b =>
                 {
                     b.HasOne("Entities.Models.Eating", "Eating")
-                        .WithMany("EatingUser")
+                        .WithMany("EatingUserProfile")
                         .HasForeignKey("EatingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.User", "User")
-                        .WithMany("EatingUser")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
+                        .WithMany("EatingUserProfile")
+                        .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Eating");
 
-                    b.Navigation("User");
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("Entities.Models.IngredientEating", b =>
@@ -536,25 +761,76 @@ namespace WebApiCT.Migrations
 
             modelBuilder.Entity("Entities.Models.Recipe", b =>
                 {
-                    b.HasOne("Entities.Models.User", "User")
+                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
                         .WithMany("Recipes")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("UserProfile");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entities.Models.Activity", b =>
                 {
                     b.Navigation("ActivityExercise");
 
-                    b.Navigation("ActivityUser");
+                    b.Navigation("ActivityUserProfile");
                 });
 
             modelBuilder.Entity("Entities.Models.Eating", b =>
                 {
-                    b.Navigation("EatingUser");
+                    b.Navigation("EatingUserProfile");
 
                     b.Navigation("IngredientEating");
                 });
@@ -576,11 +852,11 @@ namespace WebApiCT.Migrations
                     b.Navigation("IngredientRecipe");
                 });
 
-            modelBuilder.Entity("Entities.Models.User", b =>
+            modelBuilder.Entity("Entities.Models.UserProfile", b =>
                 {
-                    b.Navigation("ActivityUser");
+                    b.Navigation("ActivityUserProfile");
 
-                    b.Navigation("EatingUser");
+                    b.Navigation("EatingUserProfile");
 
                     b.Navigation("Recipes");
                 });

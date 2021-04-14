@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using Contracts.Authentication;
 using Entities;
 using LoggerService;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using NLog;
 using Repositories;
+using Repositories.Authentication;
 using System.IO;
 using WebApiCT.ActionFilter;
 using WebApiCT.Extensions;
@@ -31,11 +33,12 @@ namespace WebApiCT
             services.AddScoped<ILoggerManager, LoggerManager>();
             services.AddScoped<IRepositoryManager, RepositoryManager>();
             services.AddScoped<ValidationFilterAttribute>();
+            services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 
-            services.AddSwaggerGen(s =>
-            {
-                s.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+            services.ConfigureSwagger();
+            services.ConfigureJWT(Configuration);
 
             services.AddDbContext<RepositoryDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"), 
@@ -63,6 +66,7 @@ namespace WebApiCT
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

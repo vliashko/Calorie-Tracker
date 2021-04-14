@@ -25,7 +25,7 @@ namespace Repositories
                 .ToListAsync();
 
         public async Task<IEnumerable<Recipe>> GetAllRecipesForUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(rec => rec.UserId.Equals(userId), trackChanges)
+            await FindByCondition(rec => rec.UserProfileId.Equals(userId), trackChanges)
                 .OrderBy(rec => rec.Name)
                 .ToListAsync();
 
@@ -35,7 +35,7 @@ namespace Repositories
 
         public async Task<Recipe> GetRecipeForUserAsync(Guid userId, Guid recipeId, bool trackChanges) =>
             await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
-                .Where(rec => rec.UserId.Equals(userId))
+                .Where(rec => rec.UserProfileId.Equals(userId))
                 .SingleOrDefaultAsync();
     }
 }

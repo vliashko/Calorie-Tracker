@@ -25,7 +25,7 @@ namespace Repositories
 
         public async Task<Activity> GetActivityForUserAsync(Guid userId, Guid activityId, bool trackChanges) =>
             await FindByCondition(activ => activ.Id.Equals(activityId), trackChanges)
-                .Where(activ => activ.ActivityUser.SingleOrDefault(au => au.UserId == userId) != null)
+                .Where(activ => activ.ActivityUserProfile.SingleOrDefault(au => au.UserProfileId == userId) != null)
                 .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Activity>> GetAllActivitiesAsync(bool trackChanges) =>
@@ -34,7 +34,7 @@ namespace Repositories
                 .ToListAsync();
 
         public async Task<IEnumerable<Activity>> GetAllActivitiesForUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(activ => activ.ActivityUser.SingleOrDefault(au => au.UserId == userId) != null, trackChanges)
+            await FindByCondition(activ => activ.ActivityUserProfile.SingleOrDefault(au => au.UserProfileId == userId) != null, trackChanges)
                 .OrderBy(activ => activ.Start)
                 .ToListAsync();
     }

@@ -3,7 +3,7 @@ using System;
 
 namespace Entities.DataTransferObjects
 {
-    public class UserForReadDto
+    public class UserProfileForReadDto
     {
         public Guid Id { get; set; }
         public string Login { get; set; }

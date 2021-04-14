@@ -21,7 +21,7 @@ namespace Repositories
         public void DeleteEating(Eating eating) => Delete(eating);
 
         public async Task<IEnumerable<Eating>> GetAllEatingsForUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(eat => eat.EatingUser.SingleOrDefault(eu => eu.UserId == userId) != null, trackChanges)
+            await FindByCondition(eat => eat.EatingUserProfile.SingleOrDefault(eu => eu.UserProfileId == userId) != null, trackChanges)
                 .OrderBy(eat => eat.Moment)
                 .ToListAsync();
 
@@ -36,7 +36,7 @@ namespace Repositories
 
         public async Task<Eating> GetEatingForUserAsync(Guid userId, Guid eatingId, bool trackChanges) =>
             await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
-                .Where(eat => eat.EatingUser.SingleOrDefault(eu => eu.UserId == userId) != null)
+                .Where(eat => eat.EatingUserProfile.SingleOrDefault(eu => eu.UserProfileId == userId) != null)
                 .SingleOrDefaultAsync();
     }
 }

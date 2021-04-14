@@ -31,7 +31,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var recipes = await repositoryManager.Recipe.GetAllRecipesForUserAsync(userId, trackChanges: false);
@@ -44,7 +44,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: false);
@@ -63,11 +63,11 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var recipe = mapper.Map<Recipe>(recipeDto);
-            recipe.UserId = userId;
+            recipe.UserProfileId = userId;
             repositoryManager.Recipe.CreateRecipe(recipe);
             var recipeView = mapper.Map<RecipeForReadDto>(recipe);
             user.Recipes.Add(recipe);
@@ -80,7 +80,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: false);
@@ -100,7 +100,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: true);
@@ -119,7 +119,7 @@ namespace WebApiCT.Controllers
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"User with id: {userId} doesn't exist in the database");
+                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
             var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: true);

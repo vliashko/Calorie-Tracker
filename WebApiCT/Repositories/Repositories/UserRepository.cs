@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public class UserRepository : RepositoryBase<User>, IUserRepository
+    public class UserRepository : RepositoryBase<UserProfile>, IUserRepository
     {
         public UserRepository(RepositoryDbContext context) : base(context)
         {
         }
 
-        public void CreateUser(User user) => Create(user);
+        public void CreateUser(UserProfile user) => Create(user);
 
-        public void DeleteUser(User user) => Delete(user);
+        public void DeleteUser(UserProfile user) => Delete(user);
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync(bool trackChanges) =>
+        public async Task<IEnumerable<UserProfile>> GetAllUsersAsync(bool trackChanges) =>
             await FindAll(trackChanges)
                 .OrderBy(user => user.Login)
                 .ToListAsync();
 
-        public async Task<User> GetUserAsync(Guid userId, bool trackChanges) =>
+        public async Task<UserProfile> GetUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(user => user.Id.Equals(userId), trackChanges)
                 .SingleOrDefaultAsync();
     }

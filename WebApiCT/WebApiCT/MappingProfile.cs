@@ -8,9 +8,9 @@ namespace WebApiCT
     {
         public MappingProfile()
         {
-            CreateMap<User, UserForReadDto>();
-            CreateMap<UserForCreateDto, User>();
-            CreateMap<UserForUpdateDto, User>().ReverseMap();
+            CreateMap<UserProfile, UserProfileForReadDto>();
+            CreateMap<UserProfileForCreateDto, UserProfile>();
+            CreateMap<UserProfileForUpdateDto, UserProfile>().ReverseMap();
 
             CreateMap<Activity, ActivityForReadDto>();
             CreateMap<ActivityForCreateDto, Activity>();
@@ -23,6 +23,8 @@ namespace WebApiCT
             CreateMap<Recipe, RecipeForReadDto>();
             CreateMap<RecipeForCreateDto, Recipe>();
             CreateMap<RecipeForUpdateDto, Recipe>().ReverseMap();
+
+            CreateMap<UserForRegistrationDto, User>();
         }
     }
 }

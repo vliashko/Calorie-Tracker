@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.DataTransferObjects
 {
-    public class UserForCreateDto
+    public class UserProfileForCreateDto
     {
         [Required(ErrorMessage = "Login is required field.")]
         public string Login { get; set; }

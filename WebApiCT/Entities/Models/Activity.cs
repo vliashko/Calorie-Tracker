@@ -10,6 +10,6 @@ namespace Entities.Models
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
         public virtual ICollection<ActivityExercise> ActivityExercise { get; set; } = new List<ActivityExercise>();
-        public virtual ICollection<ActivityUser> ActivityUser { get; set; } = new List<ActivityUser>();
+        public virtual ICollection<ActivityUserProfile> ActivityUserProfile { get; set; } = new List<ActivityUserProfile>();
     }
 }

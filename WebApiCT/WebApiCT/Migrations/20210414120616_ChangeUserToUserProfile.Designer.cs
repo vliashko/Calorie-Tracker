@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebApiCT.Migrations
 {
     [DbContext(typeof(RepositoryDbContext))]
-    [Migration("20210413091048_Initial")]
-    partial class Initial
+    [Migration("20210414120616_ChangeUserToUserProfile")]
+    partial class ChangeUserToUserProfile
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace WebApiCT.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityUser", b =>
+            modelBuilder.Entity("Entities.Models.ActivityUserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,23 +94,23 @@ namespace WebApiCT.Migrations
                     b.Property<Guid>("ActivityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserProfileId");
 
-                    b.ToTable("ActivityUser");
+                    b.ToTable("ActivityUserProfile");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("d3f8f77c-089e-425e-b79e-eb329456463c"),
                             ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -128,7 +128,7 @@ namespace WebApiCT.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Eating");
+                    b.ToTable("Eatings");
 
                     b.HasData(
                         new
@@ -145,7 +145,7 @@ namespace WebApiCT.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Entities.Models.EatingUser", b =>
+            modelBuilder.Entity("Entities.Models.EatingUserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,29 +154,29 @@ namespace WebApiCT.Migrations
                     b.Property<Guid>("EatingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EatingId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserProfileId");
 
-                    b.ToTable("EatingUser");
+                    b.ToTable("EatingUserProfile");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("1b3039d0-7372-47d8-bff2-5205bf580c39"),
                             EatingId = new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"),
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         },
                         new
                         {
                             Id = new Guid("10ec2edc-e38c-40b1-a83f-216c1992a457"),
                             EatingId = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -385,14 +385,14 @@ namespace WebApiCT.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserProfileId");
 
-                    b.ToTable("Recipe");
+                    b.ToTable("Recipes");
 
                     b.HasData(
                         new
@@ -400,7 +400,7 @@ namespace WebApiCT.Migrations
                             Id = new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0"),
                             Description = "Также просто, как и макароны, но необычно",
                             Name = "Картошка с курицей",
-                            UserId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
+                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
                         });
                 });
 
@@ -427,7 +427,7 @@ namespace WebApiCT.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UserProfiles");
 
                     b.HasData(
                         new
@@ -460,17 +460,17 @@ namespace WebApiCT.Migrations
                     b.Navigation("Exercise");
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityUser", b =>
+            modelBuilder.Entity("Entities.Models.ActivityUserProfile", b =>
                 {
                     b.HasOne("Entities.Models.Activity", "Activity")
-                        .WithMany("ActivityUser")
+                        .WithMany("ActivityUserProfile")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Models.UserProfile", "UserProfile")
-                        .WithMany("ActivityUser")
-                        .HasForeignKey("UserId")
+                        .WithMany("ActivityUserProfile")
+                        .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -479,17 +479,17 @@ namespace WebApiCT.Migrations
                     b.Navigation("UserProfile");
                 });
 
-            modelBuilder.Entity("Entities.Models.EatingUser", b =>
+            modelBuilder.Entity("Entities.Models.EatingUserProfile", b =>
                 {
                     b.HasOne("Entities.Models.Eating", "Eating")
-                        .WithMany("EatingUser")
+                        .WithMany("EatingUserProfile")
                         .HasForeignKey("EatingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Models.UserProfile", "UserProfile")
-                        .WithMany("EatingUser")
-                        .HasForeignKey("UserId")
+                        .WithMany("EatingUserProfile")
+                        .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -540,7 +540,7 @@ namespace WebApiCT.Migrations
                 {
                     b.HasOne("Entities.Models.UserProfile", "UserProfile")
                         .WithMany("Recipes")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -551,12 +551,12 @@ namespace WebApiCT.Migrations
                 {
                     b.Navigation("ActivityExercise");
 
-                    b.Navigation("ActivityUser");
+                    b.Navigation("ActivityUserProfile");
                 });
 
             modelBuilder.Entity("Entities.Models.Eating", b =>
                 {
-                    b.Navigation("EatingUser");
+                    b.Navigation("EatingUserProfile");
 
                     b.Navigation("IngredientEating");
                 });
@@ -580,9 +580,9 @@ namespace WebApiCT.Migrations
 
             modelBuilder.Entity("Entities.Models.UserProfile", b =>
                 {
-                    b.Navigation("ActivityUser");
+                    b.Navigation("ActivityUserProfile");
 
-                    b.Navigation("EatingUser");
+                    b.Navigation("EatingUserProfile");
 
                     b.Navigation("Recipes");
                 });

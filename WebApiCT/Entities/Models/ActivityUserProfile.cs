@@ -2,11 +2,11 @@
 
 namespace Entities.Models
 {
-    public class ActivityUser
+    public class ActivityUserProfile
     {
         public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        public Guid UserProfileId { get; set; }
+        public UserProfile UserProfile { get; set; }
         public Guid ActivityId { get; set; }
         public Activity Activity { get; set; }
     }
