@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ namespace WebApiCT.Controllers
 {
     [Route("api/users/{userId}/eatings")]
     [ApiController]
+    [Authorize]
     public class EatingsController : ControllerBase
     {
         private readonly ILoggerManager logger;

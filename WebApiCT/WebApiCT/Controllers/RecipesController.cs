@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using Entities.Models;
 using WebApiCT.ActionFilter;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiCT.Controllers
 {
     [Route("api/users/{userId}/recipes")]
     [ApiController]
+    [Authorize]
     public class RecipesController : ControllerBase
     {
         private readonly ILoggerManager logger;

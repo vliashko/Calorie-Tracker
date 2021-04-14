@@ -51,7 +51,7 @@ namespace WebApiCT.Controllers
             if (!await authManager.ValidateUser(user))
             {
                 logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
-            return Unauthorized();
+                return Unauthorized();
             }
             return Ok(new { Token = await authManager.CreateToken() });
         }

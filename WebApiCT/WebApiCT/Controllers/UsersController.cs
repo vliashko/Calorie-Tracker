@@ -14,6 +14,7 @@ namespace WebApiCT.Controllers
 {
     [Route("api/users")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class UsersController : ControllerBase
     {
         private readonly ILoggerManager logger;
@@ -26,7 +27,7 @@ namespace WebApiCT.Controllers
             this.repositoryManager = repositoryManager;
             this.mapper = mapper;
         }
-        [HttpGet(Name = "GetUsers"), Authorize]
+        [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
             var users = await repositoryManager.User.GetAllUsersAsync(trackChanges: false);
