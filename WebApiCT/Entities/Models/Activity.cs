@@ -9,7 +9,14 @@ namespace Entities.Models
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
-        public virtual ICollection<ActivityExercise> ActivityExercise { get; set; } = new List<ActivityExercise>();
-        public virtual ICollection<ActivityUserProfile> ActivityUserProfile { get; set; } = new List<ActivityUserProfile>();
+        public double TotalCaloriesSpent { get; set; }
+        public virtual IEnumerable<ActivityExercise> ExercisesWithReps { get; set; }
+        public Guid UserProfileId { get; set; }
+        public UserProfile UserProfile { get; set; }
+
+        public Activity()
+        {
+            ExercisesWithReps = new List<ActivityExercise>();
+        }
     }
 }

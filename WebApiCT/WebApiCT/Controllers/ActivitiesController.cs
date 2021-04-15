@@ -62,22 +62,16 @@ namespace WebApiCT.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateActivity(Guid userId, [FromBody] ActivityForCreateDto activityDto)
         {
-            var activityEntity = mapper.Map<Activity>(activityDto);
-            repositoryManager.Activity.CreateActivity(activityEntity);
-            var activityView = mapper.Map<ActivityForReadDto>(activityEntity);
-
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
             if (user == null)
             {
                 logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
-            ActivityUserProfile activityUser = new ActivityUserProfile
-            {
-                ActivityId = activityView.Id,
-                UserProfileId = userId
-            };
-            user.ActivityUserProfile.Add(activityUser);
+            var activityEntity = mapper.Map<Activity>(activityDto);
+            repositoryManager.Activity.CreateActivity(activityEntity);
+            var activityView = mapper.Map<ActivityForReadDto>(activityEntity);
+            user.Activities.Add(activityEntity);
             await repositoryManager.SaveAsync();
             return CreatedAtRoute("GetActivity", new { userId, activityId = activityView.Id }, activityView);
         }

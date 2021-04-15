@@ -9,5 +9,7 @@ namespace Entities.Models
         public Exercise Exercise { get; set; }
         public Guid ActivityId { get; set; }
         public Activity Activity { get; set; }
+        public int NumberOfRepetitions { get; set; }
+        public int NumberOfSets { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Repositories
 
         public async Task<IEnumerable<UserProfile>> GetAllUsersAsync(bool trackChanges) =>
             await FindAll(trackChanges)
-                .OrderBy(user => user.Login)
+                .OrderBy(user => user.Calories)
                 .ToListAsync();
 
         public async Task<UserProfile> GetUserAsync(Guid userId, bool trackChanges) =>

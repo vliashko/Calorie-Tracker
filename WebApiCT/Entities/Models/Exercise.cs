@@ -7,11 +7,13 @@ namespace Entities.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public double CaloriesPerMinute { get; set; }
         public string Description { get; set; }
-        public int NumberOfRepetitions { get; set; }
-        public int NumberOfSets { get; set; }
-        public int RestBetweenSets { get; set; }
-        public virtual ICollection<ActivityExercise> ActivityExercise { get; set; } = new List<ActivityExercise>();
+        public double CaloriesSpent { get; set; }
+        public virtual IEnumerable<ActivityExercise> ActivityExercise { get; set; }
+
+        public Exercise()
+        {
+            ActivityExercise = new List<ActivityExercise>();
+        }
     }
 }

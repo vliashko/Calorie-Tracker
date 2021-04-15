@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Repositories
@@ -21,22 +20,26 @@ namespace Repositories
         public void DeleteEating(Eating eating) => Delete(eating);
 
         public async Task<IEnumerable<Eating>> GetAllEatingsForUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(eat => eat.EatingUserProfile.SingleOrDefault(eu => eu.UserProfileId == userId) != null, trackChanges)
+            await FindByCondition(eat => eat.UserProfileId == userId, trackChanges)
+                .Include(eat => eat.IngredientsWithGrams)
                 .OrderBy(eat => eat.Moment)
                 .ToListAsync();
 
         public async Task<IEnumerable<Eating>> GetAllEatingsAsync(bool trackChanges) =>
             await FindAll(trackChanges)
+                .Include(eat => eat.IngredientsWithGrams)
                 .OrderBy(eat => eat.Moment)
                 .ToListAsync();
 
         public async Task<Eating> GetEatingAsync(Guid eatingId, bool trackChanges) =>
             await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
+                .Include(eat => eat.IngredientsWithGrams)
                 .SingleOrDefaultAsync();
 
         public async Task<Eating> GetEatingForUserAsync(Guid userId, Guid eatingId, bool trackChanges) =>
             await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
-                .Where(eat => eat.EatingUserProfile.SingleOrDefault(eu => eu.UserProfileId == userId) != null)
+                .Include(eat => eat.IngredientsWithGrams)
+                .Where(eat => eat.UserProfileId == userId)
                 .SingleOrDefaultAsync();
     }
 }

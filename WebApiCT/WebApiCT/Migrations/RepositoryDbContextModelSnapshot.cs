@@ -34,18 +34,17 @@ namespace WebApiCT.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("TotalCaloriesSpent")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("UserProfileId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Activities");
+                    b.HasIndex("UserProfileId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
-                            Finish = new DateTime(2021, 4, 13, 8, 50, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Утреняя тренировка",
-                            Start = new DateTime(2021, 4, 13, 8, 30, 0, 0, DateTimeKind.Unspecified)
-                        });
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
@@ -60,6 +59,12 @@ namespace WebApiCT.Migrations
                     b.Property<Guid>("ExerciseId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("NumberOfRepetitions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfSets")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
@@ -67,49 +72,6 @@ namespace WebApiCT.Migrations
                     b.HasIndex("ExerciseId");
 
                     b.ToTable("ActivityExercise");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("eac5d895-df3d-41aa-abcc-2915be0bb837"),
-                            ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
-                            ExerciseId = new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55")
-                        },
-                        new
-                        {
-                            Id = new Guid("398f8ada-bf2a-491e-bce9-9cca15f45120"),
-                            ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
-                            ExerciseId = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e")
-                        });
-                });
-
-            modelBuilder.Entity("Entities.Models.ActivityUserProfile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ActivityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserProfileId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("UserProfileId");
-
-                    b.ToTable("ActivityUserProfile");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("d3f8f77c-089e-425e-b79e-eb329456463c"),
-                            ActivityId = new Guid("f336980a-c880-43d8-bd25-3576bcdec1f0"),
-                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Eating", b =>
@@ -124,58 +86,17 @@ namespace WebApiCT.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Eatings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"),
-                            Moment = new DateTime(2021, 4, 13, 8, 55, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Завтрак"
-                        },
-                        new
-                        {
-                            Id = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
-                            Moment = new DateTime(2021, 4, 13, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Обед"
-                        });
-                });
-
-            modelBuilder.Entity("Entities.Models.EatingUserProfile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EatingId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<double>("TotalCalories")
+                        .HasColumnType("float");
 
                     b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EatingId");
-
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("EatingUserProfile");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1b3039d0-7372-47d8-bff2-5205bf580c39"),
-                            EatingId = new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"),
-                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
-                        },
-                        new
-                        {
-                            Id = new Guid("10ec2edc-e38c-40b1-a83f-216c1992a457"),
-                            EatingId = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
-                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
-                        });
+                    b.ToTable("Eatings");
                 });
 
             modelBuilder.Entity("Entities.Models.Exercise", b =>
@@ -184,7 +105,7 @@ namespace WebApiCT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("CaloriesPerMinute")
+                    b.Property<double>("CaloriesSpent")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")
@@ -192,15 +113,6 @@ namespace WebApiCT.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumberOfRepetitions")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfSets")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestBetweenSets")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -210,22 +122,16 @@ namespace WebApiCT.Migrations
                         new
                         {
                             Id = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                            CaloriesPerMinute = 5.0,
-                            Description = "Выполняются на перекладине. Длительность 40 секунд",
-                            Name = "Подтягивания",
-                            NumberOfRepetitions = 10,
-                            NumberOfSets = 4,
-                            RestBetweenSets = 20
+                            CaloriesSpent = 5.0,
+                            Description = "Performed on the crossbar. Duration 40 seconds",
+                            Name = "Pull-ups"
                         },
                         new
                         {
                             Id = new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55"),
-                            CaloriesPerMinute = 10.0,
-                            Description = "Из положения стоя, ноги на ширине плеч",
-                            Name = "Приседания",
-                            NumberOfRepetitions = 20,
-                            NumberOfSets = 3,
-                            RestBetweenSets = 60
+                            CaloriesSpent = 10.0,
+                            Description = "From a standing position, feet shoulder width apart",
+                            Name = "Squats"
                         });
                 });
 
@@ -261,7 +167,7 @@ namespace WebApiCT.Migrations
                             Calories = 77.0,
                             Carbohydrates = 16.300000000000001,
                             Fats = 0.40000000000000002,
-                            Name = "Картошка",
+                            Name = "Potato",
                             Proteins = 2.0
                         },
                         new
@@ -270,7 +176,7 @@ namespace WebApiCT.Migrations
                             Calories = 98.0,
                             Carbohydrates = 20.0,
                             Fats = 0.40000000000000002,
-                            Name = "Макароны",
+                            Name = "Pasta",
                             Proteins = 3.6000000000000001
                         },
                         new
@@ -279,7 +185,7 @@ namespace WebApiCT.Migrations
                             Calories = 113.0,
                             Carbohydrates = 0.40000000000000002,
                             Fats = 1.8999999999999999,
-                            Name = "Куриная грудка",
+                            Name = "Chicken breast",
                             Proteins = 23.600000000000001
                         });
                 });
@@ -306,29 +212,6 @@ namespace WebApiCT.Migrations
                     b.HasIndex("IngredientId");
 
                     b.ToTable("IngredientEating");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("3e687ead-a71c-4ea3-9bd4-d8596e6a5339"),
-                            EatingId = new Guid("9a91cf0c-7b9a-43ea-b87e-95e1dd30354e"),
-                            Grams = 300.0,
-                            IngredientId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870")
-                        },
-                        new
-                        {
-                            Id = new Guid("5ef0d854-3d0f-4b99-bff0-4545a236236a"),
-                            EatingId = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
-                            Grams = 200.0,
-                            IngredientId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3")
-                        },
-                        new
-                        {
-                            Id = new Guid("f71f6aa0-a6a3-49d7-8cb9-a7e0b7c261b9"),
-                            EatingId = new Guid("608ccd48-9de9-4b47-8e6c-5ee094485be8"),
-                            Grams = 100.0,
-                            IngredientId = new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d")
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.IngredientRecipe", b =>
@@ -353,22 +236,6 @@ namespace WebApiCT.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("IngredientRecipe");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("2fc02eb0-b6dd-46e7-aefc-d71f14b5ecbd"),
-                            Grams = 200.0,
-                            IngredientId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            RecipeId = new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0")
-                        },
-                        new
-                        {
-                            Id = new Guid("2fc02eb0-b6dd-46e7-aefc-d71f14b5ecdb"),
-                            Grams = 100.0,
-                            IngredientId = new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d"),
-                            RecipeId = new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0")
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Recipe", b =>
@@ -377,11 +244,14 @@ namespace WebApiCT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Instruction")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalCalories")
+                        .HasColumnType("float");
 
                     b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
@@ -391,15 +261,6 @@ namespace WebApiCT.Migrations
                     b.HasIndex("UserProfileId");
 
                     b.ToTable("Recipes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("000c0477-d0ec-472d-b65c-1b3561dac2a0"),
-                            Description = "Также просто, как и макароны, но необычно",
-                            Name = "Картошка с курицей",
-                            UserProfileId = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e")
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
@@ -420,12 +281,6 @@ namespace WebApiCT.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -479,6 +334,9 @@ namespace WebApiCT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<double>("Calories")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
@@ -488,26 +346,19 @@ namespace WebApiCT.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("Weight")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserProfiles");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("647a9334-4fd6-4700-ba4b-5622039ab32e"),
-                            DateOfBirth = new DateTime(2002, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Gender = 0,
-                            Height = 175,
-                            Login = "vlyashko02",
-                            Weight = 84.200000000000003
-                        });
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -539,22 +390,22 @@ namespace WebApiCT.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0878c5ec-d7f6-407d-b5a4-81a8c7a97c38",
-                            ConcurrencyStamp = "b72724b7-55f0-45fd-9edd-bf932eae8131",
+                            Id = "4fbb00c8-1ab8-4dd5-abb6-3d26e9510bb5",
+                            ConcurrencyStamp = "5c0ffbff-880e-4634-8030-f3c7f84ffce9",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "c1fcb727-fc82-4920-9cb5-cc4fd5e93d6a",
-                            ConcurrencyStamp = "193af257-5a27-4a5b-a97d-e7a786b5c397",
+                            Id = "32ea7678-f1f3-45d0-8df2-aa4290ada1e5",
+                            ConcurrencyStamp = "4a9b2fe9-b757-4b25-89e1-2bcc3b4ce5a7",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "a3a24f45-aa3d-47ef-92cc-065b120c1737",
-                            ConcurrencyStamp = "b690af6b-4af0-40b7-a6dd-944ec8c3d7be",
+                            Id = "77617a23-366e-40cd-9d2b-08aeca820f8e",
+                            ConcurrencyStamp = "dcd17614-9b20-43ec-a50d-af980ea27022",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -664,10 +515,21 @@ namespace WebApiCT.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Entities.Models.Activity", b =>
+                {
+                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
+                        .WithMany("Activities")
+                        .HasForeignKey("UserProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
                 {
                     b.HasOne("Entities.Models.Activity", "Activity")
-                        .WithMany("ActivityExercise")
+                        .WithMany("ExercisesWithReps")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -683,40 +545,13 @@ namespace WebApiCT.Migrations
                     b.Navigation("Exercise");
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityUserProfile", b =>
+            modelBuilder.Entity("Entities.Models.Eating", b =>
                 {
-                    b.HasOne("Entities.Models.Activity", "Activity")
-                        .WithMany("ActivityUserProfile")
-                        .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Models.UserProfile", "UserProfile")
-                        .WithMany("ActivityUserProfile")
+                        .WithMany("Eatings")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Activity");
-
-                    b.Navigation("UserProfile");
-                });
-
-            modelBuilder.Entity("Entities.Models.EatingUserProfile", b =>
-                {
-                    b.HasOne("Entities.Models.Eating", "Eating")
-                        .WithMany("EatingUserProfile")
-                        .HasForeignKey("EatingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
-                        .WithMany("EatingUserProfile")
-                        .HasForeignKey("UserProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Eating");
 
                     b.Navigation("UserProfile");
                 });
@@ -724,7 +559,7 @@ namespace WebApiCT.Migrations
             modelBuilder.Entity("Entities.Models.IngredientEating", b =>
                 {
                     b.HasOne("Entities.Models.Eating", "Eating")
-                        .WithMany("IngredientEating")
+                        .WithMany("IngredientsWithGrams")
                         .HasForeignKey("EatingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -749,7 +584,7 @@ namespace WebApiCT.Migrations
                         .IsRequired();
 
                     b.HasOne("Entities.Models.Recipe", "Recipe")
-                        .WithMany("IngredientRecipe")
+                        .WithMany("IngredientsWithGrams")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -768,6 +603,15 @@ namespace WebApiCT.Migrations
                         .IsRequired();
 
                     b.Navigation("UserProfile");
+                });
+
+            modelBuilder.Entity("Entities.Models.UserProfile", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithOne("UserProfile")
+                        .HasForeignKey("Entities.Models.UserProfile", "UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -823,16 +667,12 @@ namespace WebApiCT.Migrations
 
             modelBuilder.Entity("Entities.Models.Activity", b =>
                 {
-                    b.Navigation("ActivityExercise");
-
-                    b.Navigation("ActivityUserProfile");
+                    b.Navigation("ExercisesWithReps");
                 });
 
             modelBuilder.Entity("Entities.Models.Eating", b =>
                 {
-                    b.Navigation("EatingUserProfile");
-
-                    b.Navigation("IngredientEating");
+                    b.Navigation("IngredientsWithGrams");
                 });
 
             modelBuilder.Entity("Entities.Models.Exercise", b =>
@@ -849,14 +689,19 @@ namespace WebApiCT.Migrations
 
             modelBuilder.Entity("Entities.Models.Recipe", b =>
                 {
-                    b.Navigation("IngredientRecipe");
+                    b.Navigation("IngredientsWithGrams");
+                });
+
+            modelBuilder.Entity("Entities.Models.User", b =>
+                {
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("Entities.Models.UserProfile", b =>
                 {
-                    b.Navigation("ActivityUserProfile");
+                    b.Navigation("Activities");
 
-                    b.Navigation("EatingUserProfile");
+                    b.Navigation("Eatings");
 
                     b.Navigation("Recipes");
                 });

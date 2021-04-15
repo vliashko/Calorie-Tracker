@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities.DataTransferObjects
 {
@@ -6,6 +7,13 @@ namespace Entities.DataTransferObjects
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Instruction { get; set; }
+
+        public IEnumerable<IngredientRecipeForReadDto> IngredientsWithGrams { get; set; }
+
+        public RecipeForReadDto()
+        {
+            IngredientsWithGrams = new List<IngredientRecipeForReadDto>();
+        }
     }
 }

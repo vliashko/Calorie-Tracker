@@ -8,7 +8,14 @@ namespace Entities.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Moment { get; set; }
-        public virtual ICollection<IngredientEating> IngredientEating { get; set; } = new List<IngredientEating>();
-        public virtual ICollection<EatingUserProfile> EatingUserProfile { get; set; } = new List<EatingUserProfile>();
+        public double TotalCalories { get; set; }
+        public Guid UserProfileId { get; set; }
+        public UserProfile UserProfile { get; set; }
+        public virtual IEnumerable<IngredientEating> IngredientsWithGrams { get; set; }
+
+        public Eating()
+        {
+            IngredientsWithGrams = new List<IngredientEating>();
+        }
     }
 }

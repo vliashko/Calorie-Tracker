@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApiCT.ActionFilter;
 
@@ -64,22 +63,16 @@ namespace WebApiCT.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEating(Guid userId, [FromBody] EatingForCreateDto eatingDto)
         {
-            var eatingEntity = mapper.Map<Eating>(eatingDto);
-            repositoryManager.Eating.CreateEating(eatingEntity);
-            var eatingView = mapper.Map<EatingForReadDto>(eatingEntity);
-
             var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
             if (user == null)
             {
                 logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return NotFound();
             }
-            EatingUserProfile eatingUser = new EatingUserProfile
-            {
-                EatingId = eatingView.Id,
-                UserProfileId = userId
-            };
-            user.EatingUserProfile.Add(eatingUser);
+            var eatingEntity = mapper.Map<Eating>(eatingDto);         
+            repositoryManager.Eating.CreateEating(eatingEntity);
+            var eatingView = mapper.Map<EatingForReadDto>(eatingEntity);
+            user.Eatings.Add(eatingEntity);
             await repositoryManager.SaveAsync();
             return CreatedAtRoute("GetEating", new { userId, eatingId = eatingView.Id }, eatingView);
         }

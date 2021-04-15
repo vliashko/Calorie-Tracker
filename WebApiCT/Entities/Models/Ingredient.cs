@@ -11,7 +11,13 @@ namespace Entities.Models
         public double Proteins { get; set; }
         public double Fats { get; set; }
         public double Carbohydrates { get; set; }
-        public virtual ICollection<IngredientEating> IngredientEating { get; set; } = new List<IngredientEating>();
-        public virtual ICollection<IngredientRecipe> IngredientRecipe { get; set; } = new List<IngredientRecipe>();
+        public virtual IEnumerable<IngredientEating> IngredientEating { get; set; }
+        public virtual IEnumerable<IngredientRecipe> IngredientRecipe { get; set; }
+
+        public Ingredient()
+        {
+            IngredientEating = new List<IngredientEating>();
+            IngredientRecipe = new List<IngredientRecipe>();
+        }
     }
 }

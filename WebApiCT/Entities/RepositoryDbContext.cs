@@ -15,16 +15,7 @@ namespace Entities
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new IngredientConfiguration());
-            modelBuilder.ApplyConfiguration(new UserProfileConfiguration());
-            modelBuilder.ApplyConfiguration(new IngredientEatingConfiguration());
-            modelBuilder.ApplyConfiguration(new RecipeConfiguration());
-            modelBuilder.ApplyConfiguration(new ActivityConfiguration());
-            modelBuilder.ApplyConfiguration(new EatingConfiguration());
             modelBuilder.ApplyConfiguration(new ExerciseConfiguration());
-            modelBuilder.ApplyConfiguration(new IngredientRecipeConfiguration());
-            modelBuilder.ApplyConfiguration(new ActivityUserProfileConfiguration());
-            modelBuilder.ApplyConfiguration(new ActivityExerciseConfiguration());
-            modelBuilder.ApplyConfiguration(new EatingUserProfileConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
         public DbSet<UserProfile> UserProfiles { get; set; }

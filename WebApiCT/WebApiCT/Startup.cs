@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using NLog;
 using Repositories;
 using Repositories.Authentication;
@@ -61,7 +60,7 @@ namespace WebApiCT
             app.UseSwagger();
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Calorie Tracker API");
             });
 
             app.UseRouting();

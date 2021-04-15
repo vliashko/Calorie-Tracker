@@ -7,9 +7,15 @@ namespace Entities.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public virtual ICollection<IngredientRecipe> IngredientRecipe { get; set; } = new List<IngredientRecipe>();
+        public string Instruction { get; set; }
+        public double TotalCalories { get; set; }
         public Guid UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
+        public virtual IEnumerable<IngredientRecipe> IngredientsWithGrams { get; set; }
+
+        public Recipe()
+        {
+            IngredientsWithGrams = new List<IngredientRecipe>();
+        }
     }
 }

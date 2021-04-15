@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities.DataTransferObjects
 {
@@ -8,5 +9,12 @@ namespace Entities.DataTransferObjects
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
+
+        public IEnumerable<ActivityExerciseForReadDto> ExercisesWithReps { get; set; }
+
+        public ActivityForReadDto()
+        {
+            ExercisesWithReps = new List<ActivityExerciseForReadDto>();
+        }
     }
 }

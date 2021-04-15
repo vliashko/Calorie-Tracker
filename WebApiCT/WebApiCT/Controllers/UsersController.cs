@@ -3,6 +3,7 @@ using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,18 +15,20 @@ namespace WebApiCT.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly ILoggerManager logger;
         private readonly IRepositoryManager repositoryManager;
         private readonly IMapper mapper;
+        private readonly UserManager<User> userManager;
 
-        public UsersController(ILoggerManager logger, IRepositoryManager repositoryManager, IMapper mapper)
+        public UsersController(ILoggerManager logger, IRepositoryManager repositoryManager, IMapper mapper, UserManager<User> userManager)
         {
             this.logger = logger;
             this.repositoryManager = repositoryManager;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
         [HttpGet]
         public async Task<IActionResult> GetUsers()
@@ -50,7 +53,10 @@ namespace WebApiCT.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateUser([FromBody] UserProfileForCreateDto userDto)
         {
+            var userName = User.Identity.Name;
+            var user = await userManager.FindByNameAsync(userName);
             var userEntity = mapper.Map<UserProfile>(userDto);
+            userEntity.UserId = user.Id;
             repositoryManager.User.CreateUser(userEntity);
             await repositoryManager.SaveAsync();
             var userView = mapper.Map<UserProfileForReadDto>(userEntity);

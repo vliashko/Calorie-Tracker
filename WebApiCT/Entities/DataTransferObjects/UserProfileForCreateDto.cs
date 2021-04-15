@@ -6,8 +6,6 @@ namespace Entities.DataTransferObjects
 {
     public class UserProfileForCreateDto
     {
-        [Required(ErrorMessage = "Login is required field.")]
-        public string Login { get; set; }
         [Required(ErrorMessage = "Weight is required field.")]
         [Range(35, 350, ErrorMessage = "Weight must be between 35 and 350.")]
         public double Weight { get; set; }

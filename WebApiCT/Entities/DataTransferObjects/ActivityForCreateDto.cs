@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entities.DataTransferObjects
@@ -11,5 +12,12 @@ namespace Entities.DataTransferObjects
         public DateTime Start { get; set; }
         [Required(ErrorMessage = "Finish is required field.")]
         public DateTime Finish { get; set; }
+
+        public IEnumerable<ActivityExerciseForCreateDto> ExercisesWithReps { get; set; }
+
+        public ActivityForCreateDto()
+        {
+            ExercisesWithReps = new List<ActivityExerciseForCreateDto>();
+        }
     }
 }

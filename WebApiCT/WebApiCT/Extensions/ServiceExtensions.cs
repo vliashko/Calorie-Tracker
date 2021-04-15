@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -36,9 +35,8 @@ namespace WebApiCT.Extensions
             {
                 s.SwaggerDoc("v1", new OpenApiInfo 
                 { 
-                    Title = "API", 
+                    Title = "Calorie Tracker API", 
                     Version = "v1",
-                    Description = "Calorie Tracker API",
                     Contact = new OpenApiContact
                     {
                         Name = "Vladimir Lyashko",
@@ -69,7 +67,6 @@ namespace WebApiCT.Extensions
                         },
                         new List<string>()
                     }
-
                 });
             });
         }

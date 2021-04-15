@@ -31,7 +31,6 @@ namespace Repositories.Authentication
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
             return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         }
-
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuth)
         {
             user = await userManager.FindByNameAsync(userForAuth.UserName);
