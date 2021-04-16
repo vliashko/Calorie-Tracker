@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaloriesTracker.Entities", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaloriesTracker.Repositories", "Repositories\CaloriesTracker.Repositories.csproj", "{5197E3F5-E732-48A5-8824-C24251CFC082}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieTracker.Services", "CalorieTracker.Services\CalorieTracker.Services.csproj", "{A528C066-2781-469A-87FD-04D8DD4A168B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaloriesTracker.Services", "CalorieTracker.Services\CaloriesTracker.Services.csproj", "{A528C066-2781-469A-87FD-04D8DD4A168B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

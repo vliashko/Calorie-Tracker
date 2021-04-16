@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CaloriesTracker.Contracts;
 using CaloriesTracker.Services.Interfaces;
+using CalorieTracker.Services.Services;
 
 namespace CaloriesTracker.Services.Services
 {
@@ -39,7 +40,15 @@ namespace CaloriesTracker.Services.Services
 
         public IEatingService Eating => throw new System.NotImplementedException();
 
-        public IExerciseService Exercise => throw new System.NotImplementedException();
+        public IExerciseService Exercise
+        {
+            get
+            {
+                if (exerciseService == null)
+                    exerciseService = new ExerciseService(mapper, repositoryManager, logger);
+                return exerciseService;
+            }
+        }
 
         public IIngredientService Ingredient => throw new System.NotImplementedException();
 

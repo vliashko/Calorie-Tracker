@@ -1,14 +1,11 @@
-﻿using AutoMapper;
-using CaloriesTracker.Contracts;
-using CaloriesTracker.Entities.DataTransferObjects;
-using CaloriesTracker.Entities.Models;
+﻿using CaloriesTracker.Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using CaloriesTracker.Api.Filter;
+using CaloriesTracker.Services.Interfaces;
+using Marvin.JsonPatch;
 
 namespace CaloriesTracker.Api.Controllers
 {
@@ -17,91 +14,55 @@ namespace CaloriesTracker.Api.Controllers
     [Authorize(Roles = "Administrator")]
     public class ExercisesController : ControllerBase
     {
-        private readonly ILoggerManager logger;
-        private readonly IRepositoryManager repositoryManager;
-        private readonly IMapper mapper;
+        private readonly IServiceManager serviceManager;
 
-        public ExercisesController(ILoggerManager logger, IRepositoryManager repositoryManager, IMapper mapper)
+        public ExercisesController(IServiceManager serviceManager)
         {
-            this.logger = logger;
-            this.repositoryManager = repositoryManager;
-            this.mapper = mapper;
+            this.serviceManager = serviceManager;
         }
         [HttpGet]
         public async Task<IActionResult> GetExercises()
         {
-            var exercises = await repositoryManager.Exercise.GetAllExercisesAsync(trackChanges: false);
-            var exercisesDto = mapper.Map<IEnumerable<ExerciseForReadDto>>(exercises);
-            return Ok(exercisesDto);
+            return Ok(await serviceManager.Exercise.GetExercises());
         }
         [HttpGet("{id}", Name = "ExerciseById")]
         public async Task<IActionResult> GetExercise(Guid id)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: false);
-            if(exercise == null)
-            {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+            var exercise = await serviceManager.Exercise.GetExercise(id);
+            if (exercise == null)
                 return NotFound();
-            }
-            var exerciseDto = mapper.Map<ExerciseForReadDto>(exercise);
-            return Ok(exerciseDto);
+            return Ok(exercise);
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateExercise([FromBody] ExerciseForCreateDto exerciseDto)
         {
-            var exerciseEntity = mapper.Map<Exercise>(exerciseDto);
-            repositoryManager.Exercise.CreateExercise(exerciseEntity);
-            await repositoryManager.SaveAsync();
-            var exerciseReadDto = mapper.Map<ExerciseForReadDto>(exerciseEntity);
+            var exerciseReadDto = await serviceManager.Exercise.CreateExercise(exerciseDto);
             return CreatedAtRoute("ExerciseById", new { id = exerciseReadDto.Id }, exerciseReadDto);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExercise(Guid id)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: false);
-            if (exercise == null)
-            {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+            var result = await serviceManager.Exercise.DeleteExercise(id);
+            if (!result)
                 return NotFound();
-            }
-            repositoryManager.Exercise.DeleteExercise(exercise);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateExercise(Guid id, [FromBody] ExerciseForUpdateDto exerciseDto)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
-            if (exercise == null)
-            {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+            var result = await serviceManager.Exercise.UpdateExercise(id, exerciseDto);
+            if (!result)
                 return NotFound();
-            }
-            mapper.Map(exerciseDto, exercise);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
         [HttpPatch("{id}")]
         public async Task<IActionResult> PartiallyUpdateExercise(Guid id, [FromBody] JsonPatchDocument<ExerciseForUpdateDto> patchDoc)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
-            if (exercise == null)
-            {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+            var result = await serviceManager.Exercise.PartiallyUpdateExercise(id, patchDoc);
+            if (!result)
                 return NotFound();
-            }
-            var exerciseToPatch = mapper.Map<ExerciseForUpdateDto>(exercise);
-            patchDoc.ApplyTo(exerciseToPatch, ModelState);
-            TryValidateModel(exerciseToPatch);
-            if (!ModelState.IsValid)
-            {
-                logger.LogError("Invalid model state for the patch document");
-                return UnprocessableEntity(ModelState);
-            }
-            mapper.Map(exerciseToPatch, exercise);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
     }
