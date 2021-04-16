@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CaloriesTracker.Entities.Models
 {
@@ -8,6 +9,7 @@ namespace CaloriesTracker.Entities.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Instruction { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public float TotalCalories { get; set; }
         public Guid UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }

@@ -8,6 +8,7 @@ namespace CaloriesTracker.Entities.DataTransferObjects
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Moment { get; set; }
+        public float TotalCalories { get; set; }
 
         public IEnumerable<IngredientEatingForReadDto> IngredientsWithGrams { get; set; }
 

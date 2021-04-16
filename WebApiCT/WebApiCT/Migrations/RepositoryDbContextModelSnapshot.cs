@@ -35,6 +35,7 @@ namespace CaloriesTracker.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<float>("TotalCaloriesSpent")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("real");
 
                     b.Property<Guid>("UserProfileId")
@@ -87,6 +88,7 @@ namespace CaloriesTracker.Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("TotalCalories")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("real");
 
                     b.Property<Guid>("UserProfileId")
@@ -251,6 +253,7 @@ namespace CaloriesTracker.Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("TotalCalories")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("real");
 
                     b.Property<Guid>("UserProfileId")
@@ -335,6 +338,7 @@ namespace CaloriesTracker.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("Calories")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("real");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -349,8 +353,8 @@ namespace CaloriesTracker.Api.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("Weight")
-                        .HasColumnType("float");
+                    b.Property<float>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -390,22 +394,22 @@ namespace CaloriesTracker.Api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0bf6120a-df98-460e-ad1e-8e6588276741",
-                            ConcurrencyStamp = "b2d26c9d-d9b2-4be1-978a-853d76b58a06",
+                            Id = "075b14a9-e20e-473e-bcc7-d25ce63f9524",
+                            ConcurrencyStamp = "005d9b33-ff82-4f57-94f9-0f812be42232",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "42eb7a39-a189-473d-bdf1-aa303ae77939",
-                            ConcurrencyStamp = "81236927-ccf9-49c3-a41e-f437e25748af",
+                            Id = "debe5170-9207-4c73-b59d-f3658d8a98c7",
+                            ConcurrencyStamp = "2664dce5-46d8-4f23-82cf-1cf6b5b88244",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "e00ee098-f3ef-4de3-aef0-432137752b14",
-                            ConcurrencyStamp = "f30e58a5-c44f-4ad2-8935-0272a16a7388",
+                            Id = "fd87662f-93ac-49eb-a22a-514fde73da9a",
+                            ConcurrencyStamp = "d4a80855-4146-47e2-9f71-226ce8ecec35",
                             Name = "User",
                             NormalizedName = "USER"
                         });
