@@ -10,6 +10,6 @@ namespace CaloriesTracker.Entities.Models
         public Guid EatingId { get; set; }
         public Eating Eating { get; set; }
 
-        public double Grams { get; set; }
+        public float Grams { get; set; }
     }
 }

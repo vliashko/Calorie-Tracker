@@ -7,6 +7,6 @@ namespace CaloriesTracker.Entities.DataTransferObjects
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public double CaloriesSpent { get; set; }
+        public float CaloriesSpent { get; set; }
     }
 }

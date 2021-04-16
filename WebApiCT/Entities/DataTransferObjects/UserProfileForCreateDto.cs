@@ -8,7 +8,7 @@ namespace CaloriesTracker.Entities.DataTransferObjects
     {
         [Required(ErrorMessage = "Weight is required field.")]
         [Range(35, 350, ErrorMessage = "Weight must be between 35 and 350.")]
-        public double Weight { get; set; }
+        public float Weight { get; set; }
         [Required(ErrorMessage = "Height is required field.")]
         [Range(120, 250, ErrorMessage = "Height must be between 120 and 250.")]
         public int Height { get; set; }

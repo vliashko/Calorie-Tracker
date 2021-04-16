@@ -7,12 +7,12 @@ namespace CaloriesTracker.Entities.DataTransferObjects
         [Required(ErrorMessage = "Name is required field.")]
         public string Name { get; set; }
         [Range(0.01, 500.0, ErrorMessage = "Calories must be between 0.01 and 500.0")]
-        public double Calories { get; set; }
+        public float Calories { get; set; }
         [Range(0.01, 150.0, ErrorMessage = "Calories must be between 0.01 and 150.0")]
-        public double Proteins { get; set; }
+        public float Proteins { get; set; }
         [Range(0.01, 150.0, ErrorMessage = "Calories must be between 0.01 and 150.0")]
-        public double Fats { get; set; }
+        public float Fats { get; set; }
         [Range(0.01, 150.0, ErrorMessage = "Calories must be between 0.01 and 150.0")]
-        public double Carbohydrates { get; set; }
+        public float Carbohydrates { get; set; }
     }
 }

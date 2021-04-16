@@ -8,7 +8,7 @@ namespace CaloriesTracker.Entities.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Moment { get; set; }
-        public double TotalCalories { get; set; }
+        public float TotalCalories { get; set; }
         public Guid UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
         public virtual IEnumerable<IngredientEating> IngredientsWithGrams { get; set; }

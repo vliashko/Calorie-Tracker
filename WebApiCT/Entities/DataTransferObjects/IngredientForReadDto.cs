@@ -6,9 +6,9 @@ namespace CaloriesTracker.Entities.DataTransferObjects
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public double Calories { get; set; }
-        public double Proteins { get; set; }
-        public double Fats { get; set; }
-        public double Carbohydrates { get; set; }
+        public float Calories { get; set; }
+        public float Proteins { get; set; }
+        public float Fats { get; set; }
+        public float Carbohydrates { get; set; }
     }
 }

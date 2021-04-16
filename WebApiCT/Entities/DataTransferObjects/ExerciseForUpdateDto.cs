@@ -9,6 +9,6 @@ namespace CaloriesTracker.Entities.DataTransferObjects
         [Required(ErrorMessage = "Description is required field.")]
         public string Description { get; set; }
         [Required(ErrorMessage = "CaloriesSpent is required field.")]
-        public double CaloriesSpent { get; set; }
+        public float CaloriesSpent { get; set; }
     }
 }

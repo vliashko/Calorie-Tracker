@@ -9,7 +9,7 @@ namespace CaloriesTracker.Entities.Models
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
-        public double TotalCaloriesSpent { get; set; }
+        public float TotalCaloriesSpent { get; set; }
         public virtual IEnumerable<ActivityExercise> ExercisesWithReps { get; set; }
         public Guid UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
