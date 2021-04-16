@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DataTransferObjects
+namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class ExerciseForUpdateDto
     {
@@ -9,6 +9,6 @@ namespace Entities.DataTransferObjects
         [Required(ErrorMessage = "Description is required field.")]
         public string Description { get; set; }
         [Required(ErrorMessage = "CaloriesSpent is required field.")]
-        public double CaloriesSpent { get; set; }
+        public float CaloriesSpent { get; set; }
     }
 }

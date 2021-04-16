@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entities.Models
+namespace CaloriesTracker.Entities.Models
 {
     public class IngredientRecipe
     {
@@ -10,6 +10,6 @@ namespace Entities.Models
         public Guid RecipeId { get; set; }
         public Recipe Recipe { get; set; }
 
-        public double Grams { get; set; }
+        public float Grams { get; set; }
     }
 }

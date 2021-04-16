@@ -1,7 +1,7 @@
-﻿using Contracts;
-using Contracts.Authentication;
-using Entities;
-using LoggerService;
+﻿using CaloriesTracker.Contracts;
+using CaloriesTracker.Contracts.Authentication;
+using CaloriesTracker.Entities;
+using CaloriesTracker.LoggerService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,13 +9,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
-using Repositories;
-using Repositories.Authentication;
+using CaloriesTracker.Repositories;
+using CaloriesTracker.Repositories.Authentication;
 using System.IO;
-using WebApiCT.ActionFilter;
-using WebApiCT.Extensions;
+using CaloriesTracker.Api.ActionFilter;
+using CaloriesTracker.Api.Extensions;
 
-namespace WebApiCT
+namespace CaloriesTracker.Api
 {
     public class Startup
     {

@@ -1,5 +1,5 @@
-﻿using Entities;
-using Entities.Models;
+﻿using CaloriesTracker.Entities;
+using CaloriesTracker.Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebApiCT.Extensions
+namespace CaloriesTracker.Api.Extensions
 {
     public static class ServiceExtensions
     {

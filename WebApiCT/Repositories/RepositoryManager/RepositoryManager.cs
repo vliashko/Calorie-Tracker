@@ -1,8 +1,8 @@
-﻿using Contracts;
-using Entities;
+﻿using CaloriesTracker.Contracts;
+using CaloriesTracker.Entities;
 using System.Threading.Tasks;
 
-namespace Repositories
+namespace CaloriesTracker.Repositories
 {
     public class RepositoryManager : IRepositoryManager
     {

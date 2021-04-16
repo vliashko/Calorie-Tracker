@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using Contracts;
-using Entities.DataTransferObjects;
+using CaloriesTracker.Contracts;
+using CaloriesTracker.Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Entities.Models;
-using WebApiCT.ActionFilter;
+using CaloriesTracker.Entities.Models;
+using CaloriesTracker.Api.ActionFilter;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebApiCT.Controllers
+namespace CaloriesTracker.Api.Controllers
 {
     [Route("api/users/{userId}/recipes")]
     [ApiController]

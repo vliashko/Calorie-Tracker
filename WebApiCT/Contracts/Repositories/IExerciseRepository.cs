@@ -1,9 +1,9 @@
-﻿using Entities.Models;
+﻿using CaloriesTracker.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Contracts
+namespace CaloriesTracker.Contracts
 {
     public interface IExerciseRepository
     {

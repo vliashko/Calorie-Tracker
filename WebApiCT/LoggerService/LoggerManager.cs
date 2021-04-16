@@ -1,9 +1,9 @@
-﻿using Contracts;
+﻿using CaloriesTracker.Contracts;
 using NLog;
 using System;
 
 
-namespace LoggerService
+namespace CaloriesTracker.LoggerService
 {
     public class LoggerManager : ILoggerManager
     {

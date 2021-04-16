@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Entities.DataTransferObjects;
-using Entities.Models;
+using CaloriesTracker.Entities.DataTransferObjects;
+using CaloriesTracker.Entities.Models;
 
-namespace WebApiCT
+namespace CaloriesTracker.Api
 {
     public class MappingProfile : Profile
     {

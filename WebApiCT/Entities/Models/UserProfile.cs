@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Entities.Models
+namespace CaloriesTracker.Entities.Models
 {
     public class UserProfile
     {
@@ -10,7 +10,7 @@ namespace Entities.Models
         public int Height { get; set; }
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public double Calories { get; set; }
+        public float Calories { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
         public virtual ICollection<Eating> Eatings { get; set; }
