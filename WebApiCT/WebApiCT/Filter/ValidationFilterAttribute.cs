@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 
-namespace CaloriesTracker.Api.ActionFilter
+namespace CaloriesTracker.Api.Filter
 {
     public class ValidationFilterAttribute : IActionFilter
     {
@@ -14,7 +14,7 @@ namespace CaloriesTracker.Api.ActionFilter
         }
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            
+
         }
 
         public void OnActionExecuting(ActionExecutingContext context)

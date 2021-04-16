@@ -4,9 +4,7 @@ using CaloriesTracker.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CaloriesTracker.Api.Migrations
 {
@@ -21,7 +19,7 @@ namespace CaloriesTracker.Api.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Entities.Models.Activity", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Activity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,8 +34,8 @@ namespace CaloriesTracker.Api.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("TotalCaloriesSpent")
-                        .HasColumnType("float");
+                    b.Property<float>("TotalCaloriesSpent")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
@@ -49,7 +47,7 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.ActivityExercise", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +74,7 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("ActivityExercise");
                 });
 
-            modelBuilder.Entity("Entities.Models.Eating", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Eating", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,8 +86,8 @@ namespace CaloriesTracker.Api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("TotalCalories")
-                        .HasColumnType("float");
+                    b.Property<float>("TotalCalories")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
@@ -101,14 +99,14 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("Eatings");
                 });
 
-            modelBuilder.Entity("Entities.Models.Exercise", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Exercise", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("CaloriesSpent")
-                        .HasColumnType("float");
+                    b.Property<float>("CaloriesSpent")
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -124,39 +122,39 @@ namespace CaloriesTracker.Api.Migrations
                         new
                         {
                             Id = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                            CaloriesSpent = 5.0,
+                            CaloriesSpent = 5f,
                             Description = "Performed on the crossbar. Duration 40 seconds",
                             Name = "Pull-ups"
                         },
                         new
                         {
                             Id = new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55"),
-                            CaloriesSpent = 10.0,
+                            CaloriesSpent = 10f,
                             Description = "From a standing position, feet shoulder width apart",
                             Name = "Squats"
                         });
                 });
 
-            modelBuilder.Entity("Entities.Models.Ingredient", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Ingredient", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Calories")
-                        .HasColumnType("float");
+                    b.Property<float>("Calories")
+                        .HasColumnType("real");
 
-                    b.Property<double>("Carbohydrates")
-                        .HasColumnType("float");
+                    b.Property<float>("Carbohydrates")
+                        .HasColumnType("real");
 
-                    b.Property<double>("Fats")
-                        .HasColumnType("float");
+                    b.Property<float>("Fats")
+                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Proteins")
-                        .HasColumnType("float");
+                    b.Property<float>("Proteins")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -166,33 +164,33 @@ namespace CaloriesTracker.Api.Migrations
                         new
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            Calories = 77.0,
-                            Carbohydrates = 16.300000000000001,
-                            Fats = 0.40000000000000002,
+                            Calories = 77f,
+                            Carbohydrates = 16.3f,
+                            Fats = 0.4f,
                             Name = "Potato",
-                            Proteins = 2.0
+                            Proteins = 2f
                         },
                         new
                         {
                             Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            Calories = 98.0,
-                            Carbohydrates = 20.0,
-                            Fats = 0.40000000000000002,
+                            Calories = 98f,
+                            Carbohydrates = 20f,
+                            Fats = 0.4f,
                             Name = "Pasta",
-                            Proteins = 3.6000000000000001
+                            Proteins = 3.6f
                         },
                         new
                         {
                             Id = new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d"),
-                            Calories = 113.0,
-                            Carbohydrates = 0.40000000000000002,
-                            Fats = 1.8999999999999999,
+                            Calories = 113f,
+                            Carbohydrates = 0.4f,
+                            Fats = 1.9f,
                             Name = "Chicken breast",
-                            Proteins = 23.600000000000001
+                            Proteins = 23.6f
                         });
                 });
 
-            modelBuilder.Entity("Entities.Models.IngredientEating", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.IngredientEating", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -201,8 +199,8 @@ namespace CaloriesTracker.Api.Migrations
                     b.Property<Guid>("EatingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Grams")
-                        .HasColumnType("float");
+                    b.Property<float>("Grams")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("IngredientId")
                         .HasColumnType("uniqueidentifier");
@@ -216,14 +214,14 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("IngredientEating");
                 });
 
-            modelBuilder.Entity("Entities.Models.IngredientRecipe", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.IngredientRecipe", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Grams")
-                        .HasColumnType("float");
+                    b.Property<float>("Grams")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("IngredientId")
                         .HasColumnType("uniqueidentifier");
@@ -240,7 +238,7 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("IngredientRecipe");
                 });
 
-            modelBuilder.Entity("Entities.Models.Recipe", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Recipe", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -252,8 +250,8 @@ namespace CaloriesTracker.Api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("TotalCalories")
-                        .HasColumnType("float");
+                    b.Property<float>("TotalCalories")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("UserProfileId")
                         .HasColumnType("uniqueidentifier");
@@ -265,7 +263,7 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("Entities.Models.User", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -330,14 +328,14 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Entities.Models.UserProfile", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.UserProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Calories")
-                        .HasColumnType("float");
+                    b.Property<float>("Calories")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -392,22 +390,22 @@ namespace CaloriesTracker.Api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4fbb00c8-1ab8-4dd5-abb6-3d26e9510bb5",
-                            ConcurrencyStamp = "5c0ffbff-880e-4634-8030-f3c7f84ffce9",
+                            Id = "0bf6120a-df98-460e-ad1e-8e6588276741",
+                            ConcurrencyStamp = "b2d26c9d-d9b2-4be1-978a-853d76b58a06",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "32ea7678-f1f3-45d0-8df2-aa4290ada1e5",
-                            ConcurrencyStamp = "4a9b2fe9-b757-4b25-89e1-2bcc3b4ce5a7",
+                            Id = "42eb7a39-a189-473d-bdf1-aa303ae77939",
+                            ConcurrencyStamp = "81236927-ccf9-49c3-a41e-f437e25748af",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "77617a23-366e-40cd-9d2b-08aeca820f8e",
-                            ConcurrencyStamp = "dcd17614-9b20-43ec-a50d-af980ea27022",
+                            Id = "e00ee098-f3ef-4de3-aef0-432137752b14",
+                            ConcurrencyStamp = "f30e58a5-c44f-4ad2-8935-0272a16a7388",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -517,9 +515,9 @@ namespace CaloriesTracker.Api.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Entities.Models.Activity", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Activity", b =>
                 {
-                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
+                    b.HasOne("CaloriesTracker.Entities.Models.UserProfile", "UserProfile")
                         .WithMany("Activities")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -528,15 +526,15 @@ namespace CaloriesTracker.Api.Migrations
                     b.Navigation("UserProfile");
                 });
 
-            modelBuilder.Entity("Entities.Models.ActivityExercise", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.ActivityExercise", b =>
                 {
-                    b.HasOne("Entities.Models.Activity", "Activity")
+                    b.HasOne("CaloriesTracker.Entities.Models.Activity", "Activity")
                         .WithMany("ExercisesWithReps")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Exercise", "Exercise")
+                    b.HasOne("CaloriesTracker.Entities.Models.Exercise", "Exercise")
                         .WithMany("ActivityExercise")
                         .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -547,9 +545,9 @@ namespace CaloriesTracker.Api.Migrations
                     b.Navigation("Exercise");
                 });
 
-            modelBuilder.Entity("Entities.Models.Eating", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Eating", b =>
                 {
-                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
+                    b.HasOne("CaloriesTracker.Entities.Models.UserProfile", "UserProfile")
                         .WithMany("Eatings")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -558,15 +556,15 @@ namespace CaloriesTracker.Api.Migrations
                     b.Navigation("UserProfile");
                 });
 
-            modelBuilder.Entity("Entities.Models.IngredientEating", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.IngredientEating", b =>
                 {
-                    b.HasOne("Entities.Models.Eating", "Eating")
+                    b.HasOne("CaloriesTracker.Entities.Models.Eating", "Eating")
                         .WithMany("IngredientsWithGrams")
                         .HasForeignKey("EatingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Ingredient", "Ingredient")
+                    b.HasOne("CaloriesTracker.Entities.Models.Ingredient", "Ingredient")
                         .WithMany("IngredientEating")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -577,15 +575,15 @@ namespace CaloriesTracker.Api.Migrations
                     b.Navigation("Ingredient");
                 });
 
-            modelBuilder.Entity("Entities.Models.IngredientRecipe", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.IngredientRecipe", b =>
                 {
-                    b.HasOne("Entities.Models.Ingredient", "Ingredient")
+                    b.HasOne("CaloriesTracker.Entities.Models.Ingredient", "Ingredient")
                         .WithMany("IngredientRecipe")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Recipe", "Recipe")
+                    b.HasOne("CaloriesTracker.Entities.Models.Recipe", "Recipe")
                         .WithMany("IngredientsWithGrams")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -596,9 +594,9 @@ namespace CaloriesTracker.Api.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("Entities.Models.Recipe", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Recipe", b =>
                 {
-                    b.HasOne("Entities.Models.UserProfile", "UserProfile")
+                    b.HasOne("CaloriesTracker.Entities.Models.UserProfile", "UserProfile")
                         .WithMany("Recipes")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -607,11 +605,11 @@ namespace CaloriesTracker.Api.Migrations
                     b.Navigation("UserProfile");
                 });
 
-            modelBuilder.Entity("Entities.Models.UserProfile", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.UserProfile", b =>
                 {
-                    b.HasOne("Entities.Models.User", "User")
+                    b.HasOne("CaloriesTracker.Entities.Models.User", "User")
                         .WithOne("UserProfile")
-                        .HasForeignKey("Entities.Models.UserProfile", "UserId");
+                        .HasForeignKey("CaloriesTracker.Entities.Models.UserProfile", "UserId");
 
                     b.Navigation("User");
                 });
@@ -627,7 +625,7 @@ namespace CaloriesTracker.Api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Entities.Models.User", null)
+                    b.HasOne("CaloriesTracker.Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -636,7 +634,7 @@ namespace CaloriesTracker.Api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Entities.Models.User", null)
+                    b.HasOne("CaloriesTracker.Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -651,7 +649,7 @@ namespace CaloriesTracker.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.User", null)
+                    b.HasOne("CaloriesTracker.Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -660,46 +658,46 @@ namespace CaloriesTracker.Api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Entities.Models.User", null)
+                    b.HasOne("CaloriesTracker.Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entities.Models.Activity", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Activity", b =>
                 {
                     b.Navigation("ExercisesWithReps");
                 });
 
-            modelBuilder.Entity("Entities.Models.Eating", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Eating", b =>
                 {
                     b.Navigation("IngredientsWithGrams");
                 });
 
-            modelBuilder.Entity("Entities.Models.Exercise", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Exercise", b =>
                 {
                     b.Navigation("ActivityExercise");
                 });
 
-            modelBuilder.Entity("Entities.Models.Ingredient", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Ingredient", b =>
                 {
                     b.Navigation("IngredientEating");
 
                     b.Navigation("IngredientRecipe");
                 });
 
-            modelBuilder.Entity("Entities.Models.Recipe", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.Recipe", b =>
                 {
                     b.Navigation("IngredientsWithGrams");
                 });
 
-            modelBuilder.Entity("Entities.Models.User", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.User", b =>
                 {
                     b.Navigation("UserProfile");
                 });
 
-            modelBuilder.Entity("Entities.Models.UserProfile", b =>
+            modelBuilder.Entity("CaloriesTracker.Entities.Models.UserProfile", b =>
                 {
                     b.Navigation("Activities");
 

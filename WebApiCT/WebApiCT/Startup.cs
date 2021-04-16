@@ -12,8 +12,10 @@ using NLog;
 using CaloriesTracker.Repositories;
 using CaloriesTracker.Repositories.Authentication;
 using System.IO;
-using CaloriesTracker.Api.ActionFilter;
+using CaloriesTracker.Api.Filter;
 using CaloriesTracker.Api.Extensions;
+using CaloriesTracker.Services.Interfaces;
+using CaloriesTracker.Services.Services;
 
 namespace CaloriesTracker.Api
 {
@@ -33,6 +35,7 @@ namespace CaloriesTracker.Api
             services.AddScoped<IRepositoryManager, RepositoryManager>();
             services.AddScoped<ValidationFilterAttribute>();
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+            services.AddScoped<IServiceManager, ServiceManager>();
 
             services.AddAuthentication();
             services.ConfigureIdentity();
@@ -41,7 +44,7 @@ namespace CaloriesTracker.Api
 
             services.AddDbContext<RepositoryDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"), 
-                    b => b.MigrationsAssembly("WebApiCT")));
+                    b => b.MigrationsAssembly("CaloriesTracker.Api")));
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers().AddNewtonsoftJson();
         }

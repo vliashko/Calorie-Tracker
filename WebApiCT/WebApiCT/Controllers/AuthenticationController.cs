@@ -6,7 +6,7 @@ using CaloriesTracker.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using CaloriesTracker.Api.ActionFilter;
+using CaloriesTracker.Api.Filter;
 
 namespace CaloriesTracker.Api.Controllers
 {

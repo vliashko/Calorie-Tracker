@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CaloriesTracker.Entities.Models;
-using CaloriesTracker.Api.ActionFilter;
+using CaloriesTracker.Api.Filter;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Authorization;
 

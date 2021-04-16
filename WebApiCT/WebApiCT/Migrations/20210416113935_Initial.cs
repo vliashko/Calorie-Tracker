@@ -53,7 +53,7 @@ namespace CaloriesTracker.Api.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CaloriesSpent = table.Column<double>(type: "float", nullable: false)
+                    CaloriesSpent = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,10 +66,10 @@ namespace CaloriesTracker.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Calories = table.Column<double>(type: "float", nullable: false),
-                    Proteins = table.Column<double>(type: "float", nullable: false),
-                    Fats = table.Column<double>(type: "float", nullable: false),
-                    Carbohydrates = table.Column<double>(type: "float", nullable: false)
+                    Calories = table.Column<float>(type: "real", nullable: false),
+                    Proteins = table.Column<float>(type: "real", nullable: false),
+                    Fats = table.Column<float>(type: "real", nullable: false),
+                    Carbohydrates = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,7 +191,7 @@ namespace CaloriesTracker.Api.Migrations
                     Height = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Calories = table.Column<double>(type: "float", nullable: false),
+                    Calories = table.Column<float>(type: "real", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -213,7 +213,7 @@ namespace CaloriesTracker.Api.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Start = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Finish = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalCaloriesSpent = table.Column<double>(type: "float", nullable: false),
+                    TotalCaloriesSpent = table.Column<float>(type: "real", nullable: false),
                     UserProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -234,7 +234,7 @@ namespace CaloriesTracker.Api.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Moment = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalCalories = table.Column<double>(type: "float", nullable: false),
+                    TotalCalories = table.Column<float>(type: "real", nullable: false),
                     UserProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -255,7 +255,7 @@ namespace CaloriesTracker.Api.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Instruction = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TotalCalories = table.Column<double>(type: "float", nullable: false),
+                    TotalCalories = table.Column<float>(type: "real", nullable: false),
                     UserProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -303,7 +303,7 @@ namespace CaloriesTracker.Api.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IngredientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EatingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Grams = table.Column<double>(type: "float", nullable: false)
+                    Grams = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -329,7 +329,7 @@ namespace CaloriesTracker.Api.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IngredientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RecipeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Grams = table.Column<double>(type: "float", nullable: false)
+                    Grams = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -353,9 +353,9 @@ namespace CaloriesTracker.Api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4fbb00c8-1ab8-4dd5-abb6-3d26e9510bb5", "5c0ffbff-880e-4634-8030-f3c7f84ffce9", "Manager", "MANAGER" },
-                    { "32ea7678-f1f3-45d0-8df2-aa4290ada1e5", "4a9b2fe9-b757-4b25-89e1-2bcc3b4ce5a7", "Administrator", "ADMINISTRATOR" },
-                    { "77617a23-366e-40cd-9d2b-08aeca820f8e", "dcd17614-9b20-43ec-a50d-af980ea27022", "User", "USER" }
+                    { "0bf6120a-df98-460e-ad1e-8e6588276741", "b2d26c9d-d9b2-4be1-978a-853d76b58a06", "Manager", "MANAGER" },
+                    { "42eb7a39-a189-473d-bdf1-aa303ae77939", "81236927-ccf9-49c3-a41e-f437e25748af", "Administrator", "ADMINISTRATOR" },
+                    { "e00ee098-f3ef-4de3-aef0-432137752b14", "f30e58a5-c44f-4ad2-8935-0272a16a7388", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -363,8 +363,8 @@ namespace CaloriesTracker.Api.Migrations
                 columns: new[] { "Id", "CaloriesSpent", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 5.0, "Performed on the crossbar. Duration 40 seconds", "Pull-ups" },
-                    { new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55"), 10.0, "From a standing position, feet shoulder width apart", "Squats" }
+                    { new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 5f, "Performed on the crossbar. Duration 40 seconds", "Pull-ups" },
+                    { new Guid("291bf3d3-9c56-4f6c-b78e-9b100a2e7b55"), 10f, "From a standing position, feet shoulder width apart", "Squats" }
                 });
 
             migrationBuilder.InsertData(
@@ -372,9 +372,9 @@ namespace CaloriesTracker.Api.Migrations
                 columns: new[] { "Id", "Calories", "Carbohydrates", "Fats", "Name", "Proteins" },
                 values: new object[,]
                 {
-                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), 77.0, 16.300000000000001, 0.40000000000000002, "Potato", 2.0 },
-                    { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), 98.0, 20.0, 0.40000000000000002, "Pasta", 3.6000000000000001 },
-                    { new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d"), 113.0, 0.40000000000000002, 1.8999999999999999, "Chicken breast", 23.600000000000001 }
+                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), 77f, 16.3f, 0.4f, "Potato", 2f },
+                    { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), 98f, 20f, 0.4f, "Pasta", 3.6f },
+                    { new Guid("a1d8448e-b995-4783-b9d3-987c857c8c5d"), 113f, 0.4f, 1.9f, "Chicken breast", 23.6f }
                 });
 
             migrationBuilder.CreateIndex(

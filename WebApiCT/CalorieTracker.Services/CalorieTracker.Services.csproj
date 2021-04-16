@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\CaloriesTracker.Contracts.csproj" />
+    <ProjectReference Include="..\Entities\CaloriesTracker.Entities.csproj" />
+    <ProjectReference Include="..\LoggerService\CaloriesTracker.LoggerService.csproj" />
+    <ProjectReference Include="..\Repositories\CaloriesTracker.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Marvin.JsonPatch" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.5" />
+  </ItemGroup>
+
+</Project>
