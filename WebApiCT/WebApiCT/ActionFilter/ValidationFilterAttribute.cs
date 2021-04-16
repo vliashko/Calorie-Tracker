@@ -1,9 +1,9 @@
-﻿using Contracts;
+﻿using CaloriesTracker.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 
-namespace WebApiCT.ActionFilter
+namespace CaloriesTracker.Api.ActionFilter
 {
     public class ValidationFilterAttribute : IActionFilter
     {

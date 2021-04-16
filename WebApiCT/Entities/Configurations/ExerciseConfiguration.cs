@@ -1,9 +1,9 @@
-﻿using Entities.Models;
+﻿using CaloriesTracker.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace Entities.Configurations
+namespace CaloriesTracker.Entities.Configurations
 {
     public class ExerciseConfiguration : IEntityTypeConfiguration<Exercise>
     {

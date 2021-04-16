@@ -1,13 +1,13 @@
-﻿using Contracts;
-using Entities;
-using Entities.Models;
+﻿using CaloriesTracker.Contracts;
+using CaloriesTracker.Entities;
+using CaloriesTracker.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Repositories
+namespace CaloriesTracker.Repositories
 {
     public class EatingRepository : RepositoryBase<Eating>, IEatingRepository
     {

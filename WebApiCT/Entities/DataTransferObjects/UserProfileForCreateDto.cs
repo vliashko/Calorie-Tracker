@@ -1,8 +1,8 @@
-﻿using Entities.Models;
+﻿using CaloriesTracker.Entities.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DataTransferObjects
+namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class UserProfileForCreateDto
     {

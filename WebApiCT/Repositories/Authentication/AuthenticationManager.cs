@@ -1,6 +1,6 @@
-﻿using Contracts.Authentication;
-using Entities.DataTransferObjects;
-using Entities.Models;
+﻿using CaloriesTracker.Contracts.Authentication;
+using CaloriesTracker.Entities.DataTransferObjects;
+using CaloriesTracker.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositories.Authentication
+namespace CaloriesTracker.Repositories.Authentication
 {
     public class AuthenticationManager : IAuthenticationManager
     {

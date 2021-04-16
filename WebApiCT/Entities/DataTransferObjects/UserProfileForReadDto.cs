@@ -1,7 +1,7 @@
-﻿using Entities.Models;
+﻿using CaloriesTracker.Entities.Models;
 using System;
 
-namespace Entities.DataTransferObjects
+namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class UserProfileForReadDto
     {

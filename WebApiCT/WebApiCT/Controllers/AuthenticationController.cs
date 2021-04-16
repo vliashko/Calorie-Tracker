@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Contracts;
-using Contracts.Authentication;
-using Entities.DataTransferObjects;
-using Entities.Models;
+using CaloriesTracker.Contracts;
+using CaloriesTracker.Contracts.Authentication;
+using CaloriesTracker.Entities.DataTransferObjects;
+using CaloriesTracker.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WebApiCT.ActionFilter;
+using CaloriesTracker.Api.ActionFilter;
 
-namespace WebApiCT.Controllers
+namespace CaloriesTracker.Api.Controllers
 {
     [Route("api/authentication")]
     [ApiController]

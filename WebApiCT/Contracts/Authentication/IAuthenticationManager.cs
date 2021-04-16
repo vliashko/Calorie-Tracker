@@ -1,7 +1,7 @@
-﻿using Entities.DataTransferObjects;
+﻿using CaloriesTracker.Entities.DataTransferObjects;
 using System.Threading.Tasks;
 
-namespace Contracts.Authentication
+namespace CaloriesTracker.Contracts.Authentication
 {
     public interface IAuthenticationManager
     {

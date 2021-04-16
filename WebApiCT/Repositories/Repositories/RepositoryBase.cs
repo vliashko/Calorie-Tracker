@@ -1,11 +1,11 @@
-﻿using Contracts;
-using Entities;
+﻿using CaloriesTracker.Contracts;
+using CaloriesTracker.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Repositories
+namespace CaloriesTracker.Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {

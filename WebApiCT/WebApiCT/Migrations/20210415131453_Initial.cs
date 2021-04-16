@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApiCT.Migrations
+namespace CaloriesTracker.Api.Migrations
 {
     public partial class Initial : Migration
     {

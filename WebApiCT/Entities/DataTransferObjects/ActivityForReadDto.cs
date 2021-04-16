@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Entities.DataTransferObjects
+namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class ActivityForReadDto
     {

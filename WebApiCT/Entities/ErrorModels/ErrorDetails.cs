@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Entities.ErrorModels
+namespace CaloriesTracker.Entities.ErrorModels
 {
     public class ErrorDetails
     {

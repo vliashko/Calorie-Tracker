@@ -1,4 +1,4 @@
-﻿namespace Contracts
+﻿namespace CaloriesTracker.Contracts
 {
     public interface ILoggerManager
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entities.DataTransferObjects
+namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class ExerciseForReadDto
     {

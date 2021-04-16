@@ -1,9 +1,9 @@
-﻿using Entities.Configurations;
-using Entities.Models;
+﻿using CaloriesTracker.Entities.Configurations;
+using CaloriesTracker.Entities.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Entities
+namespace CaloriesTracker.Entities
 {
     public class RepositoryDbContext : IdentityDbContext<User>
     {

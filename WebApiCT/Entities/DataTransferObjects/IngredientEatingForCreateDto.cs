@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DataTransferObjects
+namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class IngredientEatingForCreateDto
     {

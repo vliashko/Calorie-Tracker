@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entities.Models
+namespace CaloriesTracker.Entities.Models
 {
     public class IngredientEating
     {

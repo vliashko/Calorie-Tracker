@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApiCT
+namespace CaloriesTracker.Api
 {
     public class Program
     {
