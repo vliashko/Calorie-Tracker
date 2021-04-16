@@ -1,108 +1,68 @@
-﻿using AutoMapper;
-using CaloriesTracker.Contracts;
-using CaloriesTracker.Entities.DataTransferObjects;
-using CaloriesTracker.Entities.Models;
+﻿using CaloriesTracker.Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using CaloriesTracker.Api.Filter;
+using CaloriesTracker.Services.Interfaces;
+using Marvin.JsonPatch;
 
 namespace CaloriesTracker.Api.Controllers
 {
     [Route("api/ingredients")]
     [ApiController]
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class IngredientsController : ControllerBase
     {
-        private readonly ILoggerManager logger;
-        private readonly IRepositoryManager repositoryManager;
-        private readonly IMapper mapper;
+        private readonly IServiceManager serviceManager;
 
-        public IngredientsController(ILoggerManager logger, IRepositoryManager repositoryManager, IMapper mapper)
+        public IngredientsController(IServiceManager serviceManager)
         {
-            this.logger = logger;
-            this.repositoryManager = repositoryManager;
-            this.mapper = mapper;
+            this.serviceManager = serviceManager;
         }
         [HttpGet]
         public async Task<IActionResult> GetIngredients()
         {
-            var ingredients = await repositoryManager.Ingredient.GetAllIngredientsAsync(trackChanges: false);
-            var ingredientsDto = mapper.Map<IEnumerable<IngredientForReadDto>>(ingredients);
-            return Ok(ingredientsDto);
+            return Ok(await serviceManager.Ingredient.GetIngredients());
         }
         [HttpGet("{id}", Name = "IngredientById")]
         public async Task<IActionResult> GetIngredient(Guid id)
         {
-            var ingredient = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: false);
-            if(ingredient == null)
-            {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+            var ingredient = await serviceManager.Ingredient.GetIngredient(id);
+            if (ingredient == null)
                 return NotFound();
-            }
-            var ingredientDto = mapper.Map<IngredientForReadDto>(ingredient);
-            return Ok(ingredientDto);
+            return Ok(ingredient);
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateIngredient([FromBody] IngredientForCreateDto ingredientDto)
         {
-            var ingredientEntity = mapper.Map<Ingredient>(ingredientDto);
-            repositoryManager.Ingredient.CreateIngredient(ingredientEntity);
-            await repositoryManager.SaveAsync();
-            var ingredientView = mapper.Map<IngredientForReadDto>(ingredientEntity);
+            var ingredientView = await serviceManager.Ingredient.CreateIngredient(ingredientDto);
             return CreatedAtRoute("IngredientById", new { id = ingredientView.Id }, ingredientView);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIngredient(Guid id)
         {
-            var ingredient = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: false);
-            if (ingredient == null)
-            {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+            var result = await serviceManager.Ingredient.DeleteIngredient(id);
+            if (!result)
                 return NotFound();
-            }
-            repositoryManager.Ingredient.DeleteIngredient(ingredient);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateIngredient(Guid id, [FromBody] IngredientForUpdateDto ingredientDto)
         {
-            var ingredient = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
-            if (ingredient == null)
-            {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+            var result = await serviceManager.Ingredient.UpdateIngredient(id, ingredientDto);
+            if (!result)
                 return NotFound();
-            }
-            mapper.Map(ingredientDto, ingredient);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
         [HttpPatch("{id}")]
         public async Task<IActionResult> PartiallyUpdateIngredient(Guid id, [FromBody] JsonPatchDocument<IngredientForUpdateDto> patchDoc)
         {
-            var ingredientEntity = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
-            if (ingredientEntity == null)
-            {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+            var result = await serviceManager.Ingredient.PartiallyUpdateIngredient(id, patchDoc);
+            if (!result)
                 return NotFound();
-            }
-            var ingredientToPatch = mapper.Map<IngredientForUpdateDto>(ingredientEntity);
-
-            patchDoc.ApplyTo(ingredientToPatch, ModelState);
-            TryValidateModel(ingredientToPatch);
-            if (!ModelState.IsValid)
-            {
-                logger.LogError("Invalid model state for the patch document");
-                return UnprocessableEntity(ModelState);
-            }
-            mapper.Map(ingredientToPatch, ingredientEntity);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
     }

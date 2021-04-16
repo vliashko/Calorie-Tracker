@@ -50,7 +50,15 @@ namespace CaloriesTracker.Services.Services
             }
         }
 
-        public IIngredientService Ingredient => throw new System.NotImplementedException();
+        public IIngredientService Ingredient
+        {
+            get
+            {
+                if (ingredientService == null)
+                    ingredientService = new IngredientService(repositoryManager, logger, mapper);
+                return ingredientService;
+            }
+        }
 
         public IRecipeService Recipe => throw new System.NotImplementedException();
 
