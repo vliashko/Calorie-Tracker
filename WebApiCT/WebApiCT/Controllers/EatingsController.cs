@@ -1,145 +1,74 @@
-﻿using AutoMapper;
-using CaloriesTracker.Contracts;
-using CaloriesTracker.Entities.DataTransferObjects;
-using CaloriesTracker.Entities.Models;
+﻿using CaloriesTracker.Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using CaloriesTracker.Api.Filter;
+using Marvin.JsonPatch;
+using CaloriesTracker.Services.Interfaces;
 
 namespace CaloriesTracker.Api.Controllers
 {
     [Route("api/users/{userId}/eatings")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class EatingsController : ControllerBase
     {
-        private readonly ILoggerManager logger;
-        private readonly IRepositoryManager repositoryManager;
-        private readonly IMapper mapper;
+        private readonly IServiceManager serviceManager;
 
-        public EatingsController(ILoggerManager logger, IRepositoryManager repositoryManager, IMapper mapper)
+        public EatingsController(IServiceManager serviceManager)
         {
-            this.logger = logger;
-            this.repositoryManager = repositoryManager;
-            this.mapper = mapper;
+            this.serviceManager = serviceManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetEatings(Guid userId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+            var eatings = await serviceManager.Eating.GetEatings(userId);
+            if (eatings == null)
                 return NotFound();
-            }
-            var eatings = await repositoryManager.Eating.GetAllEatingsForUserAsync(userId, trackChanges: false);
-            var eatingsDto = mapper.Map<IEnumerable<EatingForReadDto>>(eatings);
-            return Ok(eatingsDto);
+            return Ok(eatings);
         }
         [HttpGet("{eatingId}", Name = "GetEating")]
         public async Task<IActionResult> GetEating(Guid userId, Guid eatingId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return NotFound();
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: false);
+            var eating = await serviceManager.Eating.GetEating(userId, eatingId);
             if (eating == null)
-            {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
                 return NotFound();
-            }
-            var eatingDto = mapper.Map<EatingForReadDto>(eating);
-            return Ok(eatingDto);
+            return Ok(eating);
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEating(Guid userId, [FromBody] EatingForCreateDto eatingDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+            var eatingView = await serviceManager.Eating.CreateEating(userId, eatingDto);
+            if (eatingView == null)
                 return NotFound();
-            }
-            var eatingEntity = mapper.Map<Eating>(eatingDto);         
-            repositoryManager.Eating.CreateEating(eatingEntity);
-            var eatingView = mapper.Map<EatingForReadDto>(eatingEntity);
-            user.Eatings.Add(eatingEntity);
-            await repositoryManager.SaveAsync();
             return CreatedAtRoute("GetEating", new { userId, eatingId = eatingView.Id }, eatingView);
         }
         [HttpDelete("{eatingId}")]
         public async Task<IActionResult> DeleteEating(Guid userId, Guid eatingId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+            var result = await serviceManager.Eating.DeleteEating(userId, eatingId);
+            if (!result)
                 return NotFound();
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: false);
-            if (eating == null)
-            {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
-                return NotFound();
-            }
-            repositoryManager.Eating.DeleteEating(eating);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
         [HttpPut("{eatingId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateEating(Guid userId, Guid eatingId, [FromBody] EatingForUpdateDto eatingDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+            var result = await serviceManager.Eating.UpdateEating(userId, eatingId, eatingDto);
+            if (!result)
                 return NotFound();
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: true);
-            if (eating == null)
-            {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
-                return NotFound();
-            }
-            mapper.Map(eatingDto, eating);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
         [HttpPatch("{eatingId}")]
         public async Task<IActionResult> PartiallyUpdateEating(Guid userId, Guid eatingId, [FromBody] JsonPatchDocument<EatingForUpdateDto> patchDoc)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+            var result = await serviceManager.Eating.PartiallyUpdateEating(userId, eatingId, patchDoc);
+            if (!result)
                 return NotFound();
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: true);
-            if (eating == null)
-            {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
-                return NotFound();
-            }
-            var eatingToPatch = mapper.Map<EatingForUpdateDto>(eating);
-            patchDoc.ApplyTo(eatingToPatch, ModelState);
-            TryValidateModel(eatingToPatch);
-            if (!ModelState.IsValid)
-            {
-                logger.LogError("Invalid model state for the patch document");
-                return UnprocessableEntity(ModelState);
-            }
-            mapper.Map(eatingToPatch, eating);
-            await repositoryManager.SaveAsync();
             return NoContent();
         }
     }

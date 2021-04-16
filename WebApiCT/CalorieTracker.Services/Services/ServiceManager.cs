@@ -17,7 +17,6 @@ namespace CaloriesTracker.Services.Services
         private IExerciseService exerciseService;
         private IIngredientService ingredientService;
         private IRecipeService recipeService;
-        private IAuthenticationService authenticationService;
 
         public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper, ILoggerManager logger)
         {
@@ -36,9 +35,25 @@ namespace CaloriesTracker.Services.Services
             }
         }
 
-        public IActivityService Activity => throw new System.NotImplementedException();
+        public IActivityService Activity
+        {
+            get
+            {
+                if (activityService == null)
+                    activityService = new ActivityService(repositoryManager, logger, mapper);
+                return activityService;
+            }
+        }
 
-        public IEatingService Eating => throw new System.NotImplementedException();
+        public IEatingService Eating
+        {
+            get
+            {
+                if (eatingService == null)
+                    eatingService = new EatingService(repositoryManager, logger, mapper);
+                return eatingService;
+            }
+        }
 
         public IExerciseService Exercise
         {
@@ -60,8 +75,14 @@ namespace CaloriesTracker.Services.Services
             }
         }
 
-        public IRecipeService Recipe => throw new System.NotImplementedException();
-
-        public IAuthenticationService Authentication => throw new System.NotImplementedException();
+        public IRecipeService Recipe
+        {
+            get
+            {
+                if (recipeService == null)
+                    recipeService = new RecipeService(repositoryManager, logger, mapper);
+                return recipeService;
+            }
+        }
     }
 }
