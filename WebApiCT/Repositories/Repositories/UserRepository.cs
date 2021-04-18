@@ -21,11 +21,20 @@ namespace CaloriesTracker.Repositories
 
         public async Task<IEnumerable<UserProfile>> GetAllUsersAsync(bool trackChanges) =>
             await FindAll(trackChanges)
-                .OrderBy(user => user.Calories)
+                .Include(user => user.Activities)
+                    .ThenInclude(a => a.ExercisesWithReps)
+                        .ThenInclude(er => er.Exercise)
+                .Include(user => user.Eatings)
+                    .ThenInclude(e => e.IngredientsWithGrams)
+                        .ThenInclude(ig => ig.Ingredient)
+                .Include(user => user.Recipes)
                 .ToListAsync();
 
         public async Task<UserProfile> GetUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(user => user.Id.Equals(userId), trackChanges)
+                .Include(user => user.Activities)
+                .Include(user => user.Eatings)
+                .Include(user => user.Recipes)
                 .SingleOrDefaultAsync();
     }
 }

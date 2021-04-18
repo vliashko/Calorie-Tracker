@@ -11,7 +11,7 @@ namespace CaloriesTracker.Api.Controllers
 {
     [Route("api/users/{userId}/eatings")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class EatingsController : ControllerBase
     {
         private readonly IServiceManager serviceManager;

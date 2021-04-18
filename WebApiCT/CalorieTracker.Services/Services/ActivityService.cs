@@ -6,6 +6,7 @@ using CaloriesTracker.Services.Interfaces;
 using Marvin.JsonPatch;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CaloriesTracker.Services.Services
@@ -30,6 +31,10 @@ namespace CaloriesTracker.Services.Services
             {
                 logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return null;
+            }
+            foreach (var iteration in activityDto.ExercisesWithReps)
+            {
+                iteration.Exercise = await GetExerciseById(iteration.ExerciseId);
             }
             var activityEntity = mapper.Map<Activity>(activityDto);
             repositoryManager.Activity.CreateActivity(activityEntity);
@@ -124,9 +129,17 @@ namespace CaloriesTracker.Services.Services
                 logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
                 return false;
             }
+            foreach (var iteration in activityDto.ExercisesWithReps)
+            {
+                iteration.Exercise = await GetExerciseById(iteration.ExerciseId);
+            }
             mapper.Map(activityDto, activity);
             await repositoryManager.SaveAsync();
             return true;
+        }
+        private async Task<Exercise> GetExerciseById(Guid id)
+        {
+            return await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
         }
     }
 }

@@ -31,6 +31,10 @@ namespace CaloriesTracker.Services.Services
                 logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return null;
             }
+            foreach (var iteration in eatingDto.IngredientsWithGrams)
+            {
+                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+            }
             var eatingEntity = mapper.Map<Eating>(eatingDto);
             repositoryManager.Eating.CreateEating(eatingEntity);
             var eatingView = mapper.Map<EatingForReadDto>(eatingEntity);
@@ -124,9 +128,17 @@ namespace CaloriesTracker.Services.Services
                 logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
                 return false;
             }
+            foreach (var iteration in eatingDto.IngredientsWithGrams)
+            {
+                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+            }
             mapper.Map(eatingDto, eating);
             await repositoryManager.SaveAsync();
             return true;
+        }
+        private async Task<Ingredient> GetIngredientById(Guid id)
+        {
+            return await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
         }
     }
 }

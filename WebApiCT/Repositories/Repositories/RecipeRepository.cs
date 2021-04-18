@@ -23,23 +23,27 @@ namespace CaloriesTracker.Repositories
             await FindAll(trackChanges)
                 .OrderBy(rec => rec.Name)
                 .Include(rec => rec.IngredientsWithGrams)
+                .ThenInclude(ig => ig.Ingredient)
                 .ToListAsync();
 
         public async Task<IEnumerable<Recipe>> GetAllRecipesForUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(rec => rec.UserProfileId.Equals(userId), trackChanges)
                 .OrderBy(rec => rec.Name)
                 .Include(rec => rec.IngredientsWithGrams)
+                .ThenInclude(ig => ig.Ingredient)
                 .ToListAsync();
 
         public async Task<Recipe> GetRecipeAsync(Guid recipeId, bool trackChanges) =>
             await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
                 .Include(rec => rec.IngredientsWithGrams)
+                .ThenInclude(ig => ig.Ingredient)
                 .SingleOrDefaultAsync();
 
         public async Task<Recipe> GetRecipeForUserAsync(Guid userId, Guid recipeId, bool trackChanges) =>
             await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
                 .Where(rec => rec.UserProfileId.Equals(userId))
                 .Include(rec => rec.IngredientsWithGrams)
+                .ThenInclude(ig => ig.Ingredient)
                 .SingleOrDefaultAsync();
     }
 }

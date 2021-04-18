@@ -11,5 +11,6 @@ namespace CaloriesTracker.Entities.DataTransferObjects
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public float Calories { get; set; }
+        public float CurrentCalories { get; set; }
     }
 }

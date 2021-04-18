@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace CaloriesTracker.Entities.Models
 {
@@ -9,8 +9,15 @@ namespace CaloriesTracker.Entities.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Instruction { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public float TotalCalories { get; set; }
+        public float TotalCalories
+        {
+            get
+            {
+                var calor = IngredientsWithGrams.Sum(x => x.Ingredient.Calories * x.Grams / 100.0f);
+                return calor;
+            }
+            set { }
+        }
         public Guid UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
         public virtual IEnumerable<IngredientRecipe> IngredientsWithGrams { get; set; }

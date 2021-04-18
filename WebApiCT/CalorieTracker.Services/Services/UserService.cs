@@ -24,7 +24,7 @@ namespace CaloriesTracker.Services.Services
         }
         public async Task<UserProfileForReadDto> CreateUser(UserProfileForCreateDto userCreateDto, string id)
         {
-            var userEntity = mapper.Map<UserProfile>(userCreateDto);
+            var userEntity = mapper.Map<UserProfile>(userCreateDto);           
             userEntity.UserId = id;
             repositoryManager.User.CreateUser(userEntity);
             await repositoryManager.SaveAsync();

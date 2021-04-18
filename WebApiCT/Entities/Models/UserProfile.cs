@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CaloriesTracker.Entities.Models
 {
@@ -11,7 +10,6 @@ namespace CaloriesTracker.Entities.Models
         public int Height { get; set; }
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public float Calories
         {
             get
@@ -26,8 +24,25 @@ namespace CaloriesTracker.Entities.Models
             }
             set { }
         }
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        //public float CurrentCalories { get; set; }
+        public float CurrentCalories
+        {
+            get
+            {
+                if (Eatings.Count == 0 && Activities.Count == 0)
+                    return 0.0f;
+                float calor = 0.0f;
+                foreach (var eating in Eatings)
+                {
+                    calor += eating.TotalCalories;
+                }
+                foreach (var activity in Activities)
+                {
+                    calor -= activity.TotalCaloriesSpent;
+                }
+                return calor;
+            }
+            set { }
+        }
         public string UserId { get; set; }
         public User User { get; set; }
         public virtual ICollection<Eating> Eatings { get; set; }

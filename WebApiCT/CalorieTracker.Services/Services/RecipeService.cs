@@ -31,6 +31,10 @@ namespace CaloriesTracker.Services.Services
                 logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
                 return null;
             }
+            foreach (var iteration in recipeDto.IngredientsWithGrams)
+            {
+                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+            }
             var recipe = mapper.Map<Recipe>(recipeDto);
             recipe.UserProfileId = userId;
             repositoryManager.Recipe.CreateRecipe(recipe);
@@ -125,9 +129,17 @@ namespace CaloriesTracker.Services.Services
                 logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
                 return false;
             }
+            foreach (var iteration in recipeDto.IngredientsWithGrams)
+            {
+                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+            }
             mapper.Map(recipeDto, recipe);
             await repositoryManager.SaveAsync();
             return true;
+        }
+        private async Task<Ingredient> GetIngredientById(Guid id)
+        {
+            return await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
         }
     }
 }

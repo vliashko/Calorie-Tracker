@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace CaloriesTracker.Entities.Models
 {
@@ -10,8 +10,16 @@ namespace CaloriesTracker.Entities.Models
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public float TotalCaloriesSpent { get; set; }
+        public float TotalCaloriesSpent
+        {
+            get
+            {
+                var calor = ExercisesWithReps
+                    .Sum(x => x.Exercise.CaloriesSpent * x.NumberOfRepetitions * x.NumberOfSets);
+                return calor;
+            }
+            set { }
+        }
         public virtual IEnumerable<ActivityExercise> ExercisesWithReps { get; set; }
         public Guid UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
