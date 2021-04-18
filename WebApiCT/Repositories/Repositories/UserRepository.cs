@@ -28,13 +28,21 @@ namespace CaloriesTracker.Repositories
                     .ThenInclude(e => e.IngredientsWithGrams)
                         .ThenInclude(ig => ig.Ingredient)
                 .Include(user => user.Recipes)
+                    .ThenInclude(r => r.IngredientsWithGrams)
+                        .ThenInclude(ig => ig.Ingredient)
                 .ToListAsync();
 
         public async Task<UserProfile> GetUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(user => user.Id.Equals(userId), trackChanges)
                 .Include(user => user.Activities)
+                    .ThenInclude(a => a.ExercisesWithReps)
+                        .ThenInclude(er => er.Exercise)
                 .Include(user => user.Eatings)
+                    .ThenInclude(e => e.IngredientsWithGrams)
+                        .ThenInclude(ig => ig.Ingredient)
                 .Include(user => user.Recipes)
+                    .ThenInclude(r => r.IngredientsWithGrams)
+                        .ThenInclude(ig => ig.Ingredient)
                 .SingleOrDefaultAsync();
     }
 }
