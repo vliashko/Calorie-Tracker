@@ -1,6 +1,5 @@
 ﻿using CaloriesTracker.Contracts;
 using NLog;
-using System;
 
 
 namespace CaloriesTracker.LoggerService
