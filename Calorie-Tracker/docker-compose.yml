@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  caloriestracker.api:
+    image: ${DOCKER_REGISTRY-}caloriestrackerapi
+    build:
+      context: .
+      dockerfile: CaloriesTracker.Api/Dockerfile
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-CU9-ubuntu-18.04
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Password123"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433" 
+    volumes:
+      - /home/docker/mysql-data:/var/lib/mysql 
