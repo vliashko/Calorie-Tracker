@@ -2,7 +2,7 @@
 using CaloriesTracker.Entities.DataTransferObjects;
 using CaloriesTracker.Entities.Models;
 
-namespace CaloriesTracker.Api
+namespace CaloriesTracker.Services
 {
     public class MappingProfile : Profile
     {
