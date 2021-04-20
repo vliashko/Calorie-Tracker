@@ -114,7 +114,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.Equal("Test", result.Name);
         }
         [Fact]
-        public async void UpdateExercise_ReturnsFalse_WhenNonExistentResourceIDSubmitted()
+        public async void UpdateExercise_ReturnsFalse_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                 .ReturnsAsync(() => null);
@@ -125,7 +125,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.False(result);
         }
         [Fact]
-        public async void UpdateExercise_ReturnsTrue_WhenValidObjectSubmitted()
+        public async void UpdateExercise_ReturnsTrue_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                  .ReturnsAsync
@@ -150,7 +150,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.True(result);
         }
         [Fact]
-        public async void PartiallyUpdateExercise_ReturnsFalse_WhenNonExistentResourceIDSubmitted()
+        public async void PartiallyUpdateExercise_ReturnsFalse_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                 .ReturnsAsync(() => null);
@@ -162,7 +162,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.False(result);
         }
         [Fact]
-        public async void PartiallyUpdateIngredient_ReturnsTrue_WhenValidObjectSubmitted()
+        public async void PartiallyUpdateIngredient_ReturnsTrue_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                  .ReturnsAsync
@@ -183,7 +183,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.True(result);
         }
         [Fact]
-        public async void DeleteIngredient_ReturnsFalse_WhenNonExistentResourceIDSubmitted()
+        public async void DeleteIngredient_ReturnsFalse_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                 .ReturnsAsync(() => null);
@@ -194,7 +194,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.False(result);
         }
         [Fact]
-        public async void DeleteIngredient_ReturnsTrue_WhenValidObjectSubmitted()
+        public async void DeleteIngredient_ReturnsTrue_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
                  .ReturnsAsync
@@ -215,10 +215,10 @@ namespace CaloriesTracker.Services.Tests
         }
         private IEnumerable<Exercise> GetExercises(int num)
         {
-            var ingredients = new List<Exercise>();
+            var exercises = new List<Exercise>();
             if (num > 0)
             {
-                ingredients.Add(
+                exercises.Add(
                     new Exercise
                     {
                         Id = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
@@ -227,7 +227,7 @@ namespace CaloriesTracker.Services.Tests
                         CaloriesSpent = 5,
                     });
             }
-            return ingredients;
+            return exercises;
         }
     }
 }
