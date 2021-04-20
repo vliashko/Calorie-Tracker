@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CalorieTracker.Services.Services
+namespace CaloriesTracker.Services.Services
 {
     public class ExerciseService : IExerciseService
     {

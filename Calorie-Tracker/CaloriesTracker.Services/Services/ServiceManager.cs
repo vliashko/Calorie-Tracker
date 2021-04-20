@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CaloriesTracker.Contracts;
 using CaloriesTracker.Services.Interfaces;
-using CalorieTracker.Services.Services;
 
 namespace CaloriesTracker.Services.Services
 {
