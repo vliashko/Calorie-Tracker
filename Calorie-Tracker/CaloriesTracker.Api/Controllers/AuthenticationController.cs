@@ -33,7 +33,7 @@ namespace CaloriesTracker.Api.Controllers
             var user = mapper.Map<User>(userDto);
 
             var result = await userManager.CreateAsync(user, userDto.Password);
-            if(!result.Succeeded)
+            if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
                 {
