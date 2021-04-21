@@ -155,34 +155,101 @@ namespace CaloriesTracker.Services.Tests
         [Fact]
         public async void UpdateEatingForUser_ReturnsFalse_WhenNonExistentIDProvided()
         {
-
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"), 
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+                .ReturnsAsync(() => null);
+            var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);
+            var result = await service.UpdateEating(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new EatingForUpdateDto { });
+            Assert.False(result);
         }
         [Fact]
         public async void UpdateEatingForUser_ReturnsTrue_WhenValidIDProvided()
         {
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+                .ReturnsAsync
+                (
+                    new Eating
+                    {
+                        Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                        Name = "Eating",
+                        Moment = DateTime.Now,
+                        UserProfileId = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                        IngredientsWithGrams = new List<IngredientEating>()
+                    }
+                );
+            var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);
+            var result = await service.UpdateEating(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new EatingForUpdateDto { });
+            Assert.True(result);
 
         }
         [Fact]
         public async void PartiallyEatingForUser_ReturnsFalse_WhenNonExistentIDProvided()
         {
-
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+                .ReturnsAsync(() => null);
+            var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);
+            var result = await service.PartiallyUpdateEating(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<EatingForUpdateDto> { });
+            Assert.False(result);
         }
         [Fact]
         public async void PartiallyEatingForUser_ReturnsTrue_WhenValidIDProvided()
         {
-
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+               new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+               .ReturnsAsync
+               (
+                   new Eating
+                   {
+                       Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                       Name = "Eating",
+                       Moment = DateTime.Now,
+                       UserProfileId = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                       IngredientsWithGrams = new List<IngredientEating>()
+                   }
+               );
+            var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);
+            var result = await service.PartiallyUpdateEating(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<EatingForUpdateDto> { });
+            Assert.True(result);
         }
         [Fact]
         public async void DeleteEatingForUser_ReturnsFalse_WhenNonExistentIDProvided()
         {
-
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+                .ReturnsAsync(() => null);
+            var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);
+            var result = await service.DeleteEating(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
+            Assert.False(result);
         }
         [Fact]
         public async void DeleteEatingForUser_ReturnsTrue_WhenValidIDProvided()
         {
-
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+               new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+               .ReturnsAsync
+               (
+                   new Eating
+                   {
+                       Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                       Name = "Eating",
+                       Moment = DateTime.Now,
+                       UserProfileId = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                       IngredientsWithGrams = new List<IngredientEating>()
+                   }
+               );
+            var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);
+            var result = await service.DeleteEating(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
+            Assert.True(result);
         }
-        public IEnumerable<Eating> GetEatingsForUser(int num)
+        private IEnumerable<Eating> GetEatingsForUser(int num)
         {
             var eatings = new List<Eating>();
             if(num > 0)

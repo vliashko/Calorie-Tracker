@@ -185,7 +185,7 @@ namespace CaloriesTracker.Services.Tests
         [Fact]
         public async void DeleteIngredient_ReturnsFalse_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
+            mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
                 .ReturnsAsync(() => null);
 
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
