@@ -80,7 +80,8 @@ namespace CaloriesTracker.Services.Tests
         [Fact]
         public async void GetEatingForUser_ReturnsNull_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.Eating.GetAllEatingsForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"), false))
+            mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
 
             var service = new EatingService(mockRepo.Object, new LoggerManager(), mapper);

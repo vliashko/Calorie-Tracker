@@ -25,7 +25,7 @@ namespace CaloriesTracker.Services.Services
 
         public async Task<RecipeForReadDto> CreateRecipe(Guid userId, RecipeForCreateDto recipeDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
+            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
             if (user == null)
             {
                 logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");

@@ -16,6 +16,7 @@ using CaloriesTracker.Api.Filter;
 using CaloriesTracker.Api.Extensions;
 using CaloriesTracker.Services.Interfaces;
 using CaloriesTracker.Services.Services;
+using CaloriesTracker.Services;
 
 namespace CaloriesTracker.Api
 {
@@ -45,7 +46,7 @@ namespace CaloriesTracker.Api
             services.AddDbContext<RepositoryDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"), 
                     b => b.MigrationsAssembly("CaloriesTracker.Api")));
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers().AddNewtonsoftJson();
         }
 
