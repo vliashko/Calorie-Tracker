@@ -162,7 +162,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.False(result);
         }
         [Fact]
-        public async void PartiallyUpdateIngredient_ReturnsTrue_WhenValidIDProvided()
+        public async void PartiallyUpdateExercise_ReturnsTrue_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                  .ReturnsAsync

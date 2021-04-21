@@ -187,7 +187,7 @@ namespace CaloriesTracker.Services.Tests
 
         }
         [Fact]
-        public async void PartiallyEatingForUser_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void PartiallyUpdateEatingForUser_ReturnsFalse_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
                 new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
@@ -198,7 +198,7 @@ namespace CaloriesTracker.Services.Tests
             Assert.False(result);
         }
         [Fact]
-        public async void PartiallyEatingForUser_ReturnsTrue_WhenValidIDProvided()
+        public async void PartiallyUpdateEatingForUser_ReturnsTrue_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Eating.GetEatingForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
