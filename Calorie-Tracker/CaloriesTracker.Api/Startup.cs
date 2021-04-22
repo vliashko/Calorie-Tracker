@@ -17,6 +17,7 @@ using CaloriesTracker.Api.Extensions;
 using CaloriesTracker.Services.Interfaces;
 using CaloriesTracker.Services.Services;
 using CaloriesTracker.Services;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace CaloriesTracker.Api
 {
@@ -38,6 +39,15 @@ namespace CaloriesTracker.Api
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
             services.AddScoped<IServiceManager, ServiceManager>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureSwagger();
@@ -48,6 +58,11 @@ namespace CaloriesTracker.Api
                     b => b.MigrationsAssembly("CaloriesTracker.Api")));
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers().AddNewtonsoftJson();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
@@ -58,8 +73,11 @@ namespace CaloriesTracker.Api
             }
             app.ConfigureExceptionHandler(logger);
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            if(!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
             app.UseSwagger();
             app.UseSwaggerUI(s =>
@@ -72,12 +90,22 @@ namespace CaloriesTracker.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseSpa(spa =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action}/{id?}");
+                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "ClientApp");
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller}/{action}/{id?}");
+            //});
         }
     }
 }

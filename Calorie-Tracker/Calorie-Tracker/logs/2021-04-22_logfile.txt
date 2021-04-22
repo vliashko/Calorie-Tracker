@@ -1,0 +1,196 @@
+2021-04-22 09:55:18.1076 ERROR Something went wrong: System.AggregateException: One or more errors occurred. (One or more errors occurred. (The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: An unhandled exception occurred: Project "caloriestracker.api" does not exist.
+
+See "C:\Users\Lenovo\AppData\Local\Temp\ng-3VJ9mo\angular-errors.log" for further details.
+
+npm ERR! code ELIFECYCLE
+
+npm ERR! syscall spawn
+npm ERR! file C:\WINDOWS\system32\cmd.exe
+npm ERR! errno ENOENT
+npm ERR! asp.net@1.0.0 start: `echo hello && ng serve "--port" "52585"`
+
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the asp.net@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+
+npm ERR! A complete log of this run can be found in:
+
+))
+ ---> System.AggregateException: One or more errors occurred. (The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: An unhandled exception occurred: Project "caloriestracker.api" does not exist.
+
+See "C:\Users\Lenovo\AppData\Local\Temp\ng-3VJ9mo\angular-errors.log" for further details.
+
+npm ERR! code ELIFECYCLE
+
+npm ERR! syscall spawn
+npm ERR! file C:\WINDOWS\system32\cmd.exe
+npm ERR! errno ENOENT
+npm ERR! asp.net@1.0.0 start: `echo hello && ng serve "--port" "52585"`
+
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the asp.net@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+
+npm ERR! A complete log of this run can be found in:
+
+)
+ ---> System.InvalidOperationException: The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: An unhandled exception occurred: Project "caloriestracker.api" does not exist.
+
+See "C:\Users\Lenovo\AppData\Local\Temp\ng-3VJ9mo\angular-errors.log" for further details.
+
+npm ERR! code ELIFECYCLE
+
+npm ERR! syscall spawn
+npm ERR! file C:\WINDOWS\system32\cmd.exe
+npm ERR! errno ENOENT
+npm ERR! asp.net@1.0.0 start: `echo hello && ng serve "--port" "52585"`
+
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the asp.net@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+
+npm ERR! A complete log of this run can be found in:
+
+
+ ---> System.IO.EndOfStreamException: Attempted to read past the end of the stream.
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.StartAngularCliServerAsync(String sourcePath, String npmScriptName, ILogger logger)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.StartAngularCliServerAsync(String sourcePath, String npmScriptName, ILogger logger)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.<>c.<Attach>b__2_0(Task`1 task)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.Extensions.Util.TaskTimeoutExtensions.WithTimeout[T](Task`1 task, TimeSpan timeoutDelay, String message)
+   at Microsoft.AspNetCore.SpaServices.Extensions.Proxy.SpaProxy.PerformProxyRequest(HttpContext context, HttpClient httpClient, Task`1 baseUriTask, CancellationToken applicationStoppingToken, Boolean proxy404s)
+   at Microsoft.AspNetCore.Builder.SpaProxyingExtensions.<>c__DisplayClass2_0.<<UseProxyToSpaDevelopmentServer>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2021-04-22 14:47:52.1533 ERROR Something went wrong: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Failed to start 'npm'. To resolve this:.
+
+[1] Ensure that 'npm' is installed and can be found in one of the PATH directories.
+    Current PATH enviroment variable is: C:\PROGRA~2\Borland\CBUILD~1\Bin;C:\PROGRA~2\Borland\CBUILD~1\Projects\Bpl;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;D:\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\heroku\bin;C:\Users\Lenovo\.dotnet\tools;C:\Users\Lenovo\AppData\Roaming\npm
+    Make sure the executable is in one of those directories, or update your PATH.
+
+[2] See the InnerException for further details of the cause.))
+ ---> System.AggregateException: One or more errors occurred. (Failed to start 'npm'. To resolve this:.
+
+[1] Ensure that 'npm' is installed and can be found in one of the PATH directories.
+    Current PATH enviroment variable is: C:\PROGRA~2\Borland\CBUILD~1\Bin;C:\PROGRA~2\Borland\CBUILD~1\Projects\Bpl;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;D:\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\heroku\bin;C:\Users\Lenovo\.dotnet\tools;C:\Users\Lenovo\AppData\Roaming\npm
+    Make sure the executable is in one of those directories, or update your PATH.
+
+[2] See the InnerException for further details of the cause.)
+ ---> System.InvalidOperationException: Failed to start 'npm'. To resolve this:.
+
+[1] Ensure that 'npm' is installed and can be found in one of the PATH directories.
+    Current PATH enviroment variable is: C:\PROGRA~2\Borland\CBUILD~1\Bin;C:\PROGRA~2\Borland\CBUILD~1\Projects\Bpl;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;D:\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\heroku\bin;C:\Users\Lenovo\.dotnet\tools;C:\Users\Lenovo\AppData\Roaming\npm
+    Make sure the executable is in one of those directories, or update your PATH.
+
+[2] See the InnerException for further details of the cause.
+ ---> System.ComponentModel.Win32Exception (267): Неверно задано имя папки.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start()
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at Microsoft.AspNetCore.NodeServices.Npm.NpmScriptRunner.LaunchNodeProcess(ProcessStartInfo startInfo)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.NodeServices.Npm.NpmScriptRunner.LaunchNodeProcess(ProcessStartInfo startInfo)
+   at Microsoft.AspNetCore.NodeServices.Npm.NpmScriptRunner..ctor(String workingDirectory, String scriptName, String arguments, IDictionary`2 envVars)
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.StartAngularCliServerAsync(String sourcePath, String npmScriptName, ILogger logger)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.<>c.<Attach>b__2_0(Task`1 task)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.Extensions.Util.TaskTimeoutExtensions.WithTimeout[T](Task`1 task, TimeSpan timeoutDelay, String message)
+   at Microsoft.AspNetCore.SpaServices.Extensions.Proxy.SpaProxy.PerformProxyRequest(HttpContext context, HttpClient httpClient, Task`1 baseUriTask, CancellationToken applicationStoppingToken, Boolean proxy404s)
+   at Microsoft.AspNetCore.Builder.SpaProxyingExtensions.<>c__DisplayClass2_0.<<UseProxyToSpaDevelopmentServer>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2021-04-22 14:47:52.2711 ERROR Something went wrong: System.AggregateException: One or more errors occurred. (One or more errors occurred. (Failed to start 'npm'. To resolve this:.
+
+[1] Ensure that 'npm' is installed and can be found in one of the PATH directories.
+    Current PATH enviroment variable is: C:\PROGRA~2\Borland\CBUILD~1\Bin;C:\PROGRA~2\Borland\CBUILD~1\Projects\Bpl;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;D:\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\heroku\bin;C:\Users\Lenovo\.dotnet\tools;C:\Users\Lenovo\AppData\Roaming\npm
+    Make sure the executable is in one of those directories, or update your PATH.
+
+[2] See the InnerException for further details of the cause.))
+ ---> System.AggregateException: One or more errors occurred. (Failed to start 'npm'. To resolve this:.
+
+[1] Ensure that 'npm' is installed and can be found in one of the PATH directories.
+    Current PATH enviroment variable is: C:\PROGRA~2\Borland\CBUILD~1\Bin;C:\PROGRA~2\Borland\CBUILD~1\Projects\Bpl;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;D:\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\heroku\bin;C:\Users\Lenovo\.dotnet\tools;C:\Users\Lenovo\AppData\Roaming\npm
+    Make sure the executable is in one of those directories, or update your PATH.
+
+[2] See the InnerException for further details of the cause.)
+ ---> System.InvalidOperationException: Failed to start 'npm'. To resolve this:.
+
+[1] Ensure that 'npm' is installed and can be found in one of the PATH directories.
+    Current PATH enviroment variable is: C:\PROGRA~2\Borland\CBUILD~1\Bin;C:\PROGRA~2\Borland\CBUILD~1\Projects\Bpl;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;D:\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\heroku\bin;C:\Users\Lenovo\.dotnet\tools;C:\Users\Lenovo\AppData\Roaming\npm
+    Make sure the executable is in one of those directories, or update your PATH.
+
+[2] See the InnerException for further details of the cause.
+ ---> System.ComponentModel.Win32Exception (267): Неверно задано имя папки.
+   at System.Diagnostics.Process.StartWithCreateProcess(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start()
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at Microsoft.AspNetCore.NodeServices.Npm.NpmScriptRunner.LaunchNodeProcess(ProcessStartInfo startInfo)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.NodeServices.Npm.NpmScriptRunner.LaunchNodeProcess(ProcessStartInfo startInfo)
+   at Microsoft.AspNetCore.NodeServices.Npm.NpmScriptRunner..ctor(String workingDirectory, String scriptName, String arguments, IDictionary`2 envVars)
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.StartAngularCliServerAsync(String sourcePath, String npmScriptName, ILogger logger)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.<>c.<Attach>b__2_0(Task`1 task)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.Extensions.Util.TaskTimeoutExtensions.WithTimeout[T](Task`1 task, TimeSpan timeoutDelay, String message)
+   at Microsoft.AspNetCore.SpaServices.Extensions.Proxy.SpaProxy.PerformProxyRequest(HttpContext context, HttpClient httpClient, Task`1 baseUriTask, CancellationToken applicationStoppingToken, Boolean proxy404s)
+   at Microsoft.AspNetCore.Builder.SpaProxyingExtensions.<>c__DisplayClass2_0.<<UseProxyToSpaDevelopmentServer>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)

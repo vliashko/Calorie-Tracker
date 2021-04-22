@@ -7,10 +7,18 @@ services:
       dockerfile: Db/Dockerfile
     volumes:
       - ./Db:/usr/src/app 
-  caloriestracker.api:
+  backend:
     image: ${DOCKER_REGISTRY-}caloriestrackerapi
     build:
       context: .
       dockerfile: CaloriesTracker.Api/Dockerfile
     depends_on:
       - db
+  front:
+    image: clientapp
+    build:
+      context: .
+      dockerfile: CaloriesTracker.Api/ClientApp/Dockerfile
+    depends_on:
+       - backend
+    

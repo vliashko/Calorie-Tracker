@@ -1,12 +1,15 @@
 version: '3.4'
 
 services:
-  caloriestracker.api:
+  backend:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_URLS=http://+:50
     ports:
-      - "8080:80"
+      - "5001:5000"
   db:
     ports:
       - "1433:1433" 
+  front:
+    ports:
+      - "8080:80" 

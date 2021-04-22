@@ -7,6 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
 COPY ["CaloriesTracker.Api/CaloriesTracker.Api.csproj", "CaloriesTracker.Api/"]
 COPY ["CaloriesTracker.Services/CaloriesTracker.Services.csproj", "CaloriesTracker.Services/"]
 COPY ["CaloriesTracker.LoggerService/CaloriesTracker.LoggerService.csproj", "CaloriesTracker.LoggerService/"]
@@ -16,6 +21,10 @@ COPY ["CaloriesTracker.Repositories/CaloriesTracker.Repositories.csproj", "Calor
 RUN dotnet restore "CaloriesTracker.Api/CaloriesTracker.Api.csproj"
 COPY . .
 WORKDIR "/src/CaloriesTracker.Api"
+
+RUN npm install
+RUN npm install -g @angular/cli@10.0.8
+
 RUN dotnet build "CaloriesTracker.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
