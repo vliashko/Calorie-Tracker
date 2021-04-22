@@ -90,6 +90,11 @@ namespace CaloriesTracker.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = Path.Join(env.ContentRootPath, "ClientApp");
@@ -99,13 +104,6 @@ namespace CaloriesTracker.Api
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller}/{action}/{id?}");
-            //});
         }
     }
 }

@@ -2,14 +2,11 @@ version: '3.4'
 
 services:
   backend:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:50
     ports:
-      - "5001:5000"
+      - "5000:80"
   db:
     ports:
       - "1433:1433" 
   front:
     ports:
-      - "8080:80" 
+      - "8080:4200" 

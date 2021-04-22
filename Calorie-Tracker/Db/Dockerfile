@@ -8,6 +8,4 @@ ENV SA_PASSWORD Password123
 ENV ACCEPT_EULA Y
 ENV MSSQL_PID Express
 
-EXPOSE 1433
-
 CMD /bin/bash ./entrypoint.sh
