@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <h3>Create Ingredient</h3>
+</mat-toolbar>
+<br>
+  <a href="#" routerLink="/ingredients/list/" mat-button color="primary">Back to Ingredients List</a>
+<br><br>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Ingredient" formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Calories</mat-label>
+        <input type="number" matInput placeholder="150" formControlName="calories">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Proteins</mat-label>
+        <input type="number" matInput placeholder="6.75" formControlName="proteins">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Fats</mat-label>
+        <input type="number" matInput placeholder="10" formControlName="fats">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Carbohydrates</mat-label>
+        <input type="number" matInput placeholder="20.25" formControlName="carbohydrates">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid" type="submit">Create</button>
+</form>
