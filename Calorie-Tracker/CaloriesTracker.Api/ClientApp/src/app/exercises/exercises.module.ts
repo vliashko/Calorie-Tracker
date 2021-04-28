@@ -6,12 +6,18 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material-module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [CreateComponent, EditComponent, ListComponent],
   imports: [
     CommonModule,
-    ExercisesRoutingModule
+    ExercisesRoutingModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MaterialModule
   ]
 })
 export class ExercisesModule { }

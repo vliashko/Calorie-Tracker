@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,12 +23,18 @@ import { IngredientsModule } from './ingredients/ingredients.module';
 import { RecipesModule } from './recipes/recipes.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { UsersModule } from './users/users.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialog } from './confirmation-dialog.component';
+import { HomeComponent } from './home/home.component';
+
+import { AuthInterceptor } from './authconfig.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, ConfirmationDialog, HomeComponent
   ],
   imports: [
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -51,7 +57,12 @@ import { UsersModule } from './users/users.module';
     ExercisesService,
     IngredientsService,
     RecipesService,
-    UsersService ],
+    UsersService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    } ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

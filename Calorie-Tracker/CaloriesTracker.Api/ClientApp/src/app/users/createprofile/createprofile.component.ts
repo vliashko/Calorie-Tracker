@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { UsersService } from '../users.service';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-createprofile',
+  templateUrl: './createprofile.component.html',
+  styleUrls: ['./createprofile.component.css']
 })
-export class CreateComponent implements OnInit {
+export class CreateprofileComponent implements OnInit {
 
   formGroup!: FormGroup;
   titleAlert = 'This field is required';
@@ -44,5 +44,4 @@ export class CreateComponent implements OnInit {
         this.router.navigateByUrl('/');
   });
   }
-
 }

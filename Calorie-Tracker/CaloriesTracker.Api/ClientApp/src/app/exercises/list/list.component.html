@@ -1,1 +1,30 @@
-<p>list works!</p>
+<mat-toolbar>
+    <h3>Exercises</h3>
+</mat-toolbar>
+<br>
+  <a href="#" routerLink="/exercises/create/" mat-raised-button color="primary">Create New</a>
+<br><br>
+<table mat-table [dataSource] ="exercises" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+  <ng-container matColumnDef="caloriesSpent">
+    <th mat-header-cell *matHeaderCellDef> Calories Spent </th>
+    <td mat-cell *matCellDef="let element"> {{element.caloriesSpent}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element" >
+      <a href="#" [routerLink]="['/exercises/', element.id, 'edit']" mat-raised-button color="accent">Edit</a> 
+      <div class="divider"></div>
+      <button type="button" (click)="deleteExercise(element.id)" mat-raised-button color="warn">Delete</button> 
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

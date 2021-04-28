@@ -41,7 +41,6 @@ namespace CaloriesTracker.Api.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            await userManager.AddToRoleAsync(user, userDto.Role);
             return StatusCode(201);
         }
         [HttpPost("login")]

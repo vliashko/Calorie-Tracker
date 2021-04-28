@@ -1,4 +1,13 @@
 <mat-toolbar color="primary">
-  <span>Calories Tracker</span>
+  <mat-toolbar-row>
+    <a mat-button style="font-size:24px !important;" routerLinkActive="active" routerLink="/">Calories Tracker</a>
+    <span class="spacer"></span>
+    <div>
+      <a mat-button *ngIf="this.authService.isLoggedIn" routerLinkActive="active" routerLink="/profile">Profile</a>
+      <a mat-button *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/authentication/login">Sign in</a>
+      <a mat-button *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active" routerLink="/authentication">Sign up</a>
+      <button (click)="logout()" *ngIf="this.authService.isLoggedIn" mat-button>Logout</button>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

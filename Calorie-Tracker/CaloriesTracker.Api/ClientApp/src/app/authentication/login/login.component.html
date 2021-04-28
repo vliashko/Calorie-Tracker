@@ -1,1 +1,20 @@
-<p>login works!</p>
+<mat-toolbar>
+    <h3>Login</h3>
+</mat-toolbar>
+<br>
+  <a href="#" routerLink="/authentication" mat-raised-button color="primary">Sign up</a>
+<br><br>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="username123" formControlName="username" required>
+        <mat-error *ngIf="checkError('username', 'required')">Username is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Login</button>
+</form>

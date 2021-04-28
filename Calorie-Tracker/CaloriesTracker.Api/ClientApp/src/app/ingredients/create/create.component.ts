@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Ingredient, IngredientForCreateDto } from 'src/app/model/models';
 import { IngredientsService } from '../ingredients.service';
 
 @Component({
@@ -23,33 +22,26 @@ export class CreateComponent implements OnInit {
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.createForm();
-    this.setValidate();
   }
 
   // tslint:disable-next-line:typedef
   createForm() {
     this.formGroup = this.formBuilder.group({
       name: [null, Validators.required],
-      calories: [null, Validators.required],
-      proteins: [null, Validators.required],
-      fats: [null, Validators.required],
-      carbohydrates : [null, Validators.required],
+      calories: [null, [Validators.required, Validators.min(0.01), Validators.max(500)]],
+      proteins: [null, [Validators.required, Validators.min(0.01), Validators.max(150)]],
+      fats: [null, [Validators.required, Validators.min(0.01), Validators.max(150)]],
+      carbohydrates : [null, [Validators.required, Validators.min(0.01), Validators.max(150)]],
     });
   }
-  // tslint:disable-next-line:typedef
-  setValidate() {
-    this.formGroup.get('name')?.setValidators(Validators.required);
-    this.formGroup.get('calories')?.setValidators(Validators.required);
-    this.formGroup.get('proteins')?.setValidators(Validators.required);
-    this.formGroup.get('fats')?.setValidators(Validators.required);
-    this.formGroup.get('carbohydrates')?.setValidators(Validators.required);
+  public checkError = (controlName: string, errorName: string) => {
+    return this.formGroup.controls[controlName].hasError(errorName);
   }
-
   // tslint:disable-next-line:typedef
   onSubmit(post: any) {
     this.post = post;
     this.ingredientsService.apiIngredientsPost(post)
-      .subscribe(res => { this.router.navigateByUrl('ingredients/list');
+      .subscribe(() => { this.router.navigateByUrl('ingredients/list');
   });
   }
 }

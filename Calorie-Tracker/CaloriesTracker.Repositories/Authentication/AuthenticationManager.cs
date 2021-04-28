@@ -53,6 +53,7 @@ namespace CaloriesTracker.Repositories.Authentication
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
+            claims.Add(new Claim("userId", user.Id));
             return claims;
         }
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)

@@ -34,7 +34,10 @@ export class IngredientsService {
 
     // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
-        this.basePath = BASE_PATH;
+        this.basePath = this.configuration.basePath;
+        if (configuration) {
+            this.configuration = configuration;
+        }
     }
 
     /**

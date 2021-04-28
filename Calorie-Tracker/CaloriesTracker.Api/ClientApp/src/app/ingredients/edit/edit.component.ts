@@ -22,31 +22,24 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.setValidate();
     this.id = this.route.snapshot.params.ingredientId;
     this.ingredientsService.ingredientById(this.id).subscribe((data: Ingredient) => {
       this.ingredient = data;
       this.editForm.patchValue(data);
     });
   }
-
+  public checkError = (controlName: string, errorName: string) => {
+    return this.editForm.controls[controlName].hasError(errorName);
+  }
   // tslint:disable-next-line:typedef
   createForm() {
     this.editForm = this.formBuilder.group({
       name: [null, Validators.required],
-      calories: [null, Validators.required],
-      proteins: [null, Validators.required],
-      fats: [null, Validators.required],
-      carbohydrates : [null, Validators.required],
+      calories: [null, [Validators.required, Validators.min(0.01), Validators.max(500)]],
+      proteins: [null, [Validators.required, Validators.min(0.01), Validators.max(150)]],
+      fats: [null, [Validators.required, Validators.min(0.01), Validators.max(150)]],
+      carbohydrates : [null, [Validators.required, Validators.min(0.01), Validators.max(150)]],
     });
-  }
-  // tslint:disable-next-line:typedef
-  setValidate() {
-    this.editForm.get('name')?.setValidators(Validators.required);
-    this.editForm.get('calories')?.setValidators(Validators.required);
-    this.editForm.get('proteins')?.setValidators(Validators.required);
-    this.editForm.get('fats')?.setValidators(Validators.required);
-    this.editForm.get('carbohydrates')?.setValidators(Validators.required);
   }
 
   // tslint:disable-next-line:typedef

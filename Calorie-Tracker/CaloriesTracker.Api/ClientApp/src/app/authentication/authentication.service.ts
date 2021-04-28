@@ -33,39 +33,22 @@ export class AuthenticationService {
 
     // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
-        if (basePath) {
-            this.basePath = basePath;
-        }
+        this.basePath = this.configuration.basePath;
         if (configuration) {
             this.configuration = configuration;
-            this.basePath = basePath || configuration.basePath || this.basePath;
         }
     }
-
-    /**
-     * @param consumes string[] mime-types
-     * @return true: consumes contains 'multipart/form-data', false: otherwise
-     */
-    private canConsumeForm(consumes: string[]): boolean {
-        const form = 'multipart/form-data';
-        for (const consume of consumes) {
-            if (form === consume) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     /**
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    // tslint:disable-next-line:max-line-length
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    // tslint:disable-next-line:max-line-length
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    // tslint:disable-next-line:max-line-length
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
 
         let headers = this.defaultHeaders;
 
@@ -106,13 +89,11 @@ export class AuthenticationService {
     }
 
     /**
-     *
-     *
-     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    // tslint:disable-next-line:max-line-length
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
@@ -155,5 +136,17 @@ export class AuthenticationService {
             }
         );
     }
-
+    // tslint:disable-next-line:typedef
+    getToken() {
+        const token = JSON.parse(localStorage.getItem('access_token') || '{}');
+        return token.token;
+    }
+    get isLoggedIn(): boolean {
+        const authToken = localStorage.getItem('access_token');
+        return (authToken !== null) ? true : false;
+    }
+    // tslint:disable-next-line:typedef
+    doLogout() {
+        const removeToken = localStorage.removeItem('access_token');
+    }
 }

@@ -3,7 +3,6 @@ export interface ConfigurationParameters {
     username?: string;
     password?: string;
     accessToken?: string | (() => string);
-    basePath?: string;
     withCredentials?: boolean;
 }
 
@@ -12,7 +11,7 @@ export class Configuration {
     username?: string;
     password?: string;
     accessToken?: string | (() => string);
-    basePath?: string;
+    basePath: string;
     withCredentials?: boolean;
 
     constructor(configurationParameters: ConfigurationParameters = {}) {
@@ -20,7 +19,7 @@ export class Configuration {
         this.username = configurationParameters.username;
         this.password = configurationParameters.password;
         this.accessToken = configurationParameters.accessToken;
-        this.basePath = configurationParameters.basePath;
+        this.basePath = 'http://localhost:5000';
         this.withCredentials = configurationParameters.withCredentials;
     }
 

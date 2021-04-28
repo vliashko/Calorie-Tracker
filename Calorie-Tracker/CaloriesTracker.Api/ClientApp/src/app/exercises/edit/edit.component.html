@@ -1,1 +1,27 @@
-<p>edit works!</p>
+<mat-toolbar>
+    <h3>Edit Exercise</h3>
+</mat-toolbar>
+<br>
+  <a href="#" routerLink="/exercises/list/" mat-raised-button color="primary">Back to Exercises List</a>
+<br><br>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)" class="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Exercise" formControlName="name">
+        <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Description" formControlName="description">
+        <mat-error *ngIf="checkError('description', 'required')">Description is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Calories Spent</mat-label>
+        <input type="number" matInput placeholder="from 0.01 to 10" formControlName="caloriesSpent">
+        <mat-error *ngIf="checkError('caloriesSpent', 'required')">Calories Spent is required</mat-error>
+        <mat-error *ngIf="checkError('caloriesSpent', 'min')">Calories Spent must be greater than 0.01</mat-error>
+        <mat-error *ngIf="checkError('caloriesSpent', 'max')">Calories Spent must be less than 10</mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" [disabled]="!editForm.valid" type="submit">Update</button>
+</form>
