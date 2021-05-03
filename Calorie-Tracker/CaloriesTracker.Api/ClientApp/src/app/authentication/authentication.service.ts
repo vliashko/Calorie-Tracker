@@ -22,6 +22,7 @@ import { UserForRegistrationDto } from '../model/userForRegistrationDto';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import jwtDecode from 'jwt-decode';
 
 
 @Injectable()
@@ -145,8 +146,13 @@ export class AuthenticationService {
         const authToken = localStorage.getItem('access_token');
         return (authToken !== null) ? true : false;
     }
+    get isAdministrator(): boolean {
+        const authToken = this.getToken();
+        const decoded: any = jwtDecode(authToken);
+        return (decoded.roles === 'Administrator') ? true : false;
+    }
     // tslint:disable-next-line:typedef
     doLogout() {
-        const removeToken = localStorage.removeItem('access_token');
+        localStorage.removeItem('access_token');
     }
 }
