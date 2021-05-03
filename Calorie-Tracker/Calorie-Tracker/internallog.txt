@@ -2671,3 +2671,1458 @@
 2021-04-22 15:02:01.7622 Trace Closing Layout Renderer: ${message}
 2021-04-22 15:02:01.7622 Debug Finished closing logging configuration.
 2021-04-22 15:02:01.7622 Info Logger has been shut down.
+2021-04-30 09:54:12.3758 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 09:54:12.5141 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 09:54:12.5141 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:54:12.5141 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:54:12.5208 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 09:54:12.5208 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:54:12.5208 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:54:12.5208 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:54:12.5208 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:54:12.5208 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:54:12.5208 Debug Auto loading done
+2021-04-30 09:54:12.5208 Info Message Template Auto Format enabled
+2021-04-30 09:54:12.5446 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5446 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:54:12.5551 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:54:12.5551 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:54:12.5551 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5551 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.5551 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5551 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:54:12.5551 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:54:12.5551 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:54:12.5551 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.5551 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.5551 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5551 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 09:54:12.5551 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5551 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:54:12.5697 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 09:54:12.5697 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:54:12.5697 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5697 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:54:12.5697 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:54:12.5697 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5697 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:54:12.5697 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:54:12.5697 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:54:12.5697 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5697 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.5697 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5697 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:54:12.5697 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:54:12.5697 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:54:12.5697 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.5697 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.5697 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.5697 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:54:12.5697 Info Adding target FileTarget(Name=logfile)
+2021-04-30 09:54:12.5697 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 09:54:12.5697 Trace ParseRulesElement
+2021-04-30 09:54:12.5965 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 09:54:12.5965 Debug --- NLog configuration dump ---
+2021-04-30 09:54:12.5965 Debug Targets:
+2021-04-30 09:54:12.5984 Debug File Target[logfile]
+2021-04-30 09:54:12.5984 Debug Rules:
+2021-04-30 09:54:12.5984 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 09:54:12.5984 Debug --- End of NLog configuration dump ---
+2021-04-30 09:54:12.5984 Trace FindReachableObject<System.Object>:
+2021-04-30 09:54:12.5984 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 09:54:12.5984 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 09:54:12.5984 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:54:12.5984 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:54:12.5984 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:54:12.5984 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.5984 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.5984 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:54:12.5984 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.5984 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:54:12.5984 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:54:12.5984 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.5984 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:54:12.5984 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.5984 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:54:12.5984 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:54:12.5984 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:54:12.5984 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.5984 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.5984 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.5984 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:54:12.5984 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:54:12.5984 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 09:54:12.5984 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 09:54:12.6133 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 09:54:12.6133 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 09:54:12.6133 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 09:54:12.6133 Trace Initializing Layout Renderer: ${message}
+2021-04-30 09:54:12.6133 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:54:12.6133 Trace Initializing Layout Renderer: ${level}
+2021-04-30 09:54:12.6133 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 09:54:12.6133 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.6133 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:54:12.6133 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.6133 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.6133 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 09:54:12.6133 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:54:12.6133 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 09:54:12.6133 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:54:12.6133 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.6133 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:54:12.6133 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.6133 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:54:12.6133 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.6133 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:54:12.6133 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:54:12.6133 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:54:12.6133 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.6295 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:54:12.6295 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.6295 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:54:12.6295 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:54:12.6295 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 09:54:12.6295 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:54:12.6295 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:54:12.6295 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:54:12.6295 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:54:12.6295 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:54:12.6295 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.6295 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:54:12.6295 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:54:12.6295 Trace Initializing File Target[logfile]
+2021-04-30 09:54:12.6295 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 09:54:12.6295 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:54:12.6295 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:54:12.6295 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:54:12.6295 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:54:12.6295 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:54:12.6295 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:54:12.6295 Trace File Target[logfile] has 2 layouts
+2021-04-30 09:54:12.6295 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 09:56:34.9759 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 09:56:35.0579 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 09:56:35.0579 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:56:35.0579 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:56:35.0579 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 09:56:35.0579 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:56:35.0579 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:56:35.0579 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:56:35.0579 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:56:35.0579 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:56:35.0579 Debug Auto loading done
+2021-04-30 09:56:35.0669 Info Message Template Auto Format enabled
+2021-04-30 09:56:35.0669 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.0826 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:56:35.0826 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:56:35.0826 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:56:35.0826 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.0826 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.0826 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.0826 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:56:35.0826 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:56:35.0826 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:56:35.0826 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.0826 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.0826 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.0826 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 09:56:35.0826 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.0826 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:56:35.1004 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 09:56:35.1004 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:56:35.1004 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1004 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:56:35.1004 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:56:35.1004 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1004 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:56:35.1004 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:56:35.1004 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:56:35.1004 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1004 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.1004 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1004 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:56:35.1004 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:56:35.1004 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:56:35.1004 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1004 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.1004 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1004 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:56:35.1004 Info Adding target FileTarget(Name=logfile)
+2021-04-30 09:56:35.1004 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 09:56:35.1004 Trace ParseRulesElement
+2021-04-30 09:56:35.1208 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 09:56:35.1208 Debug --- NLog configuration dump ---
+2021-04-30 09:56:35.1208 Debug Targets:
+2021-04-30 09:56:35.1208 Debug File Target[logfile]
+2021-04-30 09:56:35.1208 Debug Rules:
+2021-04-30 09:56:35.1208 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 09:56:35.1208 Debug --- End of NLog configuration dump ---
+2021-04-30 09:56:35.1303 Trace FindReachableObject<System.Object>:
+2021-04-30 09:56:35.1303 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 09:56:35.1303 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 09:56:35.1303 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:56:35.1303 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:56:35.1303 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:56:35.1303 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1303 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1303 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:56:35.1303 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1303 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:56:35.1303 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:56:35.1303 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1303 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:56:35.1303 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1303 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:56:35.1303 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:56:35.1303 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:56:35.1303 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1303 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.1303 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1303 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:56:35.1303 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:56:35.1303 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 09:56:35.1303 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 09:56:35.1303 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 09:56:35.1450 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 09:56:35.1450 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 09:56:35.1450 Trace Initializing Layout Renderer: ${message}
+2021-04-30 09:56:35.1450 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:56:35.1450 Trace Initializing Layout Renderer: ${level}
+2021-04-30 09:56:35.1450 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 09:56:35.1450 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1450 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:56:35.1450 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1450 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.1611 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 09:56:35.1611 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:56:35.1611 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 09:56:35.1611 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:56:35.1611 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1611 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:56:35.1611 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1611 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:56:35.1611 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1611 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:56:35.1611 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:56:35.1611 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:56:35.1611 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1611 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:56:35.1611 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1611 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:56:35.1611 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:56:35.1611 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 09:56:35.1611 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:56:35.1611 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:56:35.1611 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:56:35.1611 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:56:35.1611 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:56:35.1611 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1611 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:56:35.1611 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:56:35.1611 Trace Initializing File Target[logfile]
+2021-04-30 09:56:35.1611 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 09:56:35.1611 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:56:35.1611 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:56:35.1611 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:56:35.1611 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:56:35.1611 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:56:35.1611 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:56:35.1611 Trace File Target[logfile] has 2 layouts
+2021-04-30 09:56:35.1763 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 09:57:04.7708 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 09:57:04.8624 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 09:57:04.8624 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:57:04.8624 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:57:04.8671 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 09:57:04.8671 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:57:04.8671 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:57:04.8671 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:57:04.8671 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:57:04.8671 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:57:04.8671 Debug Auto loading done
+2021-04-30 09:57:04.8671 Info Message Template Auto Format enabled
+2021-04-30 09:57:04.8839 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8839 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:57:04.8839 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:57:04.8839 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:57:04.8839 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8839 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.8839 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8839 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:57:04.8952 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:57:04.8952 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:57:04.8952 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.8952 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:57:04.8952 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 09:57:04.8952 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:57:04.8952 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:57:04.8952 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:57:04.8952 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:57:04.8952 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:57:04.8952 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:57:04.8952 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.8952 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.8952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.8952 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:57:04.8952 Info Adding target FileTarget(Name=logfile)
+2021-04-30 09:57:04.8952 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 09:57:04.8952 Trace ParseRulesElement
+2021-04-30 09:57:04.9232 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 09:57:04.9232 Debug --- NLog configuration dump ---
+2021-04-30 09:57:04.9232 Debug Targets:
+2021-04-30 09:57:04.9232 Debug File Target[logfile]
+2021-04-30 09:57:04.9260 Debug Rules:
+2021-04-30 09:57:04.9260 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 09:57:04.9260 Debug --- End of NLog configuration dump ---
+2021-04-30 09:57:04.9260 Trace FindReachableObject<System.Object>:
+2021-04-30 09:57:04.9260 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 09:57:04.9260 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 09:57:04.9260 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:57:04.9260 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:57:04.9260 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:57:04.9260 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9260 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9260 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:57:04.9260 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9260 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:57:04.9260 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:57:04.9260 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9260 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:57:04.9260 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9260 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:57:04.9260 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:57:04.9260 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:57:04.9260 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9260 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.9260 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9421 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:57:04.9421 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:57:04.9421 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 09:57:04.9421 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 09:57:04.9421 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 09:57:04.9421 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 09:57:04.9421 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 09:57:04.9421 Trace Initializing Layout Renderer: ${message}
+2021-04-30 09:57:04.9421 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:57:04.9421 Trace Initializing Layout Renderer: ${level}
+2021-04-30 09:57:04.9421 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 09:57:04.9602 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.9602 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:57:04.9602 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9602 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.9602 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 09:57:04.9602 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:57:04.9602 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 09:57:04.9602 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:57:04.9602 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.9602 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:57:04.9602 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9602 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:57:04.9602 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9602 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:57:04.9602 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:57:04.9602 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:57:04.9602 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9602 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:57:04.9602 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9602 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:57:04.9602 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:57:04.9602 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 09:57:04.9602 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:57:04.9602 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:57:04.9602 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:57:04.9602 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:57:04.9602 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:57:04.9602 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9602 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:57:04.9602 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:57:04.9602 Trace Initializing File Target[logfile]
+2021-04-30 09:57:04.9602 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 09:57:04.9602 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:57:04.9602 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:57:04.9730 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:57:04.9730 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:57:04.9730 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:57:04.9730 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:57:04.9730 Trace File Target[logfile] has 2 layouts
+2021-04-30 09:57:04.9730 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 09:58:05.0495 Debug Targets for CaloriesTracker.LoggerService.LoggerManager by level:
+2021-04-30 09:58:05.0495 Debug Trace =>
+2021-04-30 09:58:05.0495 Debug Debug => logfile
+2021-04-30 09:58:05.0495 Debug Info => logfile
+2021-04-30 09:58:05.0495 Debug Warn => logfile
+2021-04-30 09:58:05.0495 Debug Error => logfile
+2021-04-30 09:58:05.0495 Debug Fatal => logfile
+2021-04-30 09:58:05.0720 Debug FileTarget(Name=logfile): Preparing for new file 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt'
+2021-04-30 09:58:05.0720 Debug Creating file appender: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 09:58:05.0833 Trace Opening C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt with allowFileSharedWriting=False
+2021-04-30 09:58:09.0357 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 09:58:09.1274 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 09:58:09.1274 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:58:09.1274 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:58:09.1329 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 09:58:09.1329 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:58:09.1329 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:58:09.1329 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 09:58:09.1329 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:58:09.1329 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 09:58:09.1329 Debug Auto loading done
+2021-04-30 09:58:09.1329 Info Message Template Auto Format enabled
+2021-04-30 09:58:09.1522 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1522 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:58:09.1522 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:58:09.1612 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:58:09.1612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1612 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.1612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1612 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:58:09.1612 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:58:09.1612 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:58:09.1612 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.1612 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.1612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1612 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 09:58:09.1612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1612 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:58:09.1612 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 09:58:09.1612 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:58:09.1612 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1612 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:58:09.1765 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:58:09.1765 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1765 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:58:09.1765 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 09:58:09.1765 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 09:58:09.1765 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1765 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.1765 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1765 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:58:09.1765 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:58:09.1765 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:58:09.1765 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.1765 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.1765 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.1765 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:58:09.1765 Info Adding target FileTarget(Name=logfile)
+2021-04-30 09:58:09.1765 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 09:58:09.1765 Trace ParseRulesElement
+2021-04-30 09:58:09.1969 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 09:58:09.1969 Debug --- NLog configuration dump ---
+2021-04-30 09:58:09.1969 Debug Targets:
+2021-04-30 09:58:09.1969 Debug File Target[logfile]
+2021-04-30 09:58:09.1969 Debug Rules:
+2021-04-30 09:58:09.1969 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 09:58:09.1969 Debug --- End of NLog configuration dump ---
+2021-04-30 09:58:09.1969 Trace FindReachableObject<System.Object>:
+2021-04-30 09:58:09.1969 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 09:58:09.1969 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 09:58:09.1969 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:58:09.1969 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:58:09.1969 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:58:09.1969 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.1969 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.1969 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:58:09.1969 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.1969 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:58:09.1969 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:58:09.1969 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.2079 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:58:09.2079 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.2079 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:58:09.2079 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:58:09.2079 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:58:09.2079 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.2079 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.2079 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.2079 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:58:09.2079 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:58:09.2079 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 09:58:09.2079 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 09:58:09.2079 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 09:58:09.2079 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 09:58:09.2079 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 09:58:09.2079 Trace Initializing Layout Renderer: ${message}
+2021-04-30 09:58:09.2079 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:58:09.2079 Trace Initializing Layout Renderer: ${level}
+2021-04-30 09:58:09.2079 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 09:58:09.2229 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.2229 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:58:09.2229 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.2229 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.2229 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 09:58:09.2229 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:58:09.2229 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 09:58:09.2229 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:58:09.2229 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.2229 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:58:09.2229 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.2229 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 09:58:09.2229 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.2229 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 09:58:09.2229 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 09:58:09.2229 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 09:58:09.2229 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.2229 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 09:58:09.2229 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.2229 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 09:58:09.2229 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:58:09.2229 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 09:58:09.2229 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 09:58:09.2229 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:58:09.2229 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 09:58:09.2229 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:58:09.2229 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 09:58:09.2229 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.2229 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 09:58:09.2229 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 09:58:09.2229 Trace Initializing File Target[logfile]
+2021-04-30 09:58:09.2229 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 09:58:09.2229 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 09:58:09.2229 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 09:58:09.2229 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 09:58:09.2229 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 09:58:09.2229 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 09:58:09.2229 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 09:58:09.2229 Trace File Target[logfile] has 2 layouts
+2021-04-30 09:58:09.2229 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 09:58:30.3043 Debug Targets for CaloriesTracker.LoggerService.LoggerManager by level:
+2021-04-30 09:58:30.3043 Debug Trace =>
+2021-04-30 09:58:30.3043 Debug Debug => logfile
+2021-04-30 09:58:30.3043 Debug Info => logfile
+2021-04-30 09:58:30.3043 Debug Warn => logfile
+2021-04-30 09:58:30.3043 Debug Error => logfile
+2021-04-30 09:58:30.3043 Debug Fatal => logfile
+2021-04-30 09:58:30.3322 Debug FileTarget(Name=logfile): Preparing for new file 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt'
+2021-04-30 09:58:30.3322 Debug Creating file appender: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 09:58:30.3322 Trace Opening C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt with allowFileSharedWriting=False
+2021-04-30 09:58:46.9721 Info AppDomain Shutting down. Logger closing...
+2021-04-30 09:58:46.9743 Debug Stopping file watching for path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config'
+2021-04-30 09:58:46.9743 Trace Flushing all 1 targets...
+2021-04-30 09:58:46.9743 Trace ForEachItemInParallel() 1 items
+2021-04-30 09:58:46.9743 Trace FileTarget(Name=logfile): FlushAsync
+2021-04-30 09:58:46.9743 Trace Continuation invoked: 
+2021-04-30 09:58:46.9743 Trace Parallel task completed. 0 items remaining
+2021-04-30 09:58:46.9743 Debug Flush completed
+2021-04-30 09:58:46.9743 Trace FileTarget(Name=logfile): FlushAsync Done
+2021-04-30 09:58:46.9743 Debug Targets not configured for logger: CaloriesTracker.LoggerService.LoggerManager
+2021-04-30 09:58:46.9743 Debug Closing logging configuration...
+2021-04-30 09:58:46.9743 Trace Closing File Target[logfile]
+2021-04-30 09:58:46.9743 Debug Closing target 'File Target[logfile]'.
+2021-04-30 09:58:46.9895 Trace FileTarget(Name=logfile): FinalizeFile 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt, isArchiving: False'
+2021-04-30 09:58:46.9895 Debug FileAppender Closing Invalidate - C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 09:58:46.9895 Debug Closed target 'File Target[logfile]'.
+2021-04-30 09:58:46.9895 Trace Closing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${literal}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${shortdate}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${literal}
+2021-04-30 09:58:46.9895 Trace Closing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${longdate}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${literal}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${uppercase}
+2021-04-30 09:58:46.9895 Trace Closing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${level}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${literal}
+2021-04-30 09:58:46.9895 Trace Closing Layout Renderer: ${message}
+2021-04-30 09:58:46.9895 Debug Finished closing logging configuration.
+2021-04-30 09:58:46.9895 Info Logger has been shut down.
+2021-04-30 10:00:15.1608 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 10:00:15.1838 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 10:00:15.1838 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 10:00:15.1838 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 10:00:15.1838 Debug Found assembly location directory: 'C:\Users\Lenovo\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.5\tools\netcoreapp2.0\any' (ef, Version=5.0.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60)
+2021-04-30 10:00:15.1838 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.5\tools\netcoreapp2.0\any
+2021-04-30 10:00:15.1838 Debug Search for auto loading files in location: C:\Users\Lenovo\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.5\tools\netcoreapp2.0\any
+2021-04-30 10:00:15.1838 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 10:00:15.1838 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 10:00:15.1923 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 10:00:15.1923 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 10:00:15.1923 Debug Auto loading done
+2021-04-30 10:00:15.1923 Info Message Template Auto Format enabled
+2021-04-30 10:00:15.1923 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.1923 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 10:00:15.2109 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 10:00:15.2109 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 10:00:15.2109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2109 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2109 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 10:00:15.2109 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 10:00:15.2109 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 10:00:15.2109 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2109 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2109 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 10:00:15.2109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2109 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 10:00:15.2109 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 10:00:15.2109 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 10:00:15.2109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2109 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 10:00:15.2109 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 10:00:15.2109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2109 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 10:00:15.2109 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 10:00:15.2109 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 10:00:15.2227 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2227 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2227 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2227 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 10:00:15.2227 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 10:00:15.2227 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 10:00:15.2227 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2227 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2227 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2227 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 10:00:15.2227 Info Adding target FileTarget(Name=logfile)
+2021-04-30 10:00:15.2227 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 10:00:15.2227 Trace ParseRulesElement
+2021-04-30 10:00:15.2227 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 10:00:15.2227 Debug --- NLog configuration dump ---
+2021-04-30 10:00:15.2227 Debug Targets:
+2021-04-30 10:00:15.2227 Debug File Target[logfile]
+2021-04-30 10:00:15.2227 Debug Rules:
+2021-04-30 10:00:15.2397 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 10:00:15.2397 Debug --- End of NLog configuration dump ---
+2021-04-30 10:00:15.2397 Trace FindReachableObject<System.Object>:
+2021-04-30 10:00:15.2397 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 10:00:15.2397 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 10:00:15.2397 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 10:00:15.2397 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 10:00:15.2397 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 10:00:15.2397 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2397 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2397 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 10:00:15.2397 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2397 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 10:00:15.2397 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 10:00:15.2397 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2397 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 10:00:15.2397 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2397 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 10:00:15.2397 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 10:00:15.2397 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 10:00:15.2397 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2397 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2397 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2397 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 10:00:15.2397 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 10:00:15.2397 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 10:00:15.2397 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 10:00:15.2397 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 10:00:15.2397 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 10:00:15.2397 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 10:00:15.2397 Trace Initializing Layout Renderer: ${message}
+2021-04-30 10:00:15.2397 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 10:00:15.2397 Trace Initializing Layout Renderer: ${level}
+2021-04-30 10:00:15.2397 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 10:00:15.2558 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2558 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 10:00:15.2558 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2558 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2558 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 10:00:15.2558 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 10:00:15.2558 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 10:00:15.2558 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 10:00:15.2558 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2558 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 10:00:15.2558 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2558 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 10:00:15.2558 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2558 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 10:00:15.2558 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 10:00:15.2558 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 10:00:15.2558 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2558 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 10:00:15.2558 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2558 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 10:00:15.2558 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 10:00:15.2558 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 10:00:15.2558 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 10:00:15.2558 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 10:00:15.2558 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 10:00:15.2558 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 10:00:15.2558 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 10:00:15.2558 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2558 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 10:00:15.2558 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 10:00:15.2558 Trace Initializing File Target[logfile]
+2021-04-30 10:00:15.2558 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 10:00:15.2558 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 10:00:15.2558 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 10:00:15.2558 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 10:00:15.2558 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 10:00:15.2558 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 10:00:15.2558 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 10:00:15.2558 Trace File Target[logfile] has 2 layouts
+2021-04-30 10:00:15.2558 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 10:00:40.9245 Info AppDomain Shutting down. Logger closing...
+2021-04-30 10:00:40.9269 Debug Stopping file watching for path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config'
+2021-04-30 10:00:40.9269 Trace Flushing all 1 targets...
+2021-04-30 10:00:40.9269 Trace ForEachItemInParallel() 1 items
+2021-04-30 10:00:40.9269 Trace FileTarget(Name=logfile): FlushAsync
+2021-04-30 10:00:40.9269 Trace Continuation invoked: 
+2021-04-30 10:00:40.9269 Trace Parallel task completed. 0 items remaining
+2021-04-30 10:00:40.9269 Debug Flush completed
+2021-04-30 10:00:40.9269 Trace FileTarget(Name=logfile): FlushAsync Done
+2021-04-30 10:00:40.9269 Debug Closing logging configuration...
+2021-04-30 10:00:40.9269 Trace Closing File Target[logfile]
+2021-04-30 10:00:40.9269 Debug Closing target 'File Target[logfile]'.
+2021-04-30 10:00:40.9269 Debug Closed target 'File Target[logfile]'.
+2021-04-30 10:00:40.9269 Trace Closing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 10:00:40.9269 Trace Closing Layout Renderer: ${literal}
+2021-04-30 10:00:40.9269 Trace Closing Layout Renderer: ${shortdate}
+2021-04-30 10:00:40.9269 Trace Closing Layout Renderer: ${literal}
+2021-04-30 10:00:40.9424 Trace Closing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 10:00:40.9424 Trace Closing Layout Renderer: ${longdate}
+2021-04-30 10:00:40.9424 Trace Closing Layout Renderer: ${literal}
+2021-04-30 10:00:40.9424 Trace Closing Layout Renderer: ${uppercase}
+2021-04-30 10:00:40.9424 Trace Closing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 10:00:40.9424 Trace Closing Layout Renderer: ${level}
+2021-04-30 10:00:40.9424 Trace Closing Layout Renderer: ${literal}
+2021-04-30 10:00:40.9424 Trace Closing Layout Renderer: ${message}
+2021-04-30 10:00:40.9424 Debug Finished closing logging configuration.
+2021-04-30 10:00:40.9424 Info Logger has been shut down.
+2021-04-30 11:22:05.9840 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 11:22:06.0733 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 11:22:06.0733 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:22:06.0733 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:22:06.0733 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 11:22:06.0733 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:22:06.0733 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:22:06.0733 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:22:06.0838 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:22:06.0838 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:22:06.0838 Debug Auto loading done
+2021-04-30 11:22:06.0838 Info Message Template Auto Format enabled
+2021-04-30 11:22:06.0838 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1003 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:22:06.1003 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:22:06.1003 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:22:06.1003 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1003 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1003 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1003 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:22:06.1003 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:22:06.1003 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:22:06.1003 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1003 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1003 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1003 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 11:22:06.1003 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1003 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:22:06.1181 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 11:22:06.1181 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:22:06.1181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1181 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:22:06.1181 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:22:06.1181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1181 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:22:06.1181 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:22:06.1181 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:22:06.1181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1181 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1181 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:22:06.1181 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:22:06.1181 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:22:06.1181 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1181 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1181 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:22:06.1181 Info Adding target FileTarget(Name=logfile)
+2021-04-30 11:22:06.1181 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 11:22:06.1181 Trace ParseRulesElement
+2021-04-30 11:22:06.1423 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 11:22:06.1423 Debug --- NLog configuration dump ---
+2021-04-30 11:22:06.1423 Debug Targets:
+2021-04-30 11:22:06.1423 Debug File Target[logfile]
+2021-04-30 11:22:06.1423 Debug Rules:
+2021-04-30 11:22:06.1470 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 11:22:06.1470 Debug --- End of NLog configuration dump ---
+2021-04-30 11:22:06.1470 Trace FindReachableObject<System.Object>:
+2021-04-30 11:22:06.1470 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 11:22:06.1470 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 11:22:06.1470 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:22:06.1470 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:22:06.1470 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:22:06.1470 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1470 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1470 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:22:06.1470 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1470 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:22:06.1470 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:22:06.1470 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1470 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:22:06.1470 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1470 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:22:06.1470 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:22:06.1470 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:22:06.1470 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1470 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1470 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1470 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:22:06.1470 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:22:06.1470 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 11:22:06.1470 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 11:22:06.1608 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 11:22:06.1608 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 11:22:06.1608 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 11:22:06.1608 Trace Initializing Layout Renderer: ${message}
+2021-04-30 11:22:06.1608 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:22:06.1608 Trace Initializing Layout Renderer: ${level}
+2021-04-30 11:22:06.1608 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:22:06.1608 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1608 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:22:06.1608 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1608 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1608 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 11:22:06.1765 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:22:06.1765 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 11:22:06.1765 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:22:06.1765 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1765 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:22:06.1765 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1765 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:22:06.1765 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1765 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:22:06.1765 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:22:06.1765 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:22:06.1765 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1765 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:22:06.1765 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1765 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:22:06.1765 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:22:06.1765 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 11:22:06.1765 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:22:06.1765 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:22:06.1765 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:22:06.1765 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:22:06.1765 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:22:06.1765 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1765 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:22:06.1765 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:22:06.1765 Trace Initializing File Target[logfile]
+2021-04-30 11:22:06.1765 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 11:22:06.1765 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:22:06.1765 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:22:06.1765 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:22:06.1765 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:22:06.1765 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:22:06.1765 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:22:06.1765 Trace File Target[logfile] has 2 layouts
+2021-04-30 11:22:06.1765 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 11:22:33.4307 Debug Targets for CaloriesTracker.LoggerService.LoggerManager by level:
+2021-04-30 11:22:33.4307 Debug Trace =>
+2021-04-30 11:22:33.4307 Debug Debug => logfile
+2021-04-30 11:22:33.4307 Debug Info => logfile
+2021-04-30 11:22:33.4307 Debug Warn => logfile
+2021-04-30 11:22:33.4307 Debug Error => logfile
+2021-04-30 11:22:33.4307 Debug Fatal => logfile
+2021-04-30 11:22:33.4566 Debug FileTarget(Name=logfile): Preparing for new file 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt'
+2021-04-30 11:22:33.4640 Debug Creating file appender: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 11:22:33.4640 Trace Opening C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt with allowFileSharedWriting=False
+2021-04-30 11:22:59.6184 Info AppDomain Shutting down. Logger closing...
+2021-04-30 11:22:59.6184 Debug Stopping file watching for path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config'
+2021-04-30 11:22:59.6184 Trace Flushing all 1 targets...
+2021-04-30 11:22:59.6184 Trace ForEachItemInParallel() 1 items
+2021-04-30 11:22:59.6184 Trace FileTarget(Name=logfile): FlushAsync
+2021-04-30 11:22:59.6184 Trace Continuation invoked: 
+2021-04-30 11:22:59.6184 Trace Parallel task completed. 0 items remaining
+2021-04-30 11:22:59.6298 Debug Flush completed
+2021-04-30 11:22:59.6298 Trace FileTarget(Name=logfile): FlushAsync Done
+2021-04-30 11:22:59.6298 Debug Targets not configured for logger: CaloriesTracker.LoggerService.LoggerManager
+2021-04-30 11:22:59.6298 Debug Closing logging configuration...
+2021-04-30 11:22:59.6298 Trace Closing File Target[logfile]
+2021-04-30 11:22:59.6298 Debug Closing target 'File Target[logfile]'.
+2021-04-30 11:22:59.6298 Trace FileTarget(Name=logfile): FinalizeFile 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt, isArchiving: False'
+2021-04-30 11:22:59.6298 Debug FileAppender Closing Invalidate - C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 11:22:59.6298 Debug Closed target 'File Target[logfile]'.
+2021-04-30 11:22:59.6298 Trace Closing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${shortdate}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:22:59.6298 Trace Closing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${longdate}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${uppercase}
+2021-04-30 11:22:59.6298 Trace Closing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${level}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:22:59.6298 Trace Closing Layout Renderer: ${message}
+2021-04-30 11:22:59.6298 Debug Finished closing logging configuration.
+2021-04-30 11:22:59.6298 Info Logger has been shut down.
+2021-04-30 11:23:15.3591 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 11:23:15.4417 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 11:23:15.4417 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:23:15.4417 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:23:15.4417 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 11:23:15.4417 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:23:15.4417 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:23:15.4417 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:23:15.4417 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:23:15.4417 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:23:15.4417 Debug Auto loading done
+2021-04-30 11:23:15.4417 Info Message Template Auto Format enabled
+2021-04-30 11:23:15.4627 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4627 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:23:15.4627 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:23:15.4627 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:23:15.4627 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4627 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.4627 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4627 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:23:15.4627 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:23:15.4627 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:23:15.4627 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.4741 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:23:15.4741 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 11:23:15.4741 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:23:15.4741 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:23:15.4741 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:23:15.4741 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:23:15.4741 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:23:15.4741 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:23:15.4741 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.4741 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.4741 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.4741 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:23:15.4741 Info Adding target FileTarget(Name=logfile)
+2021-04-30 11:23:15.4741 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 11:23:15.4741 Trace ParseRulesElement
+2021-04-30 11:23:15.4961 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 11:23:15.4961 Debug --- NLog configuration dump ---
+2021-04-30 11:23:15.4961 Debug Targets:
+2021-04-30 11:23:15.4961 Debug File Target[logfile]
+2021-04-30 11:23:15.4961 Debug Rules:
+2021-04-30 11:23:15.4961 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 11:23:15.4961 Debug --- End of NLog configuration dump ---
+2021-04-30 11:23:15.4961 Trace FindReachableObject<System.Object>:
+2021-04-30 11:23:15.4961 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 11:23:15.4961 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 11:23:15.4961 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:23:15.4961 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:23:15.4961 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:23:15.4961 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.4961 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.4961 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:23:15.4961 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5045 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:23:15.5045 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:23:15.5045 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.5045 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:23:15.5045 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5045 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:23:15.5045 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:23:15.5045 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:23:15.5045 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.5045 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.5045 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5045 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:23:15.5045 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:23:15.5045 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 11:23:15.5045 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 11:23:15.5045 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 11:23:15.5045 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 11:23:15.5045 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 11:23:15.5045 Trace Initializing Layout Renderer: ${message}
+2021-04-30 11:23:15.5045 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:23:15.5045 Trace Initializing Layout Renderer: ${level}
+2021-04-30 11:23:15.5045 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:23:15.5045 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.5045 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:23:15.5045 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.5045 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.5208 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 11:23:15.5208 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:23:15.5208 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 11:23:15.5208 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:23:15.5208 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.5208 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:23:15.5208 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.5208 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:23:15.5208 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5208 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:23:15.5208 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:23:15.5208 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:23:15.5208 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.5208 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:23:15.5208 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5208 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:23:15.5208 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:23:15.5208 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 11:23:15.5208 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:23:15.5208 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:23:15.5208 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:23:15.5208 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:23:15.5208 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:23:15.5208 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5208 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:23:15.5208 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:23:15.5208 Trace Initializing File Target[logfile]
+2021-04-30 11:23:15.5208 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 11:23:15.5208 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:23:15.5208 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:23:15.5208 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:23:15.5208 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:23:15.5208 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:23:15.5208 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:23:15.5208 Trace File Target[logfile] has 2 layouts
+2021-04-30 11:23:15.5208 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 11:24:49.1795 Debug Targets for CaloriesTracker.LoggerService.LoggerManager by level:
+2021-04-30 11:24:49.1795 Debug Trace =>
+2021-04-30 11:24:49.1795 Debug Debug => logfile
+2021-04-30 11:24:49.1795 Debug Info => logfile
+2021-04-30 11:24:49.1795 Debug Warn => logfile
+2021-04-30 11:24:49.1795 Debug Error => logfile
+2021-04-30 11:24:49.1795 Debug Fatal => logfile
+2021-04-30 11:24:49.2043 Debug FileTarget(Name=logfile): Preparing for new file 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt'
+2021-04-30 11:24:49.2118 Debug Creating file appender: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 11:24:49.2118 Trace Opening C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt with allowFileSharedWriting=False
+2021-04-30 11:24:59.2100 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 11:24:59.2847 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 11:24:59.2853 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:24:59.2853 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:24:59.2853 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 11:24:59.2853 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:24:59.2853 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:24:59.2853 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:24:59.2853 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:24:59.2853 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:24:59.2853 Debug Auto loading done
+2021-04-30 11:24:59.2853 Info Message Template Auto Format enabled
+2021-04-30 11:24:59.3061 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3061 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:24:59.3061 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:24:59.3061 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:24:59.3061 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3061 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3061 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3061 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:24:59.3061 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:24:59.3061 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:24:59.3061 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3176 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:24:59.3176 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 11:24:59.3176 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:24:59.3176 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:24:59.3176 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:24:59.3176 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:24:59.3176 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:24:59.3176 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:24:59.3176 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3176 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3176 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3176 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:24:59.3176 Info Adding target FileTarget(Name=logfile)
+2021-04-30 11:24:59.3176 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 11:24:59.3176 Trace ParseRulesElement
+2021-04-30 11:24:59.3408 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 11:24:59.3408 Debug --- NLog configuration dump ---
+2021-04-30 11:24:59.3408 Debug Targets:
+2021-04-30 11:24:59.3408 Debug File Target[logfile]
+2021-04-30 11:24:59.3408 Debug Rules:
+2021-04-30 11:24:59.3408 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 11:24:59.3408 Debug --- End of NLog configuration dump ---
+2021-04-30 11:24:59.3408 Trace FindReachableObject<System.Object>:
+2021-04-30 11:24:59.3408 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 11:24:59.3408 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 11:24:59.3408 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:24:59.3408 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:24:59.3408 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:24:59.3408 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3408 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3408 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:24:59.3408 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3482 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:24:59.3482 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:24:59.3482 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3482 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:24:59.3482 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3482 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:24:59.3482 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:24:59.3482 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:24:59.3482 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3482 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3482 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3482 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:24:59.3482 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:24:59.3482 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 11:24:59.3482 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 11:24:59.3482 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 11:24:59.3482 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 11:24:59.3482 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 11:24:59.3482 Trace Initializing Layout Renderer: ${message}
+2021-04-30 11:24:59.3482 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:24:59.3482 Trace Initializing Layout Renderer: ${level}
+2021-04-30 11:24:59.3482 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:24:59.3636 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3636 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:24:59.3636 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3636 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3636 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 11:24:59.3636 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:24:59.3636 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 11:24:59.3636 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:24:59.3636 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3636 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:24:59.3636 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3636 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:24:59.3636 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3636 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:24:59.3636 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:24:59.3636 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:24:59.3636 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3636 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:24:59.3636 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3636 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:24:59.3636 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:24:59.3636 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 11:24:59.3636 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:24:59.3636 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:24:59.3636 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:24:59.3636 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:24:59.3636 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:24:59.3636 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3636 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:24:59.3636 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:24:59.3636 Trace Initializing File Target[logfile]
+2021-04-30 11:24:59.3636 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 11:24:59.3636 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:24:59.3636 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:24:59.3636 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:24:59.3636 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:24:59.3636 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:24:59.3636 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:24:59.3636 Trace File Target[logfile] has 2 layouts
+2021-04-30 11:24:59.3636 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 11:26:35.4974 Debug Targets for CaloriesTracker.LoggerService.LoggerManager by level:
+2021-04-30 11:26:35.4974 Debug Trace =>
+2021-04-30 11:26:35.4974 Debug Debug => logfile
+2021-04-30 11:26:35.4974 Debug Info => logfile
+2021-04-30 11:26:35.4974 Debug Warn => logfile
+2021-04-30 11:26:35.4974 Debug Error => logfile
+2021-04-30 11:26:35.4974 Debug Fatal => logfile
+2021-04-30 11:26:35.5187 Debug FileTarget(Name=logfile): Preparing for new file 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt'
+2021-04-30 11:26:35.5265 Debug Creating file appender: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt
+2021-04-30 11:26:35.5265 Trace Opening C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\2021-04-30_logfile.txt with allowFileSharedWriting=False
+2021-04-30 11:32:24.7122 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 11:32:24.7978 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 11:32:24.7978 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:32:24.7978 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:32:24.8024 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 11:32:24.8024 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:32:24.8024 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:32:24.8024 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:32:24.8024 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:32:24.8024 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:32:24.8024 Debug Auto loading done
+2021-04-30 11:32:24.8024 Info Message Template Auto Format enabled
+2021-04-30 11:32:24.8208 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8208 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:32:24.8208 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:32:24.8208 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:32:24.8208 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8208 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8208 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8208 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:32:24.8325 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:32:24.8325 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:32:24.8325 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8325 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:32:24.8325 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 11:32:24.8325 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:32:24.8325 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:32:24.8325 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:32:24.8325 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:32:24.8325 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:32:24.8325 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:32:24.8325 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8325 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8325 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:32:24.8325 Info Adding target FileTarget(Name=logfile)
+2021-04-30 11:32:24.8325 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 11:32:24.8325 Trace ParseRulesElement
+2021-04-30 11:32:24.8614 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 11:32:24.8614 Debug --- NLog configuration dump ---
+2021-04-30 11:32:24.8614 Debug Targets:
+2021-04-30 11:32:24.8614 Debug File Target[logfile]
+2021-04-30 11:32:24.8633 Debug Rules:
+2021-04-30 11:32:24.8633 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 11:32:24.8633 Debug --- End of NLog configuration dump ---
+2021-04-30 11:32:24.8633 Trace FindReachableObject<System.Object>:
+2021-04-30 11:32:24.8633 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 11:32:24.8633 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 11:32:24.8633 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:32:24.8633 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:32:24.8633 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:32:24.8633 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8633 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8633 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:32:24.8633 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8633 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:32:24.8633 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:32:24.8633 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8633 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:32:24.8633 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8633 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:32:24.8633 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:32:24.8633 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:32:24.8633 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8633 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8633 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8633 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:32:24.8633 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:32:24.8633 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 11:32:24.8633 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 11:32:24.8633 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 11:32:24.8633 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 11:32:24.8831 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 11:32:24.8831 Trace Initializing Layout Renderer: ${message}
+2021-04-30 11:32:24.8831 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:32:24.8831 Trace Initializing Layout Renderer: ${level}
+2021-04-30 11:32:24.8831 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:32:24.8831 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8831 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:32:24.8831 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8831 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8831 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 11:32:24.8831 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:32:24.8831 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 11:32:24.8831 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:32:24.8831 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8831 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:32:24.8831 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8831 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:32:24.8831 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8831 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:32:24.8831 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:32:24.8831 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:32:24.8831 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8831 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:32:24.8953 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8953 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:32:24.8953 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:32:24.8953 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 11:32:24.8953 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:32:24.8953 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:32:24.8953 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:32:24.8953 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:32:24.8953 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:32:24.8953 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8953 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:32:24.8953 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:32:24.8953 Trace Initializing File Target[logfile]
+2021-04-30 11:32:24.8953 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 11:32:24.8953 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:32:24.8953 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:32:24.8953 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:32:24.8953 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:32:24.8953 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:32:24.8953 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:32:24.8953 Trace File Target[logfile] has 2 layouts
+2021-04-30 11:32:24.8953 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 11:34:47.1136 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2021-04-30 11:34:47.1899 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2021-04-30 11:34:47.1899 Debug Auto loading based on NLog-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:34:47.1899 Debug Search for auto loading files in location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:34:47.1951 Debug Found assembly location directory: 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1' (CaloriesTracker.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)
+2021-04-30 11:34:47.1951 Debug Auto loading based on GetEntryAssembly-Assembly found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:34:47.1951 Debug Auto loading based on AppDomain-BaseDirectory found location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:34:47.1951 Debug Start auto loading, location: C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api\bin\Debug\netcoreapp3.1
+2021-04-30 11:34:47.1951 Trace Assembly 'Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:34:47.1951 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2021-04-30 11:34:47.1951 Debug Auto loading done
+2021-04-30 11:34:47.1951 Info Message Template Auto Format enabled
+2021-04-30 11:34:47.2108 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2108 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:34:47.2108 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:34:47.2108 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:34:47.2108 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2108 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2108 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2108 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:34:47.2108 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:34:47.2108 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:34:47.2108 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2108 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2108 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2108 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2021-04-30 11:34:47.2108 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2108 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:34:47.2263 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2021-04-30 11:34:47.2263 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:34:47.2263 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2263 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:34:47.2263 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:34:47.2263 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2263 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:34:47.2263 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2021-04-30 11:34:47.2263 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2021-04-30 11:34:47.2263 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2263 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2263 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2263 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:34:47.2263 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:34:47.2263 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:34:47.2263 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2263 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2263 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2263 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:34:47.2263 Info Adding target FileTarget(Name=logfile)
+2021-04-30 11:34:47.2263 Debug Registered target logfile: NLog.Targets.FileTarget
+2021-04-30 11:34:47.2263 Trace ParseRulesElement
+2021-04-30 11:34:47.2436 Debug Watching path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config' for changes.
+2021-04-30 11:34:47.2436 Debug --- NLog configuration dump ---
+2021-04-30 11:34:47.2436 Debug Targets:
+2021-04-30 11:34:47.2436 Debug File Target[logfile]
+2021-04-30 11:34:47.2436 Debug Rules:
+2021-04-30 11:34:47.2436 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2021-04-30 11:34:47.2436 Debug --- End of NLog configuration dump ---
+2021-04-30 11:34:47.2436 Trace FindReachableObject<System.Object>:
+2021-04-30 11:34:47.2436 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2021-04-30 11:34:47.2436 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2021-04-30 11:34:47.2436 Trace  Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:34:47.2436 Trace   Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:34:47.2436 Trace   Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:34:47.2436 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2436 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2436 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:34:47.2436 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2436 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:34:47.2436 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:34:47.2436 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2436 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:34:47.2436 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2436 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:34:47.2436 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:34:47.2436 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:34:47.2436 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2436 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2436 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2436 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:34:47.2436 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:34:47.2436 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2021-04-30 11:34:47.2436 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2021-04-30 11:34:47.2554 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api/nlog.config
+2021-04-30 11:34:47.2554 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2021-04-30 11:34:47.2554 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2021-04-30 11:34:47.2554 Trace Initializing Layout Renderer: ${message}
+2021-04-30 11:34:47.2554 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:34:47.2554 Trace Initializing Layout Renderer: ${level}
+2021-04-30 11:34:47.2554 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:34:47.2554 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2554 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:34:47.2554 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2554 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2554 Trace Initializing Layout Renderer: ${uppercase}
+2021-04-30 11:34:47.2554 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:34:47.2554 Trace Initializing Layout Renderer: ${longdate}
+2021-04-30 11:34:47.2554 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:34:47.2554 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2554 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:34:47.2554 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2554 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2021-04-30 11:34:47.2554 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2554 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2021-04-30 11:34:47.2696 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2021-04-30 11:34:47.2696 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2021-04-30 11:34:47.2696 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2696 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2021-04-30 11:34:47.2696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2696 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2021-04-30 11:34:47.2696 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:34:47.2696 Trace Initializing Layout Renderer: ${shortdate}
+2021-04-30 11:34:47.2696 Trace Initializing Layout Renderer: ${literal}
+2021-04-30 11:34:47.2696 Trace Initializing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:34:47.2696 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2021-04-30 11:34:47.2696 Trace Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:34:47.2696 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2021-04-30 11:34:47.2696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2696 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2021-04-30 11:34:47.2696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2021-04-30 11:34:47.2696 Trace Initializing File Target[logfile]
+2021-04-30 11:34:47.2696 Trace FindReachableObject<NLog.Layouts.Layout>:
+2021-04-30 11:34:47.2696 Trace Scanning FileTarget 'File Target[logfile]'
+2021-04-30 11:34:47.2696 Trace  Scanning Property FileName ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'' NLog.Layouts
+2021-04-30 11:34:47.2696 Trace  Scanning SimpleLayout ''C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt''
+2021-04-30 11:34:47.2696 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2021-04-30 11:34:47.2696 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2021-04-30 11:34:47.2696 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2021-04-30 11:34:47.2696 Trace File Target[logfile] has 2 layouts
+2021-04-30 11:34:47.2696 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2021-04-30 11:35:36.8358 Info AppDomain Shutting down. Logger closing...
+2021-04-30 11:35:36.8358 Debug Stopping file watching for path 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\CaloriesTracker.Api' filter 'nlog.config'
+2021-04-30 11:35:36.8358 Trace Flushing all 1 targets...
+2021-04-30 11:35:36.8358 Trace ForEachItemInParallel() 1 items
+2021-04-30 11:35:36.8358 Trace FileTarget(Name=logfile): FlushAsync
+2021-04-30 11:35:36.8358 Trace Continuation invoked: 
+2021-04-30 11:35:36.8358 Trace Parallel task completed. 0 items remaining
+2021-04-30 11:35:36.8488 Debug Flush completed
+2021-04-30 11:35:36.8488 Trace FileTarget(Name=logfile): FlushAsync Done
+2021-04-30 11:35:36.8488 Debug Closing logging configuration...
+2021-04-30 11:35:36.8488 Trace Closing File Target[logfile]
+2021-04-30 11:35:36.8488 Debug Closing target 'File Target[logfile]'.
+2021-04-30 11:35:36.8488 Debug Closed target 'File Target[logfile]'.
+2021-04-30 11:35:36.8488 Trace Closing 'C:\Users\Lenovo\Desktop\IG\Calorie-Tracker\Calorie-Tracker\logs\${shortdate}_logfile.txt'
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${shortdate}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:35:36.8488 Trace Closing '${longdate} ${level:uppercase=true} ${message}'
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${longdate}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${uppercase}
+2021-04-30 11:35:36.8488 Trace Closing SimpleLayout=Layout Renderer: ${level}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${level}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${literal}
+2021-04-30 11:35:36.8488 Trace Closing Layout Renderer: ${message}
+2021-04-30 11:35:36.8488 Debug Finished closing logging configuration.
+2021-04-30 11:35:36.8488 Info Logger has been shut down.

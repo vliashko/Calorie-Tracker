@@ -1,1 +1,38 @@
-<p>list works!</p>
+<mat-toolbar>
+    <h3>Activities</h3>
+</mat-toolbar>
+<br>
+  <a href="#" [routerLink]="['/profile/']" mat-raised-button color="primary">Back To Profile</a>
+<br><br>
+<table mat-table [dataSource] ="activities" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="start">
+    <th mat-header-cell *matHeaderCellDef> Start </th>
+    <td mat-cell *matCellDef="let element"> {{element.start}} </td>
+  </ng-container>
+  <ng-container matColumnDef="finish">
+    <th mat-header-cell *matHeaderCellDef> Finish </th>
+    <td mat-cell *matCellDef="let element"> {{element.finish}} </td>
+  </ng-container>
+  <ng-container matColumnDef="totalCaloriesSpent">
+    <th mat-header-cell *matHeaderCellDef> Total Calories Spent </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalCaloriesSpent}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element" >
+      <a href="#" [routerLink]="['/activities/', element.id, 'details']" mat-raised-button color="accent">Details</a> 
+      <div class="divider"></div>
+      <a href="#" [routerLink]="['/activities/', element.id, 'edit']" mat-raised-button color="accent">Edit</a> 
+      <div class="divider"></div>
+      <button type="button" (click)="deleteActivity(element.id)" mat-raised-button color="warn">Delete</button> 
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<a href="#" [routerLink]="['/activities/', 'create']" mat-raised-button color="primary">Create New</a>

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { User } from 'src/app/model/user';
+import { UserProfile } from 'src/app/model/userProfile';
+import { UserProfilesService } from 'src/app/userProfiles.service';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -12,20 +16,24 @@ import { UsersService } from '../users.service';
 export class EditprofileComponent implements OnInit {
 
   id!: string;
-  user?: User;
+  user: any;
   formGroup!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               public usersService: UsersService,
               private route: ActivatedRoute,
-              private router: Router) {  }
+              private router: Router,
+              public authService: AuthenticationService,
+              public userPr: UserProfilesService) {  }
 
   ngOnInit(): void {
     this.createForm();
-    this.id = this.route.snapshot.params.userId;
-    this.usersService.userById(this.id).subscribe((data: User) => {
-      this.user = data;
-      this.formGroup.patchValue(data);
+    const token = this.authService.getToken();
+    const decoded: any = jwtDecode(token);
+    const mainId = decoded.userId;
+    this.userPr.apiUserprofilesGet(mainId).subscribe(res => {
+      this.id = res.id;
+      this.formGroup.patchValue(res);
     });
   }
   public checkError = (controlName: string, errorName: string) => {

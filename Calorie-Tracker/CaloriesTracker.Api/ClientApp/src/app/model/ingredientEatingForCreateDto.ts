@@ -11,8 +11,8 @@
  */
 import { Ingredient } from './ingredient';
 
-export interface IngredientEatingForCreateDto { 
+export interface IngredientEatingForCreateDto {
     ingredientId: string;
     ingredient?: Ingredient;
-    grams?: number;
+    grams: number;
 }

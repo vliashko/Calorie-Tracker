@@ -15,5 +15,5 @@ export interface ActivityForCreateDto {
     name: string;
     start: Date;
     finish: Date;
-    exercisesWithReps?: Array<ActivityExerciseForCreateDto>;
+    exercisesWithReps: Array<ActivityExerciseForCreateDto>;
 }

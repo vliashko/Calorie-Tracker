@@ -11,7 +11,7 @@ namespace CaloriesTracker.Api.Controllers
 {
     [Route("api/exercises")]
     [ApiController]
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class ExercisesController : ControllerBase
     {
         private readonly IServiceManager serviceManager;

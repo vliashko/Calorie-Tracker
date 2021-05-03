@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace CaloriesTracker.Entities.DataTransferObjects
+﻿namespace CaloriesTracker.Entities.DataTransferObjects
 {
     public class IngredientRecipeForReadDto
     {
-        public Guid IngredientId { get; set; }
+        public IngredientForReadDto Ingredient { get; set; }
         public float Grams { get; set; }
     }
 }

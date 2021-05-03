@@ -15,5 +15,5 @@ export interface ActivityForUpdateDto {
     name: string;
     start: Date;
     finish: Date;
-    exercisesWithReps?: Array<ActivityExerciseForUpdateDto>;
+    exercisesWithReps: Array<ActivityExerciseForUpdateDto>;
 }

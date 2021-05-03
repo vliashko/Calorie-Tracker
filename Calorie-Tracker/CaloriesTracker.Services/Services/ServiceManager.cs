@@ -16,6 +16,7 @@ namespace CaloriesTracker.Services.Services
         private IExerciseService exerciseService;
         private IIngredientService ingredientService;
         private IRecipeService recipeService;
+        private IUserProfileService userProfileService;
 
         public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper, ILoggerManager logger)
         {
@@ -81,6 +82,16 @@ namespace CaloriesTracker.Services.Services
                 if (recipeService == null)
                     recipeService = new RecipeService(repositoryManager, logger, mapper);
                 return recipeService;
+            }
+        }
+
+        public IUserProfileService UserProfile
+        {
+            get
+            {
+                if (userProfileService == null)
+                    userProfileService = new UserProfileService(repositoryManager, logger, mapper);
+                return userProfileService;
             }
         }
     }

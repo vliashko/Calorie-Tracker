@@ -14,11 +14,11 @@ import { IngredientRecipe } from './ingredientRecipe';
 
 export interface Ingredient {
     id: string;
-    name?: string;
-    calories?: number;
-    proteins?: number;
-    fats?: number;
-    carbohydrates?: number;
+    name: string;
+    calories: number;
+    proteins: number;
+    fats: number;
+    carbohydrates: number;
     ingredientEating?: Array<IngredientEating>;
     ingredientRecipe?: Array<IngredientRecipe>;
 }

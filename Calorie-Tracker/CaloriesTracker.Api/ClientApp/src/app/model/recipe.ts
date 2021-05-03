@@ -13,11 +13,11 @@ import { IngredientRecipe } from './ingredientRecipe';
 import { UserProfile } from './userProfile';
 
 export interface Recipe { 
-    id?: string;
-    name?: string;
-    instruction?: string;
-    totalCalories?: number;
-    userProfileId?: string;
-    userProfile?: UserProfile;
-    ingredientsWithGrams?: Array<IngredientRecipe>;
+    id: string;
+    name: string;
+    instruction: string;
+    totalCalories: number;
+    userProfileId: string;
+    userProfile: UserProfile;
+    ingredientsWithGrams: Array<IngredientRecipe>;
 }

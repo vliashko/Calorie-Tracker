@@ -1,0 +1,20 @@
+.form {
+    min-width: 150px;
+    max-width: 250px;
+    width: 100%;
+  }
+  
+  .full-width {
+  width: 100%;
+  }
+  mat-form-field {
+  width: 100%;
+  }
+  table {
+    width: 100%;
+  }
+.divider{
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}

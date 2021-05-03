@@ -13,12 +13,12 @@ import { ActivityExercise } from './activityExercise';
 import { UserProfile } from './userProfile';
 
 export interface Activity { 
-    id?: string;
-    name?: string;
-    start?: Date;
-    finish?: Date;
-    totalCaloriesSpent?: number;
-    exercisesWithReps?: Array<ActivityExercise>;
-    userProfileId?: string;
-    userProfile?: UserProfile;
+    id: string;
+    name: string;
+    start: Date;
+    finish: Date;
+    totalCaloriesSpent: number;
+    exercisesWithReps: Array<ActivityExercise>;
+    userProfileId: string;
+    userProfile: UserProfile;
 }

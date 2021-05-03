@@ -14,5 +14,5 @@ import { IngredientEatingForCreateDto } from './ingredientEatingForCreateDto';
 export interface EatingForCreateDto { 
     name: string;
     moment: Date;
-    ingredientsWithGrams?: Array<IngredientEatingForCreateDto>;
+    ingredientsWithGrams: Array<IngredientEatingForCreateDto>;
 }

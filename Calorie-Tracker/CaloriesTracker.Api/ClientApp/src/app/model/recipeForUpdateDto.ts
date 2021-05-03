@@ -14,5 +14,5 @@ import { IngredientRecipeForUpdateDto } from './ingredientRecipeForUpdateDto';
 export interface RecipeForUpdateDto { 
     name: string;
     instruction: string;
-    ingredientsWithGrams?: Array<IngredientRecipeForUpdateDto>;
+    ingredientsWithGrams: Array<IngredientRecipeForUpdateDto>;
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { UserProfile } from 'src/app/model/userProfile';
+import { UserProfilesService } from 'src/app/userProfiles.service';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -13,26 +14,33 @@ import { UsersService } from '../users.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user!: UserProfile;
-  height!: number;
+  id!: string;
+  formGroup!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               public usersService: UsersService,
               public authService: AuthenticationService,
-              private router: Router) {  }
+              private router: Router,
+              public userPr: UserProfilesService) {  }
 
   ngOnInit(): void {
+    this.createForm();
     const token = this.authService.getToken();
     const decoded: any = jwtDecode(token);
-    const mainId = decoded.userId;
-    this.getUser(mainId);
-    console.log(this.user);
+    this.id = decoded.userId;
+    this.userPr.apiUserprofilesGet(this.id).subscribe(res => {
+      this.formGroup.patchValue(res);
+    });
   }
   // tslint:disable-next-line:typedef
-  getUser(mainId: string) {
-    this.usersService.apiUsersGet().subscribe(res => {
-      res.filter((x: { userId: string; }) => x.userId === mainId);
-      this.user = res[0];
+  createForm() {
+    this.formGroup = this.formBuilder.group({
+      weight: [null],
+      height: [null],
+      gender: [null],
+      dateOfBirth: [null],
+      currentCalories: [null],
+      calories: [null]
     });
   }
 }

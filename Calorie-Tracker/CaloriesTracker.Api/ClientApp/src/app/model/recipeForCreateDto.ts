@@ -14,5 +14,5 @@ import { IngredientRecipeForCreateDto } from './ingredientRecipeForCreateDto';
 export interface RecipeForCreateDto { 
     name: string;
     instruction: string;
-    ingredientsWithGrams?: Array<IngredientRecipeForCreateDto>;
+    ingredientsWithGrams: Array<IngredientRecipeForCreateDto>;
 }

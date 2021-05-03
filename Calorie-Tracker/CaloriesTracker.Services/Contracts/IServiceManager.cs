@@ -8,5 +8,6 @@
         IExerciseService Exercise { get; }
         IIngredientService Ingredient { get; }
         IRecipeService Recipe { get; }
+        IUserProfileService UserProfile { get; }
     }
 }

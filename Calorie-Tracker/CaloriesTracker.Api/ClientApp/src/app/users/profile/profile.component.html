@@ -1,0 +1,37 @@
+<mat-toolbar>
+    <h3>Profile</h3>
+</mat-toolbar>
+<br>
+<button mat-raised-button color="primary" [routerLink]="['/profile/', 'edit']">Edit</button>
+<br><br>
+<form [formGroup]="formGroup" class="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Current Calories</mat-label>
+        <input matInput formControlName="currentCalories" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Total Calories</mat-label>
+        <input matInput formControlName="calories" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Weight</mat-label>
+        <input type="number" matInput formControlName="weight" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Height</mat-label>
+        <input type="number" matInput formControlName="height" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <input matInput formControlName="gender" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" readonly>
+    </mat-form-field>
+</form>
+<button mat-raised-button color="primary" [routerLink]="['/activities/', 'list']">Activities</button>
+<div class="divider"></div>
+<button mat-raised-button color="primary" [routerLink]="['/eatings/', 'list']">Eatings</button>
+<div class="divider"></div>
+<button mat-raised-button color="primary" [routerLink]="['/recipes/', 'list']">Recipes</button>

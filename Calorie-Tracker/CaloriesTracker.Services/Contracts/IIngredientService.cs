@@ -14,5 +14,6 @@ namespace CaloriesTracker.Services.Interfaces
         Task<bool> DeleteIngredient(Guid id);
         Task<bool> UpdateIngredient(Guid id, IngredientForUpdateDto ingredientUpdateDto);
         Task<bool> PartiallyUpdateIngredient(Guid id, JsonPatchDocument<IngredientForUpdateDto> ingredientUpdateDto);
+        //Task<IEnumerable<IngredientWithGramsForReadDto>> GetIngredientsForEating(Guid eatingId);
     }
 }

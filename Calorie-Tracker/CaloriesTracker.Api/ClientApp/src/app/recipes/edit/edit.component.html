@@ -1,1 +1,36 @@
-<p>edit works!</p>
+<mat-toolbar>
+    <h3>Edit Recipe</h3>
+</mat-toolbar>
+<br>
+  <a href="#" routerLink="/recipes/list/" mat-raised-button color="primary">Back to Recipes List</a>
+<br><br>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Eating" formControlName="name">
+        <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Instruction</mat-label>
+        <input matInput placeholder="Instruction" formControlName="instruction">
+        <mat-error *ngIf="checkError('instruction', 'required')">Instruction is required</mat-error>
+    </mat-form-field> 
+    <div formArrayName="ingredientsWithGrams">
+      <div class="mat-table" class="mat-elevation-z8">
+        <div class="mat-header-row">
+          <div class="mat-header-cell">Name</div>
+          <div class="mat-header-cell">Calories</div>
+          <div class="mat-header-cell">Grams</div>
+        </div>
+        <div *ngFor="let row of formGroup.controls.ingredientsWithGrams.controls; let i = index" class="mat-row">
+          <div [formGroupName]="i" style="display: flex;">
+            <div class="mat-cell"><input matInput formControlName="name" readonly> {{row.name}} </div>
+            <div class="mat-cell"><input matInput formControlName="calories" readonly> {{row.calories}} </div>
+            <div class="mat-cell"><input matInput type="number" formControlName="grams"> {{row.grams}} </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid" type="submit">Update</button>
+</form>
