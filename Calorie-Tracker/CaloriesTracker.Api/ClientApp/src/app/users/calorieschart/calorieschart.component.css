@@ -1,0 +1,11 @@
+  .divider{
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}
+.form {
+  min-width: 150px;
+  max-width: 750px;
+  width: 100%;
+  display: block;
+}

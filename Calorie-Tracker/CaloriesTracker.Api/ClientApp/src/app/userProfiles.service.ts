@@ -54,6 +54,59 @@ export class UserProfilesService {
     /**
      *
      *
+     * @param countDays
+     * @param userId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiUserprofilesCountDaysGet(countDays: number, userId?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUserprofilesCountDaysGet(countDays: number, userId?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUserprofilesCountDaysGet(countDays: number, userId?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUserprofilesCountDaysGet(countDays: number, userId?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (countDays === null || countDays === undefined) {
+            throw new Error('Required parameter countDays was null or undefined when calling apiUserprofilesCountDaysGet.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (userId !== undefined && userId !== null) {
+            queryParameters = queryParameters.set('userId', userId as any);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
+        }
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get', `${this.basePath}/api/userprofiles/${encodeURIComponent(String(countDays))}`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers,
+                observe,
+                reportProgress
+            }
+        );
+    }
+
+    /**
+     *
+     *
      * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

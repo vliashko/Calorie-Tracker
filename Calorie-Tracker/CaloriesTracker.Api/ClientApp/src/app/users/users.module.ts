@@ -9,6 +9,8 @@ import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
+
 import { ProfileComponent } from './profile/profile.component';
 import { CreateprofileComponent } from './createprofile/createprofile.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
@@ -22,7 +24,9 @@ import { CalorieschartComponent } from './calorieschart/calorieschart.component'
     UsersRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule,
+    WavesModule.forRoot(),
   ]
 })
 export class UsersModule { }

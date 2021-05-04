@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialog } from './confirmation-dialog.component';
 import { HomeComponent } from './home/home.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
 
 import { AuthInterceptor } from './authconfig.interceptor';
 
@@ -51,7 +52,9 @@ import { AuthInterceptor } from './authconfig.interceptor';
     RecipesModule,
     ActivitiesModule,
     UsersModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    ChartsModule,
+    WavesModule.forRoot(),
   ],
   providers: [
     ActivitiesService,

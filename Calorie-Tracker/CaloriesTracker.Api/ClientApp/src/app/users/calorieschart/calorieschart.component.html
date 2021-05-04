@@ -1,1 +1,22 @@
-<p>calorieschart works!</p>
+<mat-toolbar>
+    <h3>Calories Chart</h3>
+</mat-toolbar>
+<br>
+  <a href="#" [routerLink]="['/profile/']" mat-raised-button color="primary">Back To Profile</a>
+<br><br>
+<button type="button" (click)="showData(7)" mat-raised-button color="primary">7 Days</button> 
+<div class="divider"></div>
+<button type="button" (click)="showData(31)" mat-raised-button color="primary">31 Days</button> 
+<br>
+<div class="form">
+  <canvas mdbChart
+      [chartType]="chartType"
+      [datasets]="chartDatasets"
+      [labels]="chartLabels"
+      [colors]="chartColors"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
