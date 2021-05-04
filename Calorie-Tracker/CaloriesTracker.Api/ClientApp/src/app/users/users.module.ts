@@ -12,9 +12,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateprofileComponent } from './createprofile/createprofile.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
+import { CalorieschartComponent } from './calorieschart/calorieschart.component';
 
 @NgModule({
-  declarations: [ListComponent, CreateComponent, EditComponent, ProfileComponent, CreateprofileComponent, EditprofileComponent],
+  declarations: [ListComponent, CreateComponent, EditComponent, ProfileComponent, CreateprofileComponent,
+    EditprofileComponent, CalorieschartComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

@@ -16,7 +16,14 @@ export class DetailsComponent implements OnInit {
 
   id!: string;
   idActivity!: string;
-  activity!: Activity;
+  activity: Activity = {
+    id: '',
+    name: '',
+    moment: new Date(),
+    userProfileId: '',
+    totalCaloriesSpent: 0,
+    exercisesWithReps: []
+  };
   editForm!: FormGroup;
   displayedColumns: string[] = [];
 

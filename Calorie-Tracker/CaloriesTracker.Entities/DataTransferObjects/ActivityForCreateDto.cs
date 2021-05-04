@@ -9,9 +9,7 @@ namespace CaloriesTracker.Entities.DataTransferObjects
         [Required(ErrorMessage = "Name is required field.")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Start is required field.")]
-        public DateTime Start { get; set; }
-        [Required(ErrorMessage = "Finish is required field.")]
-        public DateTime Finish { get; set; }
+        public DateTime Moment { get; set; }
 
         public IEnumerable<ActivityExerciseForCreateDto> ExercisesWithReps { get; set; }
 

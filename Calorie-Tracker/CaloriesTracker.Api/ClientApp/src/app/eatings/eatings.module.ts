@@ -10,6 +10,7 @@ import { DetailsComponent } from './details/details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MaterialModule,
     MatDialogModule,
+    NgxMaterialTimepickerModule
   ]
 })
 export class EatingsModule { }

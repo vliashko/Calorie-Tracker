@@ -18,6 +18,6 @@ export interface Eating {
     moment: Date;
     totalCalories: number;
     userProfileId: string;
-    userProfile: UserProfile;
+    userProfile?: UserProfile;
     ingredientsWithGrams: Array<IngredientEating>;
 }

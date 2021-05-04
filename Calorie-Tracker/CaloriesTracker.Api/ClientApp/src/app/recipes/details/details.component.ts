@@ -15,7 +15,14 @@ import { RecipesService } from '../recipes.service';
 export class DetailsComponent implements OnInit {
 
   displayedColumns: string[] = [];
-  recipe!: Recipe;
+  recipe: Recipe = {
+    id: '',
+    name: '',
+    instruction: '',
+    totalCalories: 0,
+    userProfileId: '',
+    ingredientsWithGrams: []
+  };
   id!: string;
   editForm!: FormGroup;
 

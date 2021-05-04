@@ -75,6 +75,7 @@ export class EditComponent implements OnInit {
         }
       }
     }
+    act.moment = act.moment.split('T')[1].split('+')[0].slice(0, -3);
     this.formGroup.patchValue(act);
     exercisesForm.patchValue(x);
   }
@@ -83,8 +84,7 @@ export class EditComponent implements OnInit {
   createForm() {
     this.formGroup = this.formBuilder.group({
       name: [null, Validators.required],
-      start: [null, Validators.required],
-      finish: [null, Validators.required],
+      moment: [null, Validators.required],
       exercisesWithReps: this.formBuilder.array([])
     });
   }
@@ -96,8 +96,7 @@ export class EditComponent implements OnInit {
     this.post = post;
     this.activity = {
       name: post.name,
-      start: post.start,
-      finish: post.finish,
+      moment: post.moment,
       exercisesWithReps: []
     };
     // tslint:disable-next-line:prefer-for-of

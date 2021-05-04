@@ -12,9 +12,8 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Moment</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="moment">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year"></mat-datepicker>
+        <input matInput [ngxTimepicker]="picker" formControlName="moment" [format]="24" readonly>
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
         <mat-error *ngIf="checkError('moment', 'required')">Moment is required</mat-error>
     </mat-form-field> 
     <div formArrayName="ingredientsWithGrams">

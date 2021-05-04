@@ -18,6 +18,6 @@ export interface Recipe {
     instruction: string;
     totalCalories: number;
     userProfileId: string;
-    userProfile: UserProfile;
+    userProfile?: UserProfile;
     ingredientsWithGrams: Array<IngredientRecipe>;
 }

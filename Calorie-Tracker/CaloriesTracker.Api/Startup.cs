@@ -18,6 +18,7 @@ using CaloriesTracker.Services.Interfaces;
 using CaloriesTracker.Services.Services;
 using CaloriesTracker.Services;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Newtonsoft.Json.Serialization;
 
 namespace CaloriesTracker.Api
 {
@@ -57,7 +58,10 @@ namespace CaloriesTracker.Api
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"), 
                     b => b.MigrationsAssembly("CaloriesTracker.Api")));
             services.AddAutoMapper(typeof(MappingProfile));
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(setup => 
+            {
+                setup.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
+            });
 
             services.AddSpaStaticFiles(configuration =>
             {

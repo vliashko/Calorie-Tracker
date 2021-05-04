@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
-import { ConfirmationDialog } from 'src/app/confirmation-dialog.component';
-import { IngredientsService } from 'src/app/ingredients/ingredients.service';
 import { Eating } from 'src/app/model/eating';
-import { Ingredient } from 'src/app/model/ingredient';
 import { UserProfilesService } from 'src/app/userProfiles.service';
-import { UsersService } from 'src/app/users/users.service';
 import { EatingsService } from '../eatings.service';
 
 @Component({
@@ -20,19 +15,24 @@ import { EatingsService } from '../eatings.service';
 export class DetailsComponent implements OnInit {
 
   displayedColumns: string[] = [];
-  eating!: Eating;
+  eating: Eating = {
+    id: '',
+    name: '',
+    moment: new Date(),
+    userProfileId: '',
+    totalCalories: 0,
+    ingredientsWithGrams: []
+  };
   id!: string;
   editForm!: FormGroup;
 
   constructor(public eatingsService: EatingsService,
               public authService: AuthenticationService,
               public userPr: UserProfilesService,
-              private route: ActivatedRoute,
-              private formBuilder: FormBuilder) {  }
+              private route: ActivatedRoute) {  }
 
   ngOnInit(): void {
     this.displayedColumns = ['name', 'calories', 'proteins', 'fats', 'carbohydrates', 'grams'];
-    this.createForm();
     const token = this.authService.getToken();
     const decoded: any = jwtDecode(token);
     this.id = decoded.userId;
@@ -40,19 +40,7 @@ export class DetailsComponent implements OnInit {
       this.id = res.id;
       this.eatingsService.getEating(res.id, this.route.snapshot.params.eatingId).subscribe(eating => {
         this.eating = eating;
-        this.editForm.patchValue(eating);
       });
-    });
-  }
-  // tslint:disable-next-line:typedef
-  createForm() {
-    this.editForm = this.formBuilder.group({
-      name: [null],
-      calories: [null],
-      proteins: [null],
-      fats: [null],
-      carbohydrates: [null],
-      grams: [null]
     });
   }
 }

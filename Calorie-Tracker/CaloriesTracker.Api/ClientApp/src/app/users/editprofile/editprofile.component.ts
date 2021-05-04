@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,6 +34,7 @@ export class EditprofileComponent implements OnInit {
     const mainId = decoded.userId;
     this.userPr.apiUserprofilesGet(mainId).subscribe(res => {
       this.id = res.id;
+      res.gender === 0 ? res.gender = 'Male' : res.gender = 'Female';
       this.formGroup.patchValue(res);
     });
   }
@@ -51,6 +53,7 @@ export class EditprofileComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit(formData: any) {
+    formData.dateOfBirth = formatDate(formData.dateOfBirth, 'MM/dd/yyyy', 'en-US');
     this.usersService.apiUsersIdPut(this.id, formData).subscribe(res => {
       this.router.navigateByUrl('profile');
     });

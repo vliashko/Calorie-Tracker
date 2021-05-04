@@ -12,13 +12,12 @@
 import { ActivityExercise } from './activityExercise';
 import { UserProfile } from './userProfile';
 
-export interface Activity { 
+export interface Activity {
     id: string;
     name: string;
-    start: Date;
-    finish: Date;
+    moment: Date;
     totalCaloriesSpent: number;
     exercisesWithReps: Array<ActivityExercise>;
     userProfileId: string;
-    userProfile: UserProfile;
+    userProfile?: UserProfile;
 }

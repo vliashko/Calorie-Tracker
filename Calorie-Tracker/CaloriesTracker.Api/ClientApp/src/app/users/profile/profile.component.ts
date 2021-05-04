@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,6 +30,8 @@ export class ProfileComponent implements OnInit {
     const decoded: any = jwtDecode(token);
     this.id = decoded.userId;
     this.userPr.apiUserprofilesGet(this.id).subscribe(res => {
+      res.dateOfBirth = formatDate(res.dateOfBirth, 'MM/dd/yyyy', 'en-US');
+      res.gender === 0 ? res.gender = 'Male' : res.gender = 'Female';
       this.formGroup.patchValue(res);
     });
   }

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -37,8 +38,8 @@ export class CreateprofileComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   onSubmit(post: any) {
-    post.dateOfBirth = JSON.parse(JSON.stringify(post.dateOfBirth)).split('T')[0];
     this.post = post;
+    post.dateOfBirth = formatDate(post.dateOfBirth, 'MM/dd/yyyy', 'en-US');
     this.usersService.apiUsersPost(post)
       .subscribe(() => {
         this.router.navigateByUrl('/');

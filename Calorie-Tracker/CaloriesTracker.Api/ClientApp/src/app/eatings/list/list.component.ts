@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import jwtDecode from 'jwt-decode';
@@ -31,7 +32,10 @@ export class ListComponent implements OnInit {
     this.userPr.apiUserprofilesGet(this.id).subscribe(res => {
       this.id = res.id;
       this.eatingsService.apiUsersUserIdEatingsGet(res.id).subscribe(eatings => {
-        this.eatings = eatings;
+        this.eatings = eatings
+        .filter((act: any) => act.moment.split('T')[0] === formatDate(new Date(), 'yyyy-MM-dd', 'en-US'));
+        this.eatings
+          .forEach((act: any) => act.moment = act.moment.split('T')[1].split('+')[0].slice(0, -3));
       });
     });
   }

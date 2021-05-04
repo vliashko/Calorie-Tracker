@@ -23,7 +23,7 @@ namespace CaloriesTracker.Repositories
             await FindByCondition(activ => activ.Id.Equals(activityId), trackChanges)
                 .Include(activ => activ.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Start)
+                .OrderBy(activ => activ.Moment)
                 .SingleOrDefaultAsync();
 
         public async Task<Activity> GetActivityForUserAsync(Guid userId, Guid activityId, bool trackChanges) =>
@@ -31,21 +31,21 @@ namespace CaloriesTracker.Repositories
                 .Where(activ => activ.UserProfileId == userId)
                 .Include(activ => activ.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Start)
+                .OrderBy(activ => activ.Moment)
                 .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Activity>> GetAllActivitiesAsync(bool trackChanges) =>
             await FindAll(trackChanges)
                 .Include(activ => activ.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Start)
+                .OrderBy(activ => activ.Moment)
                 .ToListAsync();
 
         public async Task<IEnumerable<Activity>> GetAllActivitiesForUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(activ => activ.UserProfileId == userId, trackChanges)
                 .Include(activ => activ.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Start)
+                .OrderBy(activ => activ.Moment)
                 .ToListAsync();
     }
 }

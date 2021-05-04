@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CaloriesTracker.Entities.Models
 {
@@ -31,11 +32,11 @@ namespace CaloriesTracker.Entities.Models
                 if (Eatings.Count == 0 && Activities.Count == 0)
                     return 0.0f;
                 float calor = 0.0f;
-                foreach (var eating in Eatings)
+                foreach (var eating in Eatings.Where(eating => eating.Moment.Date == DateTime.Now.Date))
                 {
                     calor += eating.TotalCalories;
                 }
-                foreach (var activity in Activities)
+                foreach (var activity in Activities.Where(activity => activity.Moment.Date == DateTime.Now.Date))
                 {
                     calor -= activity.TotalCaloriesSpent;
                 }

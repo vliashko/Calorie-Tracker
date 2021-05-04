@@ -21,8 +21,8 @@
     <mat-form-field appearance="outline">
         <mat-label>Select a gender</mat-label>
         <mat-select formControlName="gender">
-            <mat-option value="0">Male</mat-option>
-            <mat-option value="1">Female</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
         </mat-select>
         <mat-error *ngIf="checkError('gender', 'required')">Gender is required</mat-error>
     </mat-form-field>

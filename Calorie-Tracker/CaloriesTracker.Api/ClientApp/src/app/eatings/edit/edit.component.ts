@@ -81,6 +81,7 @@ export class EditComponent implements OnInit {
         }
       }
     }
+    eat.moment = eat.moment.split('T')[1].split('+')[0].slice(0, -3);
     this.formGroup.patchValue(eat);
     ingredientsForm.patchValue(x);
   }
@@ -99,9 +100,15 @@ export class EditComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onSubmit(post: any) {
     this.post = post;
+    const date = new Date();
+    const hours = this.post.moment.split(':')[0];
+    const minutes = this.post.moment.split(':')[1];
+    date.setHours(hours - date.getTimezoneOffset() / 60);
+    date.setMinutes(minutes);
+    date.setSeconds(0);
     this.eatingUpdate = {
       name: post.name,
-      moment: post.moment,
+      moment: date,
       ingredientsWithGrams: []
     };
     // tslint:disable-next-line:prefer-for-of

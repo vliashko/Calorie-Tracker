@@ -1,22 +1,21 @@
 <mat-toolbar>
-    <h3>Create Eating</h3>
+  <h3>Create Eating</h3>
 </mat-toolbar>
 <br>
-  <a href="#" routerLink="/eatings/list/" mat-raised-button color="primary">Back to Eatings List</a>
+<a href="#" routerLink="/eatings/list/" mat-raised-button color="primary">Back to Eatings List</a>
 <br><br>
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
-    <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Eating" formControlName="name">
-        <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Moment</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="moment">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year"></mat-datepicker>
-        <mat-error *ngIf="checkError('moment', 'required')">Moment is required</mat-error>
-    </mat-form-field> 
+  <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Eating" formControlName="name">
+      <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+      <mat-label>Moment</mat-label>
+      <input matInput [ngxTimepicker]="picker" formControlName="moment" [format]="24" readonly>
+      <ngx-material-timepicker #picker></ngx-material-timepicker>
+      <mat-error *ngIf="checkError('moment', 'required')">Moment is required</mat-error>
+  </mat-form-field> 
     <div formArrayName="ingredientsWithGrams">
       <div class="mat-table" class="mat-elevation-z8">
         <div class="mat-header-row">

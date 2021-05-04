@@ -137,8 +137,7 @@ GO
 CREATE TABLE [dbo].[Activities](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Name] [nvarchar](max) NULL,
-	[Start] [datetime2](7) NOT NULL,
-	[Finish] [datetime2](7) NOT NULL,
+	[Moment] [smalldatetime] NOT NULL,
 	[TotalCaloriesSpent] [real] NOT NULL,
 	[UserProfileId] [uniqueidentifier] NOT NULL,
  CONSTRAINT [PK_Activities] PRIMARY KEY CLUSTERED 
@@ -297,7 +296,7 @@ GO
 CREATE TABLE [dbo].[Eatings](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Name] [nvarchar](max) NULL,
-	[Moment] [datetime2](7) NOT NULL,
+	[Moment] [smalldatetime] NOT NULL,
 	[TotalCalories] [real] NOT NULL,
 	[UserProfileId] [uniqueidentifier] NOT NULL,
  CONSTRAINT [PK_Eatings] PRIMARY KEY CLUSTERED 
@@ -399,7 +398,7 @@ CREATE TABLE [dbo].[UserProfiles](
 	[Weight] [real] NOT NULL,
 	[Height] [int] NOT NULL,
 	[Gender] [int] NOT NULL,
-	[DateOfBirth] [datetime2](7) NOT NULL,
+	[DateOfBirth] [date] NOT NULL,
 	[Calories] [real] NOT NULL,
 	[CurrentCalories] [real] NOT NULL,
 	[UserId] [nvarchar](450) NULL,

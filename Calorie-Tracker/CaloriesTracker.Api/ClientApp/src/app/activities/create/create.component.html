@@ -11,18 +11,10 @@
         <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
-        <mat-label>Start</mat-label>
-        <input matInput [matDatepicker]="picker1" formControlName="start">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1 startView="year"></mat-datepicker>
-        <mat-error *ngIf="checkError('start', 'required')">Start is required</mat-error>
-    </mat-form-field> 
-    <mat-form-field appearance="outline">
-        <mat-label>Finish</mat-label>
-        <input matInput [matDatepicker]="picker2" formControlName="finish">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 startView="year"></mat-datepicker>
-        <mat-error *ngIf="checkError('finish', 'finish')">Finish is required</mat-error>
+        <mat-label>Moment</mat-label>
+        <input matInput [ngxTimepicker]="picker" formControlName="moment" [format]="24" readonly>
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
+        <mat-error *ngIf="checkError('moment', 'required')">Moment is required</mat-error>
     </mat-form-field> 
     <div formArrayName="exercisesWithReps">
       <div class="mat-table" class="mat-elevation-z8">

@@ -27,6 +27,7 @@ import { UsersModule } from './users/users.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialog } from './confirmation-dialog.component';
 import { HomeComponent } from './home/home.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { AuthInterceptor } from './authconfig.interceptor';
 
@@ -49,7 +50,8 @@ import { AuthInterceptor } from './authconfig.interceptor';
     IngredientsModule,
     RecipesModule,
     ActivitiesModule,
-    UsersModule
+    UsersModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [
     ActivitiesService,

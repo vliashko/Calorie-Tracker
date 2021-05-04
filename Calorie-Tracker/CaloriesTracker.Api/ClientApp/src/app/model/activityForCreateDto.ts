@@ -13,7 +13,6 @@ import { ActivityExerciseForCreateDto } from './activityExerciseForCreateDto';
 
 export interface ActivityForCreateDto { 
     name: string;
-    start: Date;
-    finish: Date;
+    moment: Date;
     exercisesWithReps: Array<ActivityExerciseForCreateDto>;
 }

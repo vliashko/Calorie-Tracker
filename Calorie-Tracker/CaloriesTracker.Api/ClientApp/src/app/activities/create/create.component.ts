@@ -66,8 +66,7 @@ export class CreateComponent implements OnInit {
   createForm() {
     this.formGroup = this.formBuilder.group({
       name: [null, Validators.required],
-      start: [null, Validators.required],
-      finish: [null, Validators.required],
+      moment: [null, Validators.required],
       exercisesWithReps: this.formBuilder.array([])
     });
   }
@@ -77,10 +76,15 @@ export class CreateComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onSubmit(post: any) {
     this.post = post;
+    const date = new Date();
+    const hours = this.post.moment.split(':')[0];
+    const minutes = this.post.moment.split(':')[1];
+    date.setHours(hours - date.getTimezoneOffset() / 60);
+    date.setMinutes(minutes);
+    date.setSeconds(0);
     this.activity = {
       name: post.name,
-      start: post.start,
-      finish: post.finish,
+      moment: date,
       exercisesWithReps: []
     };
     // tslint:disable-next-line:prefer-for-of
