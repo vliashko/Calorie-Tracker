@@ -1,9 +1,12 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <a mat-button style="font-size:24px !important;" routerLinkActive="active" routerLink="/">Calories Tracker</a>
+    <a mat-button routerLinkActive="active" routerLink="/"><h3>Calories Tracker</h3></a>
     <span class="spacer"></span>
     <div>
-      <a mat-button *ngIf="this.authService.isLoggedIn" routerLinkActive="active" routerLink="/profile">Profile</a>
+      <a mat-button *ngIf="this.authService.isAdministrator" routerLinkActive="active" routerLink="/users/list">Users</a>
+      <a mat-button *ngIf="this.authService.isAdministrator" routerLinkActive="active" routerLink="/ingredients/list">Ingredients</a>
+      <a mat-button *ngIf="this.authService.isAdministrator" routerLinkActive="active" routerLink="/exercises/list">Exercises</a>
+      <a mat-button *ngIf="this.authService.isLoggedIn && !this.authService.isAdministrator" routerLinkActive="active" routerLink="/profile">Profile</a>
       <a mat-button *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/authentication/login">Sign in</a>
       <a mat-button *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active" routerLink="/authentication">Sign up</a>
       <button (click)="logout()" *ngIf="this.authService.isLoggedIn" mat-button>Logout</button>

@@ -1,1 +1,29 @@
-<p>list works!</p>
+<mat-toolbar>
+    <h3>Users</h3>
+</mat-toolbar>
+<br>
+<mat-form-field appearance="outline">
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+</mat-form-field>
+<table mat-table [dataSource] ="dataSource" class="mat-elevation-z8" matSort>
+  <ng-container matColumnDef="userName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> User Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element" >
+      <a href="#" [routerLink]="['/users/', element.id, 'details']" mat-raised-button color="accent">Details</a> 
+      <div class="divider"></div>
+      <button type="button" (click)="deleteRecipe(element.id)" mat-raised-button color="warn">Delete</button> 
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+

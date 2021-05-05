@@ -10,3 +10,11 @@
   mat-form-field {
   width: 100%;
   }
+  table {
+    width: 100%;
+  }
+.divider{
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}

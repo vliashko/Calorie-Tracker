@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <h3>User</h3>
+</mat-toolbar>
+<br>
+<button mat-raised-button color="primary" [routerLink]="['/users/', 'list']">Back To Users List</button>
+<br><br>
+<form [formGroup]="formGroup" class="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Weight</mat-label>
+        <input type="number" matInput formControlName="weight" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Height</mat-label>
+        <input type="number" matInput formControlName="height" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <input matInput formControlName="gender" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" readonly>
+    </mat-form-field>
+</form>

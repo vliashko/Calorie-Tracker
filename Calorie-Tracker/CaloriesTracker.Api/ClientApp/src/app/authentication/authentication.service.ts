@@ -147,9 +147,12 @@ export class AuthenticationService {
         return (authToken !== null) ? true : false;
     }
     get isAdministrator(): boolean {
-        const authToken = this.getToken();
-        const decoded: any = jwtDecode(authToken);
-        return (decoded.roles === 'Administrator') ? true : false;
+        const authToken = localStorage.getItem('access_token');
+        if (authToken !== null) {
+            const decoded: any = jwtDecode(authToken);
+            return (decoded.roles === 'Administrator') ? true : false;
+        }
+        return false;
     }
     // tslint:disable-next-line:typedef
     doLogout() {

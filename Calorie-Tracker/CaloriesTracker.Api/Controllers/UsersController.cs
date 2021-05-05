@@ -8,6 +8,7 @@ using CaloriesTracker.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using CaloriesTracker.Api.Filter;
 using Marvin.JsonPatch;
+using System.Collections.Generic;
 
 namespace CaloriesTracker.Api.Controllers
 {
@@ -27,15 +28,37 @@ namespace CaloriesTracker.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            return Ok(await serviceManager.User.GetUsers());
+            var userProfiles = await serviceManager.User.GetUsers();
+            var usersResult = new List<UserForReadDto>();
+            foreach (var userProfile in userProfiles)
+            {
+                var user = await userManager.FindByIdAsync(userProfile.UserId);
+                var tmp = new UserForReadDto
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    UserProfile = userProfile
+                };
+                usersResult.Add(tmp);
+            }
+            return Ok(usersResult);
         }
         [HttpGet("{id}", Name = "UserById")]
-        public async Task<IActionResult> GetUser(Guid id)
+        public async Task<IActionResult> GetUser(string id)
         {
-            var user = await serviceManager.User.GetUser(id);
-            if (user == null)
+            var user = await userManager.FindByIdAsync(id);
+            var userProfile = await serviceManager.UserProfile.GetUserProfileByUserId(id);
+            if (userProfile == null)
                 return NotFound();
-            return Ok(user);
+            var result = new UserForReadDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                UserProfile = userProfile
+            };
+            return Ok(result);
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -46,10 +69,15 @@ namespace CaloriesTracker.Api.Controllers
             return CreatedAtRoute("UserById", new { id = userView.Id }, userView);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var result = await serviceManager.User.DeleteUser(id);
-            if(!result)
+            var user = await userManager.FindByIdAsync(id);
+            var userProfile = await serviceManager.UserProfile.GetUserProfileByUserId(id);
+            var delProfile = await serviceManager.User.DeleteUser(userProfile.Id);
+            if (!delProfile)
+                return NotFound();
+            var result = await userManager.DeleteAsync(user);
+            if (!result.Succeeded)
                 return NotFound();
             return NoContent();
         }

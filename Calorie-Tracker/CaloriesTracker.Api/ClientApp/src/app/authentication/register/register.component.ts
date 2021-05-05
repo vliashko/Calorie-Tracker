@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserProfileForCreateDto } from 'src/app/model/userProfileForCreateDto';
+import { UsersService } from 'src/app/users/users.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -14,6 +16,7 @@ export class RegisterComponent implements OnInit {
   hide = true;
 
   constructor(private authService: AuthenticationService,
+              private usersService: UsersService,
               private formBuilder: FormBuilder,
               private router: Router) { }
 
@@ -39,7 +42,15 @@ export class RegisterComponent implements OnInit {
       };
       this.authService.apiAuthenticationLoginPost(login).subscribe(res => {
         localStorage.setItem('access_token', JSON.stringify(res));
-        this.router.navigateByUrl('/profile/create');
+        const userPr: UserProfileForCreateDto = {
+          weight: 35,
+          height: 120,
+          gender: 0,
+          dateOfBirth: new Date()
+        };
+        this.usersService.apiUsersPost(userPr).subscribe(() => {
+          this.router.navigateByUrl('/profile/edit');
+        });
       });
     });
   }

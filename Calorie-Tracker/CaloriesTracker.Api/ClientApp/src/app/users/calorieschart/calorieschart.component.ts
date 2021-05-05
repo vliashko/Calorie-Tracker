@@ -15,7 +15,6 @@ export class CalorieschartComponent implements OnInit {
 
   data: Array<any> = [];
   currentCalories!: number[];
-  displayedColumns: string[] = [];
   id: any;
 
   public chartType = 'line';
@@ -28,7 +27,7 @@ export class CalorieschartComponent implements OnInit {
     {
       backgroundColor: 'rgba(105, 0, 132, .2)',
       borderColor: 'rgba(200, 99, 132, .7)',
-      borderWidth: 2,
+      borderWidth: 4,
     }
   ];
 
@@ -44,7 +43,6 @@ export class CalorieschartComponent implements OnInit {
               public userPr: UserProfilesService) { }
 
   ngOnInit(): void {
-    this.displayedColumns = ['day', 'currentCalories'];
     const token = this.authService.getToken();
     const decoded: any = jwtDecode(token);
     this.userPr.apiUserprofilesGet(decoded.userId).subscribe(res => {
