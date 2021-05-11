@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using CaloriesTracker.Contracts;
-using CaloriesTracker.Contracts.Authentication;
-using CaloriesTracker.Entities.DataTransferObjects;
-using CaloriesTracker.Entities.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using CaloriesTracker.Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using CaloriesTracker.Api.Filter;
+using CaloriesTracker.Services.Interfaces;
 
 namespace CaloriesTracker.Api.Controllers
 {
@@ -14,49 +10,34 @@ namespace CaloriesTracker.Api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly ILoggerManager logger;
-        private readonly IMapper mapper;
-        private readonly UserManager<User> userManager;
-        private readonly IAuthenticationManager authManager;
+        private readonly IServiceManager _serviceManager;
 
-        public AuthenticationController(ILoggerManager logger, IMapper mapper, UserManager<User> userManager, IAuthenticationManager authManager)
+        public AuthenticationController(IServiceManager serviceManager)
         {
-            this.logger = logger;
-            this.mapper = mapper;
-            this.userManager = userManager;
-            this.authManager = authManager;
+            _serviceManager = serviceManager;
         }
         [HttpPost]
+        [Produces("application/json")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userDto)
         {
-            var user = mapper.Map<User>(userDto);
-
-            var result = await userManager.CreateAsync(user, userDto.Password);
-            if (!result.Succeeded)
-            {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.TryAddModelError(error.Code, error.Description);
-                }
-                return BadRequest(ModelState);
-            }
-            if(!string.IsNullOrWhiteSpace(userDto.Role))
-            {
-                await userManager.AddToRoleAsync(user, userDto.Role);
-            }
-            return StatusCode(201);
+            var result = await _serviceManager.Authentication.RegisterUser(userDto);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPost("login")]
+        [Produces("application/json")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
         {
-            if (!await authManager.ValidateUser(user))
-            {
-                logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
-                return Unauthorized();
-            }
-            return Ok(new { Token = await authManager.CreateToken() });
+            var result = await _serviceManager.Authentication.Authenticate(user);
+            return StatusCode(result.StatusCode, result.Message);
+        }
+        [HttpGet("generatenewpassword/{id}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GenerateNewPassword(string id)
+        {
+            var result = await _serviceManager.Authentication.GenerateNewPassword(id);
+            return StatusCode(result.StatusCode, result.Message);
         }
     }
 }

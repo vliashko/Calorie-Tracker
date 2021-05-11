@@ -21,7 +21,7 @@ namespace CaloriesTracker.Services.Tests
         public RecipeServiceTests()
         {
             mockRepo = new Mock<IRepositoryManager>();
-            mockRepo.Setup(x => x.User.GetUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
+            mockRepo.Setup(x => x.User.GetUserProfileAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
                 .ReturnsAsync
                 (
                     new UserProfile
@@ -47,54 +47,34 @@ namespace CaloriesTracker.Services.Tests
         [Fact]
         public async void GetAllRecipesForUser_ReturnsZeroItems_WhenDBEmpty()
         {
-            mockRepo.Setup(x => x.Recipe.GetAllRecipesForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
+            mockRepo.Setup(x => x.Recipe.GetAllRecipesForUserPaginationAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 1, 5, false))
                 .ReturnsAsync(GetRecipesForUser(0));
-
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetRecipes(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
-
+            var result = await service.GetRecipesForUserProfilePaginationAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 1, 5);
             Assert.Empty(result);
         }
         [Fact]
         public async void GetAllRecipesForUser_ReturnsOneItem_WhenDBHasOneResource()
         {
-            mockRepo.Setup(x => x.Recipe.GetAllRecipesForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
+            mockRepo.Setup(x => x.Recipe.GetAllRecipesForUserPaginationAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 1, 5, false))
                 .ReturnsAsync(GetRecipesForUser(1));
-
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetRecipes(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
-
+            var result = await service.GetRecipesForUserProfilePaginationAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), 1, 5);
             Assert.Single(result);
-        }
-        [Fact]
-        public async void GetAllRecipesForUser_ReturnsNull_WhenNonExistentIDProvided()
-        {
-            mockRepo.Setup(x => x.Recipe.GetAllRecipesForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"), false))
-                .ReturnsAsync(() => null);
-
-            var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetRecipes(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"));
-
-            Assert.Null(result);
         }
         [Fact]
         public async void GetRecipeForUser_ReturnsNull_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
-
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-
+            var result = await service.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Null(result);
         }
         [Fact]
         public async void GetRecipeForUser_ReturnsCorrectType_WhenValidIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
                 (
                     new Recipe
@@ -107,15 +87,13 @@ namespace CaloriesTracker.Services.Tests
                     }
                 );
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-
+            var result = await service.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.IsType<RecipeForReadDto>(result);
         }
         [Fact]
         public async void CreateRecipeForUser_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
         {
-            mockRepo.Setup(x => x.User.GetUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"), true))
+            mockRepo.Setup(x => x.User.GetUserProfileAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"), true))
                 .ReturnsAsync
                 (
                     new UserProfile
@@ -128,8 +106,7 @@ namespace CaloriesTracker.Services.Tests
                     }
                 );
 
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
                 (
                     new Recipe
@@ -141,9 +118,8 @@ namespace CaloriesTracker.Services.Tests
                         IngredientsWithGrams = new List<IngredientRecipe>()
                     }
                 );
-
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.CreateRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
+            var result = await service.CreateRecipeForUserProfileAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
                 new RecipeForCreateDto
                 {
                     Name = "Test",
@@ -154,21 +130,18 @@ namespace CaloriesTracker.Services.Tests
             Assert.Equal("Test", result.Name);
         }
         [Fact]
-        public async void UpdateRecipeForUser_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void UpdateRecipeForUser_Returns404_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync(() => null);
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.UpdateRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new RecipeForUpdateDto { });
-            Assert.False(result);
+            var result = await service.UpdateRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new RecipeForUpdateDto { });
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void UpdateRecipeForUser_ReturnsTrue_WhenValidIDProvided()
+        public async void UpdateRecipeForUser_Returns204WhenValidIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync
                 (
                     new Recipe
@@ -181,26 +154,22 @@ namespace CaloriesTracker.Services.Tests
                     }
                 );
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.UpdateRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new RecipeForUpdateDto { });
-            Assert.True(result);
+            var result = await service.UpdateRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new RecipeForUpdateDto { });
+            Assert.Equal(204, result.StatusCode);
         }
         [Fact]
-        public async void PartiallyUpdateRecipeForUser_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void PartiallyUpdateRecipeForUser_Returns404_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync(() => null);
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.PartiallyUpdateRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<RecipeForUpdateDto> { });
-            Assert.False(result);
+            var result = await service.PartiallyUpdateRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<RecipeForUpdateDto> { });
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void PartiallyUpdateRecipeForUser_ReturnsTrue_WhenValidIDProvided()
+        public async void PartiallyUpdateRecipeForUser_Returns204_WhenValidIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-               new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                .ReturnsAsync
                (
                    new Recipe
@@ -213,26 +182,22 @@ namespace CaloriesTracker.Services.Tests
                    }
                );
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.PartiallyUpdateRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<RecipeForUpdateDto> { });
-            Assert.True(result);
+            var result = await service.PartiallyUpdateRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<RecipeForUpdateDto> { });
+            Assert.Equal(204, result.StatusCode);
         }
         [Fact]
-        public async void DeleteRecipeForUser_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void DeleteRecipeForUser_Returns404_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.DeleteRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37b"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-            Assert.False(result);
+            var result = await service.DeleteRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void DeleteRecipeForUser_ReturnsTrue_WhenValidIDProvided()
+        public async void DeleteRecipeForUser_Returns204_WhenValidIDProvided()
         {
-            mockRepo.Setup(x => x.Recipe.GetRecipeForUserAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-               new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
+            mockRepo.Setup(x => x.Recipe.GetRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                .ReturnsAsync
                (
                    new Recipe
@@ -245,9 +210,8 @@ namespace CaloriesTracker.Services.Tests
                    }
                );
             var service = new RecipeService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.DeleteRecipe(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
-                new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-            Assert.True(result);
+            var result = await service.DeleteRecipeAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
+            Assert.Equal(204, result.StatusCode);
         }
         private IEnumerable<Recipe> GetRecipesForUser(int num)
         {

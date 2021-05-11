@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup;
   hide = true;
+  error: string = '';
+  isError = false;
 
   constructor(private authService: AuthenticationService,
               private formBuilder: FormBuilder,
@@ -20,7 +22,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.form = this.formBuilder.group({
       username: [null, Validators.required],
@@ -34,6 +35,10 @@ export class LoginComponent implements OnInit {
     this.authService.apiAuthenticationLoginPost(result).subscribe(res => {
       localStorage.setItem('access_token', JSON.stringify(res));
       this.router.navigateByUrl('/');
+    },
+    error => {
+      this.error = error.error;
+      this.isError = true;
     });
   }
 

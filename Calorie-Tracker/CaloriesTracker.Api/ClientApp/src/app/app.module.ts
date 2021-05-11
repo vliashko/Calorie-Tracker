@@ -15,7 +15,7 @@ import { ExercisesService } from './exercises/exercises.service';
 import { IngredientsService } from './ingredients/ingredients.service';
 import { RecipesService } from './recipes/recipes.service';
 import { UsersService } from './users/users.service';
-import { UserProfilesService } from './userProfiles.service';
+import { UserProfilesService } from './users/userProfiles.service';
 
 import { AuthenticationModule } from './authentication/authentication.module';
 import { EatingsModule } from './eatings/eatings.module';
@@ -69,7 +69,8 @@ import { AuthInterceptor } from './authconfig.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    } ],
+    }
+   ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -19,12 +19,9 @@ export class CreateComponent implements OnInit {
               public ingredientsService: IngredientsService,
               private router: Router) {  }
 
-  // tslint:disable-next-line:typedef
   ngOnInit() {
     this.createForm();
   }
-
-  // tslint:disable-next-line:typedef
   createForm() {
     this.formGroup = this.formBuilder.group({
       name: [null, Validators.required],
@@ -37,7 +34,6 @@ export class CreateComponent implements OnInit {
   public checkError = (controlName: string, errorName: string) => {
     return this.formGroup.controls[controlName].hasError(errorName);
   }
-  // tslint:disable-next-line:typedef
   onSubmit(post: any) {
     this.post = post;
     this.ingredientsService.apiIngredientsPost(post)

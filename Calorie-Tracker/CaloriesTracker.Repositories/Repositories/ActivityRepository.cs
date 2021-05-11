@@ -23,29 +23,30 @@ namespace CaloriesTracker.Repositories
             await FindByCondition(activ => activ.Id.Equals(activityId), trackChanges)
                 .Include(activ => activ.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Moment)
                 .SingleOrDefaultAsync();
 
-        public async Task<Activity> GetActivityForUserAsync(Guid userId, Guid activityId, bool trackChanges) =>
-            await FindByCondition(activ => activ.Id.Equals(activityId), trackChanges)
-                .Where(activ => activ.UserProfileId == userId)
-                .Include(activ => activ.ExercisesWithReps)
-                    .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Moment)
-                .SingleOrDefaultAsync();
-
-        public async Task<IEnumerable<Activity>> GetAllActivitiesAsync(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Activity>> GetAllActivitiesForUserForDateAsync(Guid userId, 
+                DateTime dateTime, 
+                bool trackChanges) =>
+            await FindByCondition(activ =>
+                    activ.UserProfileId == userId &&
+                        activ.Moment.Date == dateTime.Date, trackChanges)
                 .Include(activ => activ.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
                 .OrderBy(activ => activ.Moment)
                 .ToListAsync();
 
-        public async Task<IEnumerable<Activity>> GetAllActivitiesForUserAsync(Guid userId, bool trackChanges) =>
-            await FindByCondition(activ => activ.UserProfileId == userId, trackChanges)
-                .Include(activ => activ.ExercisesWithReps)
+        public async Task<IEnumerable<Activity>> GetAllActivitiesForUserPerDays(Guid userId, int days, bool trackChanges)
+        {
+            var date1 = DateTime.Now.Date.AddDays(-days);
+            var date2 = DateTime.Now.Date;
+            var res = await FindByCondition(act => act.UserProfileId == userId &&
+                    act.Moment.Date >= date1 && act.Moment.Date <= date2, trackChanges)
+                .Include(act => act.ExercisesWithReps)
                     .ThenInclude(er => er.Exercise)
-                .OrderBy(activ => activ.Moment)
+                .OrderBy(act => act.Moment)
                 .ToListAsync();
+            return res;
+        }
     }
 }

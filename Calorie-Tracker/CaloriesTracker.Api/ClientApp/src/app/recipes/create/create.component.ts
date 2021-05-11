@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
-import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { IngredientsService } from 'src/app/ingredients/ingredients.service';
+import { Ingredient } from 'src/app/model/ingredient';
 import { RecipeForCreateDto } from 'src/app/model/recipeForCreateDto';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -20,8 +22,19 @@ export class CreateComponent implements OnInit {
   post: any = '';
   id!: string;
   recipe!: RecipeForCreateDto;
+  loading = true;
+  visible = false;
+  event: any;
+  searchName = '';
+
+  dataSourceForForm: MatTableDataSource<Ingredient> = new MatTableDataSource();
+  dataSource: MatTableDataSource<Ingredient> = new MatTableDataSource();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   public ingredientsWithGrams: any = [];
+  public ingredients: any = [];
+  displayedColumnsForForm: string[] = [];
   displayedColumns: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
@@ -31,41 +44,94 @@ export class CreateComponent implements OnInit {
               public userPf: UserProfilesService,
               private router: Router) {  }
 
-  // tslint:disable-next-line:typedef
-  ngOnInit() {
-    this.displayedColumns = ['name', 'calories', 'grams'];
+  ngOnInit(): void {
+    this.displayedColumnsForForm = this.displayedColumns = ['name', 'calories', 'grams', 'actions'];
+    this.displayedColumns = ['name', 'calories', 'proteins', 'fats', 'carbohydrates', 'actions'];
     this.createForm();
     const token = this.authService.getToken();
     const decoded: any = jwtDecode(token);
     this.id = decoded.userId;
     this.userPf.apiUserprofilesGet(this.id).subscribe(res => {
       this.id = res.id;
-      });
-    this.ingredientsWithGrams = this.ingredientsService.apiIngredientsGet()
-    .pipe(map(data => data.map(((x: any) => ({...x, grams: 0})))));
-    this.ingredientsWithGrams.subscribe(
-      (x: any) => this.addGroupToForm(x, x.length)
-    );
+    });
+    this.getData(1, 5);
   }
-  // tslint:disable-next-line:typedef
-  addGroupToForm(x: any, k: number) {
-    const ingredientsForm = this.formGroup.get('ingredientsWithGrams') as FormArray;
-    for (let index = 0; index < k; index++) {
-      ingredientsForm.push(this.formBuilder.group({
-        calories: [''],
-        carbohydrates: [''],
-        fats: [''],
-        grams: [''],
-        id: [''],
-        name: [''],
-        proteins: ['']
-      }));
+  getData(page: number, pageSize: number): void {
+    this.ingredientsService.apiIngredientsPageNumberSizePageSizeParamsGet(pageSize, page, this.searchName).subscribe((res: any) => {
+      this.loading = false;
+      this.ingredients = res.objects;
+      this.ingredients.length = res.pageViewModel.count;
+      this.event = {
+        previousPageIndex: 0,
+        pageIndex: 0,
+        pageSize,
+        length: res.pageViewModel.count
+      };
+      this.dataSource = new MatTableDataSource(this.ingredients);
+      this.paginator._intl.itemsPerPageLabel = 'Ingredients Per Page:';
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  filterData() {
+    this.getData(1, 5);
+  }
+  addGroupToForm(x: any, k: number): void {
+    const exercisesForm = this.formGroup.get('ingredientsWithGrams') as FormArray;
+    exercisesForm.push(this.formBuilder.group({
+      proteins: [''],
+      calories: [''],
+      id: [''],
+      name: [''],
+      fats: [''],
+      carbohydrates: [''],
+      grams: ['']
+    }));
+    this.ingredientsWithGrams.push(x);
+    exercisesForm.patchValue(this.ingredientsWithGrams);
+  }
+  pageChanged(event: any): void {
+    this.event = event;
+    this.loading = true;
+    this.getNextData(event.pageSize * event.pageIndex, event.pageSize, event.pageIndex);
+  }
+  getNextData(currentSize: number, pageSize: number, page: number): void {
+    this.ingredientsService.apiIngredientsPageNumberSizePageSizeParamsGet(pageSize, ++page, this.searchName).subscribe(response => {
+      this.loading = false;
+      this.ingredients.length = currentSize;
+      this.ingredients.push(...response.objects);
+      this.ingredients.length = response.pageViewModel.count;
+      this.dataSource = new MatTableDataSource(this.ingredients);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  addIngredient(id: string): void {
+    this.ingredientsService.ingredientById(id).subscribe(response => {
+      response = {
+        id: response.id,
+        name: response.name,
+        carbohydrates: response.carbohydrates,
+        calories: response.calories,
+        proteins: response.proteins,
+        fats: response.fats,
+        grams: 100
+      };
+      if (this.ingredientsWithGrams.find((x: any) => x.id === id) === undefined) {
+        this.addGroupToForm(response, 1);
+        this.dataSourceForForm = new MatTableDataSource(this.ingredientsWithGrams);
+        this.visible = true;
+      }
+    });
+  }
+  deleteExercise(id: string): void {
+    const exercisesForm = this.formGroup.get('ingredientsWithGrams') as FormArray;
+    exercisesForm.removeAt(this.ingredientsWithGrams.findIndex((x: any) => x.id === id));
+    this.ingredientsWithGrams = this.ingredientsWithGrams.filter((x: any) => x.id !== id);
+    if (this.ingredientsWithGrams.length === 0) {
+      this.visible = false;
     }
-    ingredientsForm.patchValue(x);
+    this.dataSourceForForm = new MatTableDataSource(this.ingredientsWithGrams);
   }
-
-  // tslint:disable-next-line:typedef
-  createForm() {
+  createForm(): void {
     this.formGroup = this.formBuilder.group({
       name: [null, Validators.required],
       instruction: [null, Validators.required],
@@ -75,15 +141,13 @@ export class CreateComponent implements OnInit {
   public checkError = (controlName: string, errorName: string) => {
     return this.formGroup.controls[controlName].hasError(errorName);
   }
-  // tslint:disable-next-line:typedef
-  onSubmit(post: any) {
+  onSubmit(post: any): void {
     this.post = post;
     this.recipe = {
       name: post.name,
       instruction: post.instruction,
       ingredientsWithGrams: []
     };
-    // tslint:disable-next-line:prefer-for-of
     for (let index = 0; index < post.ingredientsWithGrams.length; index++) {
       if (post.ingredientsWithGrams[index].grams > 0) {
         this.recipe.ingredientsWithGrams.push({
@@ -94,6 +158,6 @@ export class CreateComponent implements OnInit {
     }
     this.recipesService.apiUsersUserIdRecipesPost(this.id, this.recipe)
       .subscribe(() => { this.router.navigateByUrl('recipes/list');
-  });
+    });
   }
 }

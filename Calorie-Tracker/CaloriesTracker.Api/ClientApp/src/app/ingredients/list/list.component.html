@@ -4,35 +4,47 @@
 <br>
   <a href="#" routerLink="/ingredients/create/" mat-raised-button color="primary">Create New</a>
 <br><br>
-<table mat-table [dataSource] ="ingredients" class="mat-elevation-z8">
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-  <ng-container matColumnDef="calories">
-    <th mat-header-cell *matHeaderCellDef> Calories </th>
-    <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
-  </ng-container>
-  <ng-container matColumnDef="proteins">
-    <th mat-header-cell *matHeaderCellDef> Proteins </th>
-    <td mat-cell *matCellDef="let element"> {{element.proteins}} </td>
-  </ng-container>
-  <ng-container matColumnDef="fats">
-    <th mat-header-cell *matHeaderCellDef> Fats </th>
-    <td mat-cell *matCellDef="let element"> {{element.fats}} </td>
-  </ng-container>
-  <ng-container matColumnDef="carbohydrates">
-    <th mat-header-cell *matHeaderCellDef> Carbohydrates </th>
-    <td mat-cell *matCellDef="let element"> {{element.carbohydrates}} </td>
-  </ng-container>
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let element" >
-      <a href="#" [routerLink]="['/ingredients/', element.id, 'edit']" mat-raised-button color="accent">Edit</a> 
-      <div class="divider"></div>
-      <button type="button" (click)="deleteIngredient(element.id)" mat-raised-button color="warn">Delete</button> 
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div style="max-width: 380px;">
+  <mat-form-field appearance="outline" style="width: 360px;">
+    <mat-label>Name of Ingredient</mat-label>
+    <input matInput placeholder="Name" name="searchName" [(ngModel)]="searchName">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="filterData()">Search</button>
+</div>
+<br>
+<div *ngIf="loading;else table"></div>
+<ng-template #table>
+  <table mat-table [dataSource] ="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="calories">
+      <th mat-header-cell *matHeaderCellDef> Calories </th>
+      <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
+    </ng-container>
+    <ng-container matColumnDef="proteins">
+      <th mat-header-cell *matHeaderCellDef> Proteins </th>
+      <td mat-cell *matCellDef="let element"> {{element.proteins}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fats">
+      <th mat-header-cell *matHeaderCellDef> Fats </th>
+      <td mat-cell *matCellDef="let element"> {{element.fats}} </td>
+    </ng-container>
+    <ng-container matColumnDef="carbohydrates">
+      <th mat-header-cell *matHeaderCellDef> Carbohydrates </th>
+      <td mat-cell *matCellDef="let element"> {{element.carbohydrates}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element" >
+        <a href="#" [routerLink]="['/ingredients/', element.id, 'edit']" mat-raised-button color="accent">Edit</a> 
+        <div class="divider"></div>
+        <button type="button" (click)="deleteIngredient(element.id)" mat-raised-button color="warn">Delete</button> 
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>
+<mat-paginator (page)="pageChanged($event)" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>

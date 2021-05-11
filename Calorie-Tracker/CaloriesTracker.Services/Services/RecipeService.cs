@@ -12,134 +12,111 @@ namespace CaloriesTracker.Services.Services
 {
     public class RecipeService : IRecipeService
     {
-        private readonly IRepositoryManager repositoryManager;
-        private readonly ILoggerManager logger;
-        private readonly IMapper mapper;
+        private readonly IRepositoryManager _repositoryManager;
+        private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
         public RecipeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
         {
-            this.repositoryManager = repositoryManager;
-            this.logger = logger;
-            this.mapper = mapper;
+            _repositoryManager = repositoryManager;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<RecipeForReadDto> CreateRecipe(Guid userId, RecipeForCreateDto recipeDto)
+        public async Task<RecipeForReadDto> CreateRecipeForUserProfileAsync(Guid id, RecipeForCreateDto recipeDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
+            var user = await _repositoryManager.User.GetUserProfileAsync(id, trackChanges: true);
             if (user == null)
             {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+                _logger.LogInfo($"UserProfile with id: {id} doesn't exist in the database");
                 return null;
             }
             foreach (var iteration in recipeDto.IngredientsWithGrams)
             {
-                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+                iteration.Ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(iteration.IngredientId, true);
             }
-            var recipe = mapper.Map<Recipe>(recipeDto);
-            recipe.UserProfileId = userId;
-            repositoryManager.Recipe.CreateRecipe(recipe);
-            var recipeView = mapper.Map<RecipeForReadDto>(recipe);
+            var recipe = _mapper.Map<Recipe>(recipeDto);
+            recipe.UserProfileId = id;
+            _repositoryManager.Recipe.CreateRecipe(recipe);
+            var recipeView = _mapper.Map<RecipeForReadDto>(recipe);
             user.Recipes.Add(recipe);
-            await repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
             return recipeView;
         }
 
-        public async Task<bool> DeleteRecipe(Guid userId, Guid recipeId)
+        public async Task<MessageDetailsDto> DeleteRecipeAsync(Guid recipeId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: false);
+            var recipe = await _repositoryManager.Recipe.GetRecipeAsync(recipeId, trackChanges: false);
             if (recipe == null)
             {
-                logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Recipe with id: {recipeId} doesn't exist in the database" };
             }
-            repositoryManager.Recipe.DeleteRecipe(recipe);
-            await repositoryManager.SaveAsync();
-            return true;
+            _repositoryManager.Recipe.DeleteRecipe(recipe);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<RecipeForReadDto> GetRecipe(Guid userId, Guid recipeId)
+        public async Task<RecipeForReadDto> GetRecipeAsync(Guid recipeId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return null;
-            }
-            var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: false);
+            var recipe = await _repositoryManager.Recipe.GetRecipeAsync(recipeId, trackChanges: false);
             if (recipe == null)
             {
-                logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
+                _logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
                 return null;
             }
-            var recipeDto = mapper.Map<RecipeForReadDto>(recipe);
+            var recipeDto = _mapper.Map<RecipeForReadDto>(recipe);
             return recipeDto;
         }
 
-        public async Task<IEnumerable<RecipeForReadDto>> GetRecipes(Guid userId)
+        public async Task<int> GetRecipesCount(Guid id)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
+            return await _repositoryManager.Recipe.CountOfRecipesAsync(id, false);
+        }
+
+        public async Task<IEnumerable<RecipeForReadDto>> GetRecipesForUserProfilePaginationAsync(Guid id, int pageSize, int number)
+        {
+            var user = await _repositoryManager.User.GetUserProfileAsync(id, trackChanges: false);
             if (user == null)
             {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+                _logger.LogInfo($"UserProfile with id: {id} doesn't exist in the database");
                 return null;
             }
-            var recipes = await repositoryManager.Recipe.GetAllRecipesForUserAsync(userId, trackChanges: false);
-            var recipesDto = mapper.Map<IEnumerable<RecipeForReadDto>>(recipes);
+            var recipes = await _repositoryManager.Recipe.GetAllRecipesForUserPaginationAsync(id, pageSize, number, trackChanges: false);
+            var recipesDto = _mapper.Map<IEnumerable<RecipeForReadDto>>(recipes);
             return recipesDto;
         }
 
-        public async Task<bool> PartiallyUpdateRecipe(Guid userId, Guid recipeId, JsonPatchDocument<RecipeForUpdateDto> patchDoc)
+        public async Task<MessageDetailsDto> PartiallyUpdateRecipeAsync(Guid recipeId, JsonPatchDocument<RecipeForUpdateDto> patchDoc)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: true);
+            var recipe = await _repositoryManager.Recipe.GetRecipeAsync(recipeId, trackChanges: true);
             if (recipe == null)
             {
-                logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Recipe with id: {recipeId} doesn't exist in the database" };
             }
-            var recipeToPatch = mapper.Map<RecipeForUpdateDto>(recipe);
+            var recipeToPatch = _mapper.Map<RecipeForUpdateDto>(recipe);
             patchDoc.ApplyTo(recipeToPatch);
-            mapper.Map(recipeToPatch, recipe);
-            await repositoryManager.SaveAsync();
-            return true;
+            _mapper.Map(recipeToPatch, recipe);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<bool> UpdateRecipe(Guid userId, Guid recipeId, RecipeForUpdateDto recipeDto)
+        public async Task<MessageDetailsDto> UpdateRecipeAsync(Guid recipeId, RecipeForUpdateDto recipeDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var recipe = await repositoryManager.Recipe.GetRecipeForUserAsync(userId, recipeId, trackChanges: true);
+            var recipe = await _repositoryManager.Recipe.GetRecipeAsync(recipeId, trackChanges: true);
             if (recipe == null)
             {
-                logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Recipe with id: {recipeId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Recipe with id: {recipeId} doesn't exist in the database" };
             }
             foreach (var iteration in recipeDto.IngredientsWithGrams)
             {
-                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+                iteration.Ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(iteration.IngredientId, true);
             }
-            mapper.Map(recipeDto, recipe);
-            await repositoryManager.SaveAsync();
-            return true;
-        }
-        private async Task<Ingredient> GetIngredientById(Guid id)
-        {
-            return await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
+            _mapper.Map(recipeDto, recipe);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
     }
 }

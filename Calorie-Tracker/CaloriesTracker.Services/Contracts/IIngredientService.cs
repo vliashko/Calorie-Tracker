@@ -8,12 +8,12 @@ namespace CaloriesTracker.Services.Interfaces
 {
     public interface IIngredientService
     {
-        Task<IEnumerable<IngredientForReadDto>> GetIngredients();
-        Task<IngredientForReadDto> GetIngredient(Guid id);
-        Task<IngredientForReadDto> CreateIngredient(IngredientForCreateDto ingredientCreateDto);
-        Task<bool> DeleteIngredient(Guid id);
-        Task<bool> UpdateIngredient(Guid id, IngredientForUpdateDto ingredientUpdateDto);
-        Task<bool> PartiallyUpdateIngredient(Guid id, JsonPatchDocument<IngredientForUpdateDto> ingredientUpdateDto);
-        //Task<IEnumerable<IngredientWithGramsForReadDto>> GetIngredientsForEating(Guid eatingId);
+        Task<IEnumerable<IngredientForReadDto>> GetIngredientsPaginationAsync(int pageSize, int number, string searchName);
+        Task<int> GetIngredientsCounts(string searchName);
+        Task<IngredientForReadDto> GetIngredientAsync(Guid id);
+        Task<IngredientForReadDto> CreateIngredientAsync(IngredientForCreateDto ingredientCreateDto);
+        Task<MessageDetailsDto> DeleteIngredientAsync(Guid id);
+        Task<MessageDetailsDto> UpdateIngredientAsync(Guid id, IngredientForUpdateDto ingredientUpdateDto);
+        Task<MessageDetailsDto> PartiallyUpdateIngredientAsync(Guid id, JsonPatchDocument<IngredientForUpdateDto> ingredientUpdateDto);
     }
 }

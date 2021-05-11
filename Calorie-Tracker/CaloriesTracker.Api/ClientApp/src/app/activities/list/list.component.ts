@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { ConfirmationDialog } from 'src/app/confirmation-dialog.component';
 import { Activity } from 'src/app/model/activity';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { ActivitiesService } from '../activities.service';
 
 @Component({
@@ -39,7 +39,6 @@ export class ListComponent implements OnInit {
       });
     });
   }
-  // tslint:disable-next-line:typedef
   deleteActivity(id: string) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
@@ -52,7 +51,7 @@ export class ListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.activitiesService.apiUsersUserIdActivitiesActivityIdDelete(this.id, id).subscribe(res => {
+        this.activitiesService.apiUsersUserIdActivitiesActivityIdDelete(id, this.id).subscribe(res => {
           this.activities = this.activities.filter(item => item.id !== id);
         });
       }

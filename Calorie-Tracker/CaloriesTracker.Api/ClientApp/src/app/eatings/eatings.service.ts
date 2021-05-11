@@ -32,7 +32,6 @@ export class EatingsService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         this.basePath = this.configuration.basePath;
         if (configuration) {
@@ -56,24 +55,24 @@ export class EatingsService {
 
 
     /**
+     *
+     *
+     * @param eatingId
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdDelete(userId: string, eatingId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdDelete(userId: string, eatingId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdDelete(userId: string, eatingId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdDelete(userId: string, eatingId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdEatingsEatingIdDelete.');
-        }
+    public apiUsersUserIdEatingsEatingIdDelete(eatingId: string, userId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdEatingsEatingIdDelete(eatingId: string, userId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdEatingsEatingIdDelete(eatingId: string, userId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdEatingsEatingIdDelete(eatingId: string, userId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (eatingId === null || eatingId === undefined) {
             throw new Error('Required parameter eatingId was null or undefined when calling apiUsersUserIdEatingsEatingIdDelete.');
+        }
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdEatingsEatingIdDelete.');
         }
 
         let headers = this.defaultHeaders;
@@ -106,21 +105,25 @@ export class EatingsService {
     }
 
     /**
+     *
+     *
+     * @param eatingId
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdPatch(userId: string, eatingId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdEatingsEatingIdPatch(userId: string, eatingId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdEatingsEatingIdPatch(userId: string, eatingId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdEatingsEatingIdPatch(userId: string, eatingId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdEatingsEatingIdPatch.');
-        }
+    public apiUsersUserIdEatingsEatingIdPatch(eatingId: string, userId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdEatingsEatingIdPatch(eatingId: string, userId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdEatingsEatingIdPatch(eatingId: string, userId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdEatingsEatingIdPatch(eatingId: string, userId: string, body?: EatingForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (eatingId === null || eatingId === undefined) {
             throw new Error('Required parameter eatingId was null or undefined when calling apiUsersUserIdEatingsEatingIdPatch.');
+        }
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdEatingsEatingIdPatch.');
         }
 
 
@@ -163,24 +166,25 @@ export class EatingsService {
     }
 
     /**
+     *
+     *
+     * @param eatingId
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdPut(userId: string, eatingId: string, body?: EatingForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdPut(userId: string, eatingId: string, body?: EatingForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdPut(userId: string, eatingId: string, body?: EatingForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersUserIdEatingsEatingIdPut(userId: string, eatingId: string, body?: EatingForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdEatingsEatingIdPut.');
-        }
+    public apiUsersUserIdEatingsEatingIdPut(eatingId: string, userId: string, body?: EatingForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdEatingsEatingIdPut(eatingId: string, userId: string, body?: EatingForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdEatingsEatingIdPut(eatingId: string, userId: string, body?: EatingForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdEatingsEatingIdPut(eatingId: string, userId: string, body?: EatingForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (eatingId === null || eatingId === undefined) {
             throw new Error('Required parameter eatingId was null or undefined when calling apiUsersUserIdEatingsEatingIdPut.');
+        }
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdEatingsEatingIdPut.');
         }
 
 
@@ -223,6 +227,9 @@ export class EatingsService {
     }
 
     /**
+     *
+     *
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -265,16 +272,16 @@ export class EatingsService {
     }
 
     /**
+     *
+     *
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
     public apiUsersUserIdEatingsPost(userId: string, body?: EatingForCreateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiUsersUserIdEatingsPost(userId: string, body?: EatingForCreateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiUsersUserIdEatingsPost(userId: string, body?: EatingForCreateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiUsersUserIdEatingsPost(userId: string, body?: EatingForCreateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (userId === null || userId === undefined) {
@@ -321,20 +328,24 @@ export class EatingsService {
     }
 
     /**
+     *
+     *
+     * @param eatingId
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getEating(userId: string, eatingId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getEating(userId: string, eatingId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getEating(userId: string, eatingId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getEating(userId: string, eatingId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getEating.');
-        }
+    public getEating(eatingId: string, userId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getEating(eatingId: string, userId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getEating(eatingId: string, userId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getEating(eatingId: string, userId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (eatingId === null || eatingId === undefined) {
             throw new Error('Required parameter eatingId was null or undefined when calling getEating.');
+        }
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getEating.');
         }
 
         let headers = this.defaultHeaders;

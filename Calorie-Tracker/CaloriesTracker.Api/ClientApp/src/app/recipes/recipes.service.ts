@@ -32,7 +32,6 @@ export class RecipesService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         this.basePath = this.configuration.basePath;
         if (configuration) {
@@ -56,33 +55,43 @@ export class RecipesService {
 
 
     /**
-     * 
-     * 
-     * @param userId 
+     *
+     *
+     * @param userId
+     * @param pageSize
+     * @param number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersUserIdRecipesGet(userId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdRecipesGet(userId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdRecipesGet(userId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdRecipesGet(userId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiUsersUserIdRecipesPageNumberSizePageSizeGet(userId: string, pageSize: number, number: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdRecipesPageNumberSizePageSizeGet(userId: string, pageSize: number, number: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdRecipesPageNumberSizePageSizeGet(userId: string, pageSize: number, number: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdRecipesPageNumberSizePageSizeGet(userId: string, pageSize: number, number: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdRecipesGet.');
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdRecipesPageNumberSizePageSizeGet.');
+        }
+
+        if (pageSize === null || pageSize === undefined) {
+            throw new Error('Required parameter pageSize was null or undefined when calling apiUsersUserIdRecipesPageNumberSizePageSizeGet.');
+        }
+
+        if (number === null || number === undefined) {
+            throw new Error('Required parameter number was null or undefined when calling apiUsersUserIdRecipesPageNumberSizePageSizeGet.');
         }
 
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -90,21 +99,21 @@ export class RecipesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes`,
+        return this.httpClient.request<any>('get', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/page/${encodeURIComponent(String(number))}/size/${encodeURIComponent(String(pageSize))}`,
             {
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param body 
+     *
+     *
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -121,15 +130,15 @@ export class RecipesService {
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -141,26 +150,26 @@ export class RecipesService {
             'application/_*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
+        if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes`,
             {
-                body: body,
+                body,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param recipeId 
+     *
+     *
+     * @param userId
+     * @param recipeId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -180,15 +189,15 @@ export class RecipesService {
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -196,51 +205,51 @@ export class RecipesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('delete',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
+        return this.httpClient.request<any>('delete', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param recipeId 
-     * @param body 
+     *
+     *
+     * @param recipeId
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersUserIdRecipesRecipeIdPatch(userId: string, recipeId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdRecipesRecipeIdPatch(userId: string, recipeId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdRecipesRecipeIdPatch(userId: string, recipeId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdRecipesRecipeIdPatch(userId: string, recipeId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdRecipesRecipeIdPatch.');
-        }
+    public apiUsersUserIdRecipesRecipeIdPatch(recipeId: string, userId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdRecipesRecipeIdPatch(recipeId: string, userId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdRecipesRecipeIdPatch(recipeId: string, userId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdRecipesRecipeIdPatch(recipeId: string, userId: string, body?: RecipeForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (recipeId === null || recipeId === undefined) {
             throw new Error('Required parameter recipeId was null or undefined when calling apiUsersUserIdRecipesRecipeIdPatch.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdRecipesRecipeIdPatch.');
+        }
+
 
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -252,56 +261,56 @@ export class RecipesService {
             'application/_*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
+        if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('patch',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
+        return this.httpClient.request<any>('patch', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
             {
-                body: body,
+                body,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param recipeId 
-     * @param body 
+     *
+     *
+     * @param recipeId
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersUserIdRecipesRecipeIdPut(userId: string, recipeId: string, body?: RecipeForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdRecipesRecipeIdPut(userId: string, recipeId: string, body?: RecipeForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdRecipesRecipeIdPut(userId: string, recipeId: string, body?: RecipeForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdRecipesRecipeIdPut(userId: string, recipeId: string, body?: RecipeForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdRecipesRecipeIdPut.');
-        }
+    public apiUsersUserIdRecipesRecipeIdPut(recipeId: string, userId: string, body?: RecipeForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdRecipesRecipeIdPut(recipeId: string, userId: string, body?: RecipeForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdRecipesRecipeIdPut(recipeId: string, userId: string, body?: RecipeForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdRecipesRecipeIdPut(recipeId: string, userId: string, body?: RecipeForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (recipeId === null || recipeId === undefined) {
             throw new Error('Required parameter recipeId was null or undefined when calling apiUsersUserIdRecipesRecipeIdPut.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdRecipesRecipeIdPut.');
+        }
+
 
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -313,54 +322,54 @@ export class RecipesService {
             'application/_*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
+        if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
+        return this.httpClient.request<any>('put', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
             {
-                body: body,
+                body,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param recipeId 
+     *
+     *
+     * @param recipeId
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getRecipe(userId: string, recipeId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getRecipe(userId: string, recipeId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getRecipe(userId: string, recipeId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getRecipe(userId: string, recipeId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getRecipe.');
-        }
+    public getRecipe(recipeId: string, userId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getRecipe(recipeId: string, userId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getRecipe(recipeId: string, userId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getRecipe(recipeId: string, userId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (recipeId === null || recipeId === undefined) {
             throw new Error('Required parameter recipeId was null or undefined when calling getRecipe.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getRecipe.');
+        }
+
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -368,12 +377,12 @@ export class RecipesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
+        return this.httpClient.request<any>('get', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/recipes/${encodeURIComponent(String(recipeId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }

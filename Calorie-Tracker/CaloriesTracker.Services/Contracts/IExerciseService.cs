@@ -8,11 +8,12 @@ namespace CaloriesTracker.Services.Interfaces
 {
     public interface IExerciseService
     {
-        Task<IEnumerable<ExerciseForReadDto>> GetExercises();
-        Task<ExerciseForReadDto> GetExercise(Guid id);
-        Task<ExerciseForReadDto> CreateExercise(ExerciseForCreateDto exerciseCreateDto);
-        Task<bool> DeleteExercise(Guid id);
-        Task<bool> UpdateExercise(Guid id, ExerciseForUpdateDto exerciseUpdateDto);
-        Task<bool> PartiallyUpdateExercise(Guid id, JsonPatchDocument<ExerciseForUpdateDto> exerciseUpdateDto);
+        Task<IEnumerable<ExerciseForReadDto>> GetExercisesPaginationAsync(int pageSize, int number, string searchName);
+        Task<int> GetExercisesCount(string searchName);
+        Task<ExerciseForReadDto> GetExerciseAsync(Guid id);
+        Task<ExerciseForReadDto> CreateExerciseAsync(ExerciseForCreateDto exerciseCreateDto);
+        Task<MessageDetailsDto> DeleteExerciseAsync(Guid id);
+        Task<MessageDetailsDto> UpdateExerciseAsync(Guid id, ExerciseForUpdateDto exerciseUpdateDto);
+        Task<MessageDetailsDto> PartiallyUpdateExerciseAsync(Guid id, JsonPatchDocument<ExerciseForUpdateDto> exerciseUpdateDto);
     }
 }

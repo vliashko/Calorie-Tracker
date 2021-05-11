@@ -6,6 +6,7 @@ using CaloriesTracker.Api.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Marvin.JsonPatch;
 using CaloriesTracker.Services.Interfaces;
+using CaloriesTracker.Entities.Pagination;
 
 namespace CaloriesTracker.Api.Controllers
 {
@@ -14,24 +15,25 @@ namespace CaloriesTracker.Api.Controllers
     [Authorize]
     public class RecipesController : ControllerBase
     {
-        private readonly IServiceManager serviceManager;
+        private readonly IServiceManager _serviceManager;
 
         public RecipesController(IServiceManager serviceManager)
         {
-            this.serviceManager = serviceManager;
+            _serviceManager = serviceManager;
         }
-        [HttpGet]
-        public async Task<IActionResult> GetRecipes(Guid userId)
+        [HttpGet("page/{number}/size/{pageSize}")]
+        public async Task<IActionResult> GetRecipes(Guid userId, int pageSize = 5, int number = 1)
         {
-            var recipes = await serviceManager.Recipe.GetRecipes(userId);
-            if (recipes == null)
-                return NotFound();
-            return Ok(recipes);
+            var recipes = await _serviceManager.Recipe.GetRecipesForUserProfilePaginationAsync(userId, pageSize, number);
+            var count = await _serviceManager.Recipe.GetRecipesCount(userId);
+            PageViewModel page = new PageViewModel(count, number, pageSize);
+            ViewModel<RecipeForReadDto> ingrViewModel = new ViewModel<RecipeForReadDto> { PageViewModel = page, Objects = recipes };
+            return Ok(ingrViewModel);
         }
         [HttpGet("{recipeId}", Name = "GetRecipe")]
-        public async Task<IActionResult> GetRecipe(Guid userId, Guid recipeId)
+        public async Task<IActionResult> GetRecipe(Guid recipeId)
         {
-            var recipe = await serviceManager.Recipe.GetRecipe(userId, recipeId);
+            var recipe = await _serviceManager.Recipe.GetRecipeAsync(recipeId);
             if (recipe == null)
                 return NotFound();
             return Ok(recipe);
@@ -40,35 +42,29 @@ namespace CaloriesTracker.Api.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateRecipe(Guid userId, [FromBody] RecipeForCreateDto recipeDto)
         {
-            var recipeView = await serviceManager.Recipe.CreateRecipe(userId, recipeDto);
+            var recipeView = await _serviceManager.Recipe.CreateRecipeForUserProfileAsync(userId, recipeDto);
             if (recipeView == null)
                 return NotFound();
             return CreatedAtRoute("GetRecipe", new { userId, recipeId = recipeView.Id }, recipeView);
         }
         [HttpDelete("{recipeId}")]
-        public async Task<IActionResult> DeleteRecipe(Guid userId, Guid recipeId)
+        public async Task<IActionResult> DeleteRecipe(Guid recipeId)
         {
-            var result = await serviceManager.Recipe.DeleteRecipe(userId, recipeId);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Recipe.DeleteRecipeAsync(recipeId);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPut("{recipeId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> UpdateRecipe(Guid userId, Guid recipeId, [FromBody] RecipeForUpdateDto recipeDto)
+        public async Task<IActionResult> UpdateRecipe(Guid recipeId, [FromBody] RecipeForUpdateDto recipeDto)
         {
-            var result = await serviceManager.Recipe.UpdateRecipe(userId, recipeId, recipeDto);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Recipe.UpdateRecipeAsync(recipeId, recipeDto);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPatch("{recipeId}")]
-        public async Task<IActionResult> PartiallyUpdateRecipe(Guid userId, Guid recipeId, [FromBody] JsonPatchDocument<RecipeForUpdateDto> patchDoc)
+        public async Task<IActionResult> PartiallyUpdateRecipe(Guid recipeId, [FromBody] JsonPatchDocument<RecipeForUpdateDto> patchDoc)
         {
-            var result = await serviceManager.Recipe.PartiallyUpdateRecipe(userId, recipeId, patchDoc);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Recipe.PartiallyUpdateRecipeAsync(recipeId, patchDoc);
+            return StatusCode(result.StatusCode, result.Message);
         }
     }
 }

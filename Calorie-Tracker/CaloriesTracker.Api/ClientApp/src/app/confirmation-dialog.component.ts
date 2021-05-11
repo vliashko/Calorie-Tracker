@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // tslint:disable-next-line:component-class-suffix
 export class ConfirmationDialog {
   message = 'Are you sure?';
-  confirmButtonText = 'Yes';
-  cancelButtonText = 'Cancel';
+  confirmButtonText = '';
+  cancelButtonText = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<ConfirmationDialog>) {

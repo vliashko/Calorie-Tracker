@@ -5,7 +5,7 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-module';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
   imports: [
+    FormsModule,
     CommonModule,
     AuthenticationRoutingModule,
     ReactiveFormsModule,

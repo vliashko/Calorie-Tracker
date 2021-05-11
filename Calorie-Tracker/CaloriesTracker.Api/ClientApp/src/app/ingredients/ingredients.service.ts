@@ -32,7 +32,6 @@ export class IngredientsService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         this.basePath = this.configuration.basePath;
         if (configuration) {
@@ -41,44 +40,24 @@ export class IngredientsService {
     }
 
     /**
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
+     * @param consumes string[] mime-types
+     * @return true: consumes contains 'multipart/form-data', false: otherwise
      */
-    public apiIngredientsGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiIngredientsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiIngredientsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiIngredientsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
-            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
-        }
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get', `${this.basePath}/api/ingredients`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers,
-                observe,
-                reportProgress
+    private canConsumeForm(consumes: string[]): boolean {
+        const form = 'multipart/form-data';
+        for (const consume of consumes) {
+            if (form === consume) {
+                return true;
             }
-        );
+        }
+        return false;
     }
 
+
     /**
+     *
+     *
+     * @param id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -121,16 +100,16 @@ export class IngredientsService {
     }
 
     /**
+     *
+     *
+     * @param id
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPatch(id: string, body?: IngredientForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPatch(id: string, body?: IngredientForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPatch(id: string, body?: IngredientForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPatch(id: string, body?: IngredientForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -177,15 +156,16 @@ export class IngredientsService {
     }
 
     /**
+     *
+     *
+     * @param id
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
     public apiIngredientsIdPut(id: string, body?: IngredientForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPut(id: string, body?: IngredientForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPut(id: string, body?: IngredientForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiIngredientsIdPut(id: string, body?: IngredientForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -219,6 +199,7 @@ export class IngredientsService {
         if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
+
         return this.httpClient.request<any>('put', `${this.basePath}/api/ingredients/${encodeURIComponent(String(id))}`,
             {
                 body,
@@ -231,6 +212,66 @@ export class IngredientsService {
     }
 
     /**
+     *
+     *
+     * @param pageSize
+     * @param number
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+     public apiIngredientsPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+     public apiIngredientsPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+     public apiIngredientsPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+     public apiIngredientsPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+ 
+         if (pageSize === null || pageSize === undefined) {
+             throw new Error('Required parameter pageSize was null or undefined when calling apiIngredientsPageNumberSizePageSizeParamsGet.');
+         }
+ 
+         if (number === null || number === undefined) {
+             throw new Error('Required parameter number was null or undefined when calling apiIngredientsPageNumberSizePageSizeParamsGet.');
+         }
+ 
+ 
+         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+         if (searchName !== undefined && searchName !== null) {
+             queryParameters = queryParameters.set('searchName', <any>searchName);
+         }
+ 
+         let headers = this.defaultHeaders;
+ 
+         // authentication (Bearer) required
+         if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+             headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+         }
+ 
+         // to determine the Accept header
+         let httpHeaderAccepts: string[] = [
+         ];
+         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+         if (httpHeaderAcceptSelected != undefined) {
+             headers = headers.set('Accept', httpHeaderAcceptSelected);
+         }
+ 
+         // to determine the Content-Type header
+         const consumes: string[] = [
+         ];
+ 
+         return this.httpClient.request<any>('get',`${this.basePath}/api/ingredients/page/${encodeURIComponent(String(number))}/size/${encodeURIComponent(String(pageSize))}/params`,
+             {
+                 params: queryParameters,
+                 withCredentials: this.configuration.withCredentials,
+                 headers: headers,
+                 observe: observe,
+                 reportProgress: reportProgress
+             }
+         );
+     }
+
+    /**
+     *
+     *
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -266,6 +307,7 @@ export class IngredientsService {
         if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
+
         return this.httpClient.request<any>('post', `${this.basePath}/api/ingredients`,
             {
                 body,
@@ -277,7 +319,10 @@ export class IngredientsService {
         );
     }
 
-    /*
+    /**
+     *
+     *
+     * @param id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

@@ -8,11 +8,12 @@ namespace CaloriesTracker.Services.Interfaces
 {
     public interface IEatingService
     {
-        Task<IEnumerable<EatingForReadDto>> GetEatings(Guid userId);
-        Task<EatingForReadDto> GetEating(Guid userId, Guid eatingId);
-        Task<EatingForReadDto> CreateEating(Guid userId, EatingForCreateDto eatingDto);
-        Task<bool> DeleteEating(Guid userId, Guid eatingId);
-        Task<bool> UpdateEating(Guid userId, Guid eatingId, EatingForUpdateDto eatingDto);
-        Task<bool> PartiallyUpdateEating(Guid userId, Guid eatingId, JsonPatchDocument<EatingForUpdateDto> patchDoc);
+        Task<IEnumerable<EatingForReadDto>> GetEatingsForUserProfileForDateAsync(Guid id);
+        Task<IEnumerable<EatingForReadDto>> GetEatingsForUserProfilePerDaysAsync(Guid id, int days);
+        Task<EatingForReadDto> CreateEatingForUserProfileAsync(Guid id, EatingForCreateDto eatingDto);
+        Task<EatingForReadDto> GetEatingAsync(Guid eatingId);
+        Task<MessageDetailsDto> DeleteEatingAsync(Guid eatingId);
+        Task<MessageDetailsDto> UpdateEatingAsync(Guid eatingId, EatingForUpdateDto eatingDto);
+        Task<MessageDetailsDto> PartiallyUpdateEatingAsync(Guid eatingId, JsonPatchDocument<EatingForUpdateDto> patchDoc);
     }
 }

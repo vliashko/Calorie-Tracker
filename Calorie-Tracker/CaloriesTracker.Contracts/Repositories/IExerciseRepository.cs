@@ -7,7 +7,8 @@ namespace CaloriesTracker.Contracts
 {
     public interface IExerciseRepository
     {
-        Task<IEnumerable<Exercise>> GetAllExercisesAsync(bool trackChanges);
+        Task<IEnumerable<Exercise>> GetAllExercisesPaginationAsync(int pageSize, int number, string searchName, bool trackChanges);
+        Task<int> CountOfExercisesAsync(string searchName, bool trackChanges);
         Task<Exercise> GetExerciseAsync(Guid exerciseId, bool trackChanges);
         void CreateExercise(Exercise exercise);
         void DeleteExercise(Exercise exercise);

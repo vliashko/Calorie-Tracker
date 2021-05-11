@@ -18,11 +18,12 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 import { Observable } from 'rxjs';
 
 import { UserProfileForCreateDto } from '../model/userProfileForCreateDto';
-import { UserProfileForUpdateDto } from '../model/userProfileForUpdateDto';
+import { UserForUpdateDto } from '../model/userForUpdateDto';
 import { UserProfileForUpdateDtoJsonPatchDocument } from '../model/userProfileForUpdateDtoJsonPatchDocument';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import { UserSearchModelDto } from '../model/userSearchModelDto';
 
 
 @Injectable()
@@ -32,7 +33,6 @@ export class UsersService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         this.basePath = this.configuration.basePath;
         if (configuration) {
@@ -56,44 +56,9 @@ export class UsersService {
 
 
     /**
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiUsersGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
-            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
-        }
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get', `${this.basePath}/api/users`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers,
-                observe,
-                reportProgress
-            }
-        );
-    }
-
-    /**
+     *
+     *
+     * @param id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -136,72 +101,17 @@ export class UsersService {
     }
 
     /**
+     *
+     *
+     * @param id
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPatch(id: string, body?: UserProfileForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPatch(id: string, body?: UserProfileForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPatch(id: string, body?: UserProfileForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPatch(id: string, body?: UserProfileForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling apiUsersIdPatch.');
-        }
-
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
-            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
-        }
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json-patch+json',
-            'application/json',
-            'text/json',
-            'application/_*+json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.request<any>('patch', `${this.basePath}/api/users/${encodeURIComponent(String(id))}`,
-            {
-                body,
-                withCredentials: this.configuration.withCredentials,
-                headers,
-                observe,
-                reportProgress
-            }
-        );
-    }
-
-    /**
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiUsersIdPut(id: string, body?: UserProfileForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPut(id: string, body?: UserProfileForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPut(id: string, body?: UserProfileForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
-    public apiUsersIdPut(id: string, body?: UserProfileForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiUsersIdPut(id: string, body?: UserForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersIdPut(id: string, body?: UserForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersIdPut(id: string, body?: UserForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersIdPut(id: string, body?: UserForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiUsersIdPut.');
@@ -247,54 +157,70 @@ export class UsersService {
     }
 
     /**
+     *
+     *
+     * @param pageSize
+     * @param number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersPost(body?: UserProfileForCreateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersPost(body?: UserProfileForCreateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersPost(body?: UserProfileForCreateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersPost(body?: UserProfileForCreateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
-            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
-        }
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json-patch+json',
-            'application/json',
-            'text/json',
-            'application/_*+json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.request<any>('post', `${this.basePath}/api/users`,
-            {
-                body,
-                withCredentials: this.configuration.withCredentials,
-                headers,
-                observe,
-                reportProgress
-            }
-        );
-    }
+     public apiUsersPageNumberSizePageSizeParamsGet(pageSize: number, number: number, userName?: string, email?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+     public apiUsersPageNumberSizePageSizeParamsGet(pageSize: number, number: number, userName?: string, email?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+     public apiUsersPageNumberSizePageSizeParamsGet(pageSize: number, number: number, userName?: string, email?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+     public apiUsersPageNumberSizePageSizeParamsGet(pageSize: number, number: number, userName?: string, email?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+ 
+         if (pageSize === null || pageSize === undefined) {
+             throw new Error('Required parameter pageSize was null or undefined when calling apiUsersPageNumberSizePageSizeParamsGet.');
+         }
+ 
+         if (number === null || number === undefined) {
+             throw new Error('Required parameter number was null or undefined when calling apiUsersPageNumberSizePageSizeParamsGet.');
+         }
+ 
+ 
+ 
+         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+         if (userName !== undefined && userName !== null) {
+             queryParameters = queryParameters.set('userName', <any>userName);
+         }
+         if (email !== undefined && email !== null) {
+             queryParameters = queryParameters.set('email', <any>email);
+         }
+ 
+         let headers = this.defaultHeaders;
+ 
+         // authentication (Bearer) required
+         if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+             headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+         }
+ 
+         // to determine the Accept header
+         let httpHeaderAccepts: string[] = [
+         ];
+         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+         if (httpHeaderAcceptSelected != undefined) {
+             headers = headers.set('Accept', httpHeaderAcceptSelected);
+         }
+ 
+         // to determine the Content-Type header
+         const consumes: string[] = [
+         ];
+ 
+         return this.httpClient.request<any>('get',`${this.basePath}/api/users/page/${encodeURIComponent(String(number))}/size/${encodeURIComponent(String(pageSize))}/params`,
+             {
+                 params: queryParameters,
+                 withCredentials: this.configuration.withCredentials,
+                 headers: headers,
+                 observe: observe,
+                 reportProgress: reportProgress
+             }
+         );
+     }
 
     /**
+     *
+     *
+     * @param id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

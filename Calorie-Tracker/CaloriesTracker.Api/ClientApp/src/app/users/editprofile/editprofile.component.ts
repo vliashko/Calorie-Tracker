@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { User } from 'src/app/model/user';
 import { UserProfile } from 'src/app/model/userProfile';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -41,7 +41,6 @@ export class EditprofileComponent implements OnInit {
   public checkError = (controlName: string, errorName: string) => {
     return this.formGroup.controls[controlName].hasError(errorName);
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.formGroup = this.formBuilder.group({
       weight: [null, [Validators.required, Validators.min(35), Validators.max(350)]],
@@ -51,10 +50,9 @@ export class EditprofileComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   onSubmit(formData: any) {
     formData.dateOfBirth = formatDate(formData.dateOfBirth, 'MM/dd/yyyy', 'en-US');
-    this.usersService.apiUsersIdPut(this.id, formData).subscribe(res => {
+    this.userPr.apiUserprofilesIdPut(this.id, formData).subscribe(res => {
       this.router.navigateByUrl('profile');
     });
   }

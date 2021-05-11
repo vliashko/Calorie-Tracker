@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { ConfirmationDialog } from 'src/app/confirmation-dialog.component';
 import { Eating } from 'src/app/model/eating';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { EatingsService } from '../eatings.service';
 
 @Component({
@@ -39,7 +39,6 @@ export class ListComponent implements OnInit {
       });
     });
   }
-  // tslint:disable-next-line:typedef
   deleteEating(id: string) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
@@ -52,7 +51,7 @@ export class ListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.eatingsService.apiUsersUserIdEatingsEatingIdDelete(this.id, id).subscribe(res => {
+        this.eatingsService.apiUsersUserIdEatingsEatingIdDelete(id, this.id).subscribe(res => {
           this.eatings = this.eatings.filter(item => item.id !== id);
         });
       }

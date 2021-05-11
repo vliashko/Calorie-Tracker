@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Recipe } from 'src/app/model/recipe';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -40,13 +40,12 @@ export class DetailsComponent implements OnInit {
     this.id = decoded.userId;
     this.userPr.apiUserprofilesGet(this.id).subscribe(res => {
       this.id = res.id;
-      this.recipesService.getRecipe(res.id, this.route.snapshot.params.recipeId).subscribe(recipe => {
+      this.recipesService.getRecipe(this.route.snapshot.params.recipeId, res.id).subscribe(recipe => {
         this.recipe = recipe;
         this.editForm.patchValue(recipe);
       });
     });
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.editForm = this.formBuilder.group({
       name: [null],

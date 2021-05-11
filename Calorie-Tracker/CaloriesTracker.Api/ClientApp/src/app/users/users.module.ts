@@ -5,7 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
@@ -19,6 +19,7 @@ import { DetailsComponent } from './details/details.component';
   declarations: [ListComponent, EditComponent, ProfileComponent,
     EditprofileComponent, CalorieschartComponent, DetailsComponent],
   imports: [
+    FormsModule,
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,

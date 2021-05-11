@@ -15,7 +15,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent } from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec } from '../encoder';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { UserForAuthenticationDto } from '../model/userForAuthenticationDto';
 import { UserForRegistrationDto } from '../model/userForRegistrationDto';
@@ -23,6 +23,7 @@ import { UserForRegistrationDto } from '../model/userForRegistrationDto';
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
 import jwtDecode from 'jwt-decode';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable()
@@ -39,17 +40,56 @@ export class AuthenticationService {
             this.configuration = configuration;
         }
     }
+    public apiAuthenticationGeneratenewpasswordIdGet(id: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiAuthenticationGeneratenewpasswordIdGet(id: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiAuthenticationGeneratenewpasswordIdGet(id: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAuthenticationGeneratenewpasswordIdGet(id: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling apiAuthenticationGeneratenewpasswordIdGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
+        }
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get', `${this.basePath}/api/authentication/generatenewpassword/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers,
+                observe,
+                reportProgress
+            }
+        );
+    }
+
     /**
+     *
+     *
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiAuthenticationLoginPost(body?: UserForAuthenticationDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -90,11 +130,13 @@ export class AuthenticationService {
     }
 
     /**
+     *
+     *
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public apiAuthenticationPost(body?: UserForRegistrationDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
@@ -140,7 +182,7 @@ export class AuthenticationService {
     // tslint:disable-next-line:typedef
     getToken() {
         const token = JSON.parse(localStorage.getItem('access_token') || '{}');
-        return token.token;
+        return token;
     }
     get isLoggedIn(): boolean {
         const authToken = localStorage.getItem('access_token');

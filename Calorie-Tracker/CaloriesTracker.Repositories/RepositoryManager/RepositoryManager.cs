@@ -11,7 +11,7 @@ namespace CaloriesTracker.Repositories
         private IIngredientRepository ingredientRepository;
         private IExerciseRepository exerciseRepository;
         private IEatingRepository eatingRepository;
-        private IUserRepository userRepository;
+        private IUserProfileRepository userRepository;
         private IRecipeRepository recipeRepository;
 
         public RepositoryManager(RepositoryDbContext context)
@@ -19,13 +19,13 @@ namespace CaloriesTracker.Repositories
             this.context = context;
         }
 
-        public IUserRepository User
+        public IUserProfileRepository User
         {
             get
             {
                 if(userRepository == null)
                 {
-                    userRepository = new UserRepository(context);
+                    userRepository = new UserProfileRepository(context);
                 }
                 return userRepository;
             }

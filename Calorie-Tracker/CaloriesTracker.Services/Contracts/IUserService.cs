@@ -1,6 +1,4 @@
 ﻿using CaloriesTracker.Entities.DataTransferObjects;
-using Marvin.JsonPatch;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,11 +6,10 @@ namespace CaloriesTracker.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserProfileForReadDto>> GetUsers();
-        Task<UserProfileForReadDto> GetUser(Guid id);
-        Task<UserProfileForReadDto> CreateUser(UserProfileForCreateDto userCreateDto, string userName);
-        Task<bool> DeleteUser(Guid id);
-        Task<bool> UpdateUser(Guid id, UserProfileForUpdateDto userUpdateDto);
-        Task<bool> PartiallyUpdateUser(Guid id, JsonPatchDocument<UserProfileForUpdateDto> userUpdateDto);
+        Task<IEnumerable<UserForReadDto>> GetUsersPaginationAsync(int pageSize, int number, UserSearchModelDto userSearch);
+        Task<int> GetUsersCount(UserSearchModelDto userSearch);
+        Task<UserForReadDto> GetUserAsync(string id);
+        Task<MessageDetailsDto> DeleteUserAsync(string id);
+        Task<MessageDetailsDto> UpdateUserAsync(string id, UserForUpdateDto userUpdateDto);
     }
 }

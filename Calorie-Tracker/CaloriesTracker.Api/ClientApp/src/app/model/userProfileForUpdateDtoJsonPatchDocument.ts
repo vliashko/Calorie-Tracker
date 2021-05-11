@@ -13,7 +13,7 @@ import { CaseTransformType } from './caseTransformType';
 import { IContractResolver } from './iContractResolver';
 import { UserProfileForUpdateDtoOperation } from './userProfileForUpdateDtoOperation';
 
-export interface UserProfileForUpdateDtoJsonPatchDocument { 
+export interface UserProfileForUpdateDtoJsonPatchDocument {
     readonly operations?: Array<UserProfileForUpdateDtoOperation>;
     contractResolver?: IContractResolver;
     caseTransformType?: CaseTransformType;

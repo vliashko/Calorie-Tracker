@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { ActivitiesService } from 'src/app/activities/activities.service';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { EatingsService } from 'src/app/eatings/eatings.service';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 
 @Component({
   selector: 'app-calorieschart',

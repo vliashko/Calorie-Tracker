@@ -32,7 +32,6 @@ export class ActivitiesService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         this.basePath = this.configuration.basePath;
         if (configuration) {
@@ -56,38 +55,38 @@ export class ActivitiesService {
 
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param activityId 
+     *
+     *
+     * @param activityId
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersUserIdActivitiesActivityIdDelete(userId: string, activityId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdActivitiesActivityIdDelete(userId: string, activityId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdActivitiesActivityIdDelete(userId: string, activityId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdActivitiesActivityIdDelete(userId: string, activityId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdActivitiesActivityIdDelete.');
-        }
+    public apiUsersUserIdActivitiesActivityIdDelete(activityId: string, userId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdActivitiesActivityIdDelete(activityId: string, userId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdActivitiesActivityIdDelete(activityId: string, userId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdActivitiesActivityIdDelete(activityId: string, userId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (activityId === null || activityId === undefined) {
             throw new Error('Required parameter activityId was null or undefined when calling apiUsersUserIdActivitiesActivityIdDelete.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdActivitiesActivityIdDelete.');
+        }
+
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -95,51 +94,51 @@ export class ActivitiesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('delete',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
+        return this.httpClient.request<any>('delete', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param activityId 
-     * @param body 
+     *
+     *
+     * @param activityId
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersUserIdActivitiesActivityIdPatch(userId: string, activityId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdActivitiesActivityIdPatch(userId: string, activityId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdActivitiesActivityIdPatch(userId: string, activityId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdActivitiesActivityIdPatch(userId: string, activityId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdActivitiesActivityIdPatch.');
-        }
+    public apiUsersUserIdActivitiesActivityIdPatch(activityId: string, userId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdActivitiesActivityIdPatch(activityId: string, userId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdActivitiesActivityIdPatch(activityId: string, userId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdActivitiesActivityIdPatch(activityId: string, userId: string, body?: ActivityForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (activityId === null || activityId === undefined) {
             throw new Error('Required parameter activityId was null or undefined when calling apiUsersUserIdActivitiesActivityIdPatch.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdActivitiesActivityIdPatch.');
+        }
+
 
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -151,56 +150,56 @@ export class ActivitiesService {
             'application/_*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
+        if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('patch',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
+        return this.httpClient.request<any>('patch', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
             {
-                body: body,
+                body,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param activityId 
-     * @param body 
+     *
+     *
+     * @param activityId
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersUserIdActivitiesActivityIdPut(userId: string, activityId: string, body?: ActivityForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUsersUserIdActivitiesActivityIdPut(userId: string, activityId: string, body?: ActivityForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUsersUserIdActivitiesActivityIdPut(userId: string, activityId: string, body?: ActivityForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUsersUserIdActivitiesActivityIdPut(userId: string, activityId: string, body?: ActivityForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdActivitiesActivityIdPut.');
-        }
+    public apiUsersUserIdActivitiesActivityIdPut(activityId: string, userId: string, body?: ActivityForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiUsersUserIdActivitiesActivityIdPut(activityId: string, userId: string, body?: ActivityForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiUsersUserIdActivitiesActivityIdPut(activityId: string, userId: string, body?: ActivityForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiUsersUserIdActivitiesActivityIdPut(activityId: string, userId: string, body?: ActivityForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (activityId === null || activityId === undefined) {
             throw new Error('Required parameter activityId was null or undefined when calling apiUsersUserIdActivitiesActivityIdPut.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling apiUsersUserIdActivitiesActivityIdPut.');
+        }
+
 
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -212,25 +211,25 @@ export class ActivitiesService {
             'application/_*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
+        if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
+        return this.httpClient.request<any>('put', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
             {
-                body: body,
+                body,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
+     *
+     *
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -246,15 +245,15 @@ export class ActivitiesService {
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -262,21 +261,21 @@ export class ActivitiesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities`,
+        return this.httpClient.request<any>('get', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities`,
             {
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param body 
+     *
+     *
+     * @param userId
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -293,15 +292,15 @@ export class ActivitiesService {
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -313,54 +312,54 @@ export class ActivitiesService {
             'application/_*+json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
+        if (httpContentTypeSelected !== undefined) {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities`,
             {
-                body: body,
+                body,
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }
 
     /**
-     * 
-     * 
-     * @param userId 
-     * @param activityId 
+     *
+     *
+     * @param activityId
+     * @param userId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getActivity(userId: string, activityId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getActivity(userId: string, activityId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getActivity(userId: string, activityId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getActivity(userId: string, activityId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getActivity.');
-        }
+    public getActivity(activityId: string, userId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getActivity(activityId: string, userId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getActivity(activityId: string, userId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getActivity(activityId: string, userId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (activityId === null || activityId === undefined) {
             throw new Error('Required parameter activityId was null or undefined when calling getActivity.');
         }
 
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getActivity.');
+        }
+
         let headers = this.defaultHeaders;
 
         // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
+            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
         }
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
@@ -368,12 +367,12 @@ export class ActivitiesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
+        return this.httpClient.request<any>('get', `${this.basePath}/api/users/${encodeURIComponent(String(userId))}/activities/${encodeURIComponent(String(activityId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
+                headers,
+                observe,
+                reportProgress
             }
         );
     }

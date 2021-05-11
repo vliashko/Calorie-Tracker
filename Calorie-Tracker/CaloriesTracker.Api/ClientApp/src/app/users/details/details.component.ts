@@ -2,7 +2,6 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/model/user';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -26,7 +25,6 @@ export class DetailsComponent implements OnInit {
       this.formGroup.patchValue(res.userProfile);
     });
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.formGroup = this.formBuilder.group({
       weight: [null],

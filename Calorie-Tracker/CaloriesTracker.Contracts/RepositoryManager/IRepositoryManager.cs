@@ -4,7 +4,7 @@ namespace CaloriesTracker.Contracts
 {
     public interface IRepositoryManager
     {
-        IUserRepository User { get; }
+        IUserProfileRepository User { get; }
         IIngredientRepository Ingredient { get; }
         IExerciseRepository Exercise { get; }
         IActivityRepository Activity { get; }

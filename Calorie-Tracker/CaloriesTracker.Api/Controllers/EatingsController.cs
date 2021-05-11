@@ -14,25 +14,23 @@ namespace CaloriesTracker.Api.Controllers
     [Authorize]
     public class EatingsController : ControllerBase
     {
-        private readonly IServiceManager serviceManager;
+        private readonly IServiceManager _serviceManager;
 
         public EatingsController(IServiceManager serviceManager)
         {
-            this.serviceManager = serviceManager;
+            _serviceManager = serviceManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetEatings(Guid userId)
         {
-            var eatings = await serviceManager.Eating.GetEatings(userId);
-            if (eatings == null)
-                return NotFound();
+            var eatings = await _serviceManager.Eating.GetEatingsForUserProfileForDateAsync(userId);
             return Ok(eatings);
         }
         [HttpGet("{eatingId}", Name = "GetEating")]
-        public async Task<IActionResult> GetEating(Guid userId, Guid eatingId)
+        public async Task<IActionResult> GetEating(Guid eatingId)
         {
-            var eating = await serviceManager.Eating.GetEating(userId, eatingId);
+            var eating = await _serviceManager.Eating.GetEatingAsync(eatingId);
             if (eating == null)
                 return NotFound();
             return Ok(eating);
@@ -41,35 +39,29 @@ namespace CaloriesTracker.Api.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEating(Guid userId, [FromBody] EatingForCreateDto eatingDto)
         {
-            var eatingView = await serviceManager.Eating.CreateEating(userId, eatingDto);
+            var eatingView = await _serviceManager.Eating.CreateEatingForUserProfileAsync(userId, eatingDto);
             if (eatingView == null)
                 return NotFound();
             return CreatedAtRoute("GetEating", new { userId, eatingId = eatingView.Id }, eatingView);
         }
         [HttpDelete("{eatingId}")]
-        public async Task<IActionResult> DeleteEating(Guid userId, Guid eatingId)
+        public async Task<IActionResult> DeleteEating(Guid eatingId)
         {
-            var result = await serviceManager.Eating.DeleteEating(userId, eatingId);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Eating.DeleteEatingAsync(eatingId);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPut("{eatingId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> UpdateEating(Guid userId, Guid eatingId, [FromBody] EatingForUpdateDto eatingDto)
+        public async Task<IActionResult> UpdateEating(Guid eatingId, [FromBody] EatingForUpdateDto eatingDto)
         {
-            var result = await serviceManager.Eating.UpdateEating(userId, eatingId, eatingDto);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Eating.UpdateEatingAsync(eatingId, eatingDto);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPatch("{eatingId}")]
-        public async Task<IActionResult> PartiallyUpdateEating(Guid userId, Guid eatingId, [FromBody] JsonPatchDocument<EatingForUpdateDto> patchDoc)
+        public async Task<IActionResult> PartiallyUpdateEating(Guid eatingId, [FromBody] JsonPatchDocument<EatingForUpdateDto> patchDoc)
         {
-            var result = await serviceManager.Eating.PartiallyUpdateEating(userId, eatingId, patchDoc);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Eating.PartiallyUpdateEatingAsync(eatingId, patchDoc);
+            return StatusCode(result.StatusCode, result.Message);
         }
     }
 }

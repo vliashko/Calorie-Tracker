@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Eating } from 'src/app/model/eating';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { EatingsService } from '../eatings.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class DetailsComponent implements OnInit {
     this.id = decoded.userId;
     this.userPr.apiUserprofilesGet(this.id).subscribe(res => {
       this.id = res.id;
-      this.eatingsService.getEating(res.id, this.route.snapshot.params.eatingId).subscribe(eating => {
+      this.eatingsService.getEating(this.route.snapshot.params.eatingId, res.id).subscribe(eating => {
         this.eating = eating;
       });
     });

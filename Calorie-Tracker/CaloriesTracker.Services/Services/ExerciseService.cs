@@ -12,83 +12,88 @@ namespace CaloriesTracker.Services.Services
 {
     public class ExerciseService : IExerciseService
     {
-        private readonly IMapper mapper;
-        private readonly IRepositoryManager repositoryManager;
-        private readonly ILoggerManager logger;
+        private readonly IMapper _mapper;
+        private readonly IRepositoryManager _repositoryManager;
+        private readonly ILoggerManager _logger;
 
         public ExerciseService(IMapper mapper, IRepositoryManager repositoryManager, ILoggerManager logger)
         {
-            this.mapper = mapper;
-            this.repositoryManager = repositoryManager;
-            this.logger = logger;
+            _mapper = mapper;
+            _repositoryManager = repositoryManager;
+            _logger = logger;
         }
 
-        public async Task<ExerciseForReadDto> CreateExercise(ExerciseForCreateDto exerciseCreateDto)
+        public async Task<ExerciseForReadDto> CreateExerciseAsync(ExerciseForCreateDto exerciseCreateDto)
         {
-            var exerciseEntity = mapper.Map<Exercise>(exerciseCreateDto);
-            repositoryManager.Exercise.CreateExercise(exerciseEntity);
-            await repositoryManager.SaveAsync();
-            return mapper.Map<ExerciseForReadDto>(exerciseEntity);
+            var exerciseEntity = _mapper.Map<Exercise>(exerciseCreateDto);
+            _repositoryManager.Exercise.CreateExercise(exerciseEntity);
+            await _repositoryManager.SaveAsync();
+            return _mapper.Map<ExerciseForReadDto>(exerciseEntity);
         }
 
-        public async Task<bool> DeleteExercise(Guid id)
+        public async Task<MessageDetailsDto> DeleteExerciseAsync(Guid id)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: false);
+            var exercise = await _repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: false);
             if (exercise == null)
             {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Exercise with id: {id} doesn't exist in the database" };
             }
-            repositoryManager.Exercise.DeleteExercise(exercise);
-            await repositoryManager.SaveAsync();
-            return true;
+            _repositoryManager.Exercise.DeleteExercise(exercise);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<ExerciseForReadDto> GetExercise(Guid id)
+        public async Task<ExerciseForReadDto> GetExerciseAsync(Guid id)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: false);
+            var exercise = await _repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: false);
             if (exercise == null)
             {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+                _logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
                 return null;
             }
-            var exerciseDto = mapper.Map<ExerciseForReadDto>(exercise);
+            var exerciseDto = _mapper.Map<ExerciseForReadDto>(exercise);
             return exerciseDto;
         }
 
-        public async Task<IEnumerable<ExerciseForReadDto>> GetExercises()
+        public async Task<int> GetExercisesCount(string searchName)
         {
-            var exercises = await repositoryManager.Exercise.GetAllExercisesAsync(trackChanges: false);
-            var exercisesDto = mapper.Map<IEnumerable<ExerciseForReadDto>>(exercises);
+            return await _repositoryManager.Exercise.CountOfExercisesAsync(searchName, false);
+        }
+
+        public async Task<IEnumerable<ExerciseForReadDto>> GetExercisesPaginationAsync(int pageSize, int number, string searchName)
+        {
+            var exercises = await _repositoryManager.Exercise.GetAllExercisesPaginationAsync(pageSize, number, searchName, trackChanges: false);
+            var exercisesDto = _mapper.Map<IEnumerable<ExerciseForReadDto>>(exercises);
             return exercisesDto;
         }
 
-        public async Task<bool> PartiallyUpdateExercise(Guid id, JsonPatchDocument<ExerciseForUpdateDto> exerciseUpdateDto)
+        public async Task<MessageDetailsDto> PartiallyUpdateExerciseAsync(Guid id, JsonPatchDocument<ExerciseForUpdateDto> exerciseUpdateDto)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
+            var exercise = await _repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
             if (exercise == null)
             {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Exercise with id: {id} doesn't exist in the database" };
             }
-            var exerciseToPatch = mapper.Map<ExerciseForUpdateDto>(exercise);
+            var exerciseToPatch = _mapper.Map<ExerciseForUpdateDto>(exercise);
             exerciseUpdateDto.ApplyTo(exerciseToPatch);
-            mapper.Map(exerciseToPatch, exercise);
-            await repositoryManager.SaveAsync();
-            return true;
+            _mapper.Map(exerciseToPatch, exercise);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<bool> UpdateExercise(Guid id, ExerciseForUpdateDto exerciseUpdateDto)
+        public async Task<MessageDetailsDto> UpdateExerciseAsync(Guid id, ExerciseForUpdateDto exerciseUpdateDto)
         {
-            var exercise = await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
+            var exercise = await _repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
             if (exercise == null)
             {
-                logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Exercise with id: {id} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Exercise with id: {id} doesn't exist in the database" };
             }
-            mapper.Map(exerciseUpdateDto, exercise);
-            await repositoryManager.SaveAsync();
-            return true;
+            _mapper.Map(exerciseUpdateDto, exercise);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
     }
 }

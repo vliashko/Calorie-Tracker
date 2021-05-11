@@ -32,7 +32,6 @@ export class ExercisesService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    // tslint:disable-next-line:max-line-length
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         this.basePath = this.configuration.basePath;
         if (configuration) {
@@ -56,44 +55,9 @@ export class ExercisesService {
 
 
     /**
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiExercisesGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiExercisesGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiExercisesGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiExercisesGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (Bearer) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys.Authorization) {
-            headers = headers.set('Authorization', this.configuration.apiKeys.Authorization);
-        }
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get', `${this.basePath}/api/exercises`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers,
-                observe,
-                reportProgress
-            }
-        );
-    }
-
-    /**
+     *
+     *
+     * @param id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -136,16 +100,16 @@ export class ExercisesService {
     }
 
     /**
+     *
+     *
+     * @param id
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPatch(id: string, body?: ExerciseForUpdateDtoJsonPatchDocument, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPatch(id: string, body?: ExerciseForUpdateDtoJsonPatchDocument, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPatch(id: string, body?: ExerciseForUpdateDtoJsonPatchDocument, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPatch(id: string, body?: ExerciseForUpdateDtoJsonPatchDocument, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -192,15 +156,16 @@ export class ExercisesService {
     }
 
     /**
+     *
+     *
+     * @param id
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
     public apiExercisesIdPut(id: string, body?: ExerciseForUpdateDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPut(id: string, body?: ExerciseForUpdateDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPut(id: string, body?: ExerciseForUpdateDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    // tslint:disable-next-line:max-line-length
     public apiExercisesIdPut(id: string, body?: ExerciseForUpdateDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -247,6 +212,66 @@ export class ExercisesService {
     }
 
     /**
+     *
+     *
+     * @param pageSize
+     * @param number
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+     public apiExercisesPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+     public apiExercisesPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+     public apiExercisesPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+     public apiExercisesPageNumberSizePageSizeParamsGet(pageSize: number, number: number, searchName?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+ 
+         if (pageSize === null || pageSize === undefined) {
+             throw new Error('Required parameter pageSize was null or undefined when calling apiExercisesPageNumberSizePageSizeParamsGet.');
+         }
+ 
+         if (number === null || number === undefined) {
+             throw new Error('Required parameter number was null or undefined when calling apiExercisesPageNumberSizePageSizeParamsGet.');
+         }
+ 
+ 
+         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+         if (searchName !== undefined && searchName !== null) {
+             queryParameters = queryParameters.set('searchName', <any>searchName);
+         }
+ 
+         let headers = this.defaultHeaders;
+ 
+         // authentication (Bearer) required
+         if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+             headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+         }
+ 
+         // to determine the Accept header
+         let httpHeaderAccepts: string[] = [
+         ];
+         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+         if (httpHeaderAcceptSelected != undefined) {
+             headers = headers.set('Accept', httpHeaderAcceptSelected);
+         }
+ 
+         // to determine the Content-Type header
+         const consumes: string[] = [
+         ];
+ 
+         return this.httpClient.request<any>('get',`${this.basePath}/api/exercises/page/${encodeURIComponent(String(number))}/size/${encodeURIComponent(String(pageSize))}/params`,
+             {
+                 params: queryParameters,
+                 withCredentials: this.configuration.withCredentials,
+                 headers: headers,
+                 observe: observe,
+                 reportProgress: reportProgress
+             }
+         );
+     }
+
+    /**
+     *
+     *
+     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -295,6 +320,9 @@ export class ExercisesService {
     }
 
     /**
+     *
+     *
+     * @param id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

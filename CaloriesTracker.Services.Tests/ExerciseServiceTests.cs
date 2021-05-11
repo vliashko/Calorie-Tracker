@@ -36,23 +36,19 @@ namespace CaloriesTracker.Services.Tests
         [Fact]
         public async void GetAllExercises_ReturnsZeroItems_WhenDBEmpty()
         {
-            mockRepo.Setup(x => x.Exercise.GetAllExercisesAsync(false))
+            mockRepo.Setup(x => x.Exercise.GetAllExercisesPaginationAsync(1, 5, "", false))
                 .ReturnsAsync(GetExercises(0));
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.GetExercises();
-
+            var result = await service.GetExercisesPaginationAsync(1, 5, "");
             Assert.Empty(result);
         }
         [Fact]
         public async void GetAllExercises_ReturnsOneItem_WhenDBHasOneResource()
         {
-            mockRepo.Setup(x => x.Exercise.GetAllExercisesAsync(false))
+            mockRepo.Setup(x => x.Exercise.GetAllExercisesPaginationAsync(1, 5, "", false))
                 .ReturnsAsync(GetExercises(1));
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.GetExercises();
-
+            var result = await service.GetExercisesPaginationAsync(1, 5, "");
             Assert.Single(result);
         }
         [Fact]
@@ -60,10 +56,8 @@ namespace CaloriesTracker.Services.Tests
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
                 .ReturnsAsync(() => null);
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.GetExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
-
+            var result = await service.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
             Assert.Null(result);
         }
         [Fact]
@@ -80,10 +74,8 @@ namespace CaloriesTracker.Services.Tests
                         CaloriesSpent = 5,
                     }
                 );
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.GetExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
-
+            var result = await service.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
             Assert.Equal("Pull-ups", result.Name);
             Assert.IsType<ExerciseForReadDto>(result);
         }
@@ -101,31 +93,27 @@ namespace CaloriesTracker.Services.Tests
                         CaloriesSpent = 5,
                     }
                 );
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.CreateExercise(new ExerciseForCreateDto
+            var result = await service.CreateExerciseAsync(new ExerciseForCreateDto
             {
                 Name = "Test",
                 Description = "Desc Test",
                 CaloriesSpent = 1
             });
-
             Assert.IsType<ExerciseForReadDto>(result);
             Assert.Equal("Test", result.Name);
         }
         [Fact]
-        public async void UpdateExercise_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void UpdateExercise_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                 .ReturnsAsync(() => null);
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.UpdateExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), new ExerciseForUpdateDto { });
-
-            Assert.False(result);
+            var result = await service.UpdateExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), new ExerciseForUpdateDto { });
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void UpdateExercise_ReturnsTrue_WhenValidIDProvided()
+        public async void UpdateExercise_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                  .ReturnsAsync
@@ -138,31 +126,27 @@ namespace CaloriesTracker.Services.Tests
                          CaloriesSpent = 5,
                      }
                  );
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.UpdateExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), new ExerciseForUpdateDto
+            var result = await service.UpdateExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), new ExerciseForUpdateDto
             {
                 Name = "Test",
                 Description = "Desc Test",
                 CaloriesSpent = 1
             });
-
-            Assert.True(result);
+            Assert.Equal(204, result.StatusCode);
         }
         [Fact]
-        public async void PartiallyUpdateExercise_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void PartiallyUpdateExercise_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                 .ReturnsAsync(() => null);
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.PartiallyUpdateExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+            var result = await service.PartiallyUpdateExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
                 new Marvin.JsonPatch.JsonPatchDocument<ExerciseForUpdateDto> { });
-
-            Assert.False(result);
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void PartiallyUpdateExercise_ReturnsTrue_WhenValidIDProvided()
+        public async void PartiallyUpdateExercise_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), true))
                  .ReturnsAsync
@@ -175,26 +159,22 @@ namespace CaloriesTracker.Services.Tests
                          CaloriesSpent = 5,
                      }
                  );
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.PartiallyUpdateExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+            var result = await service.PartiallyUpdateExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
                 new Marvin.JsonPatch.JsonPatchDocument<ExerciseForUpdateDto> { });
-
-            Assert.True(result);
+            Assert.Equal(204, result.StatusCode);
         }
         [Fact]
-        public async void DeleteIngredient_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void DeleteIngredient_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
                 .ReturnsAsync(() => null);
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.DeleteExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
-
-            Assert.False(result);
+            var result = await service.DeleteExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void DeleteIngredient_ReturnsTrue_WhenValidIDProvided()
+        public async void DeleteIngredient_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Exercise.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), false))
                  .ReturnsAsync
@@ -207,11 +187,9 @@ namespace CaloriesTracker.Services.Tests
                          CaloriesSpent = 5,
                      }
                  );
-
             var service = new ExerciseService(mapper, mockRepo.Object, new LoggerManager());
-            var result = await service.DeleteExercise(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
-
-            Assert.True(result);
+            var result = await service.DeleteExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
+            Assert.Equal(204, result.StatusCode);
         }
         private IEnumerable<Exercise> GetExercises(int num)
         {

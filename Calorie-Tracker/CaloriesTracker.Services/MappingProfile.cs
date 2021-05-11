@@ -45,6 +45,8 @@ namespace CaloriesTracker.Services
             CreateMap<IngredientRecipe, IngredientRecipeForReadDto>();
             CreateMap<IngredientRecipeForCreateDto, IngredientRecipe>();
             CreateMap<IngredientRecipeForUpdateDto, IngredientRecipe>().ReverseMap();
+
+            CreateMap<User, UserForReadDto>();
         }
     }
 }

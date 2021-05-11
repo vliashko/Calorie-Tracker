@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CaloriesTracker.Api.Filter;
 using CaloriesTracker.Services.Interfaces;
 using Marvin.JsonPatch;
+using CaloriesTracker.Entities.Pagination;
 
 namespace CaloriesTracker.Api.Controllers
 {
@@ -20,15 +21,19 @@ namespace CaloriesTracker.Api.Controllers
         {
             this.serviceManager = serviceManager;
         }
-        [HttpGet]
-        public async Task<IActionResult> GetIngredients()
+        [HttpGet("page/{number}/size/{pageSize}/params")]
+        public async Task<IActionResult> GetIngredients(int pageSize = 5, int number = 1, string searchName = "")
         {
-            return Ok(await serviceManager.Ingredient.GetIngredients());
+            var ingredients = await serviceManager.Ingredient.GetIngredientsPaginationAsync(pageSize, number, searchName);
+            var count = await serviceManager.Ingredient.GetIngredientsCounts(searchName);
+            PageViewModel page = new PageViewModel(count, number, pageSize);
+            ViewModel<IngredientForReadDto> ingrViewModel = new ViewModel<IngredientForReadDto> { PageViewModel = page, Objects = ingredients };
+            return Ok(ingrViewModel);
         }
         [HttpGet("{id}", Name = "IngredientById")]
         public async Task<IActionResult> GetIngredient(Guid id)
         {
-            var ingredient = await serviceManager.Ingredient.GetIngredient(id);
+            var ingredient = await serviceManager.Ingredient.GetIngredientAsync(id);
             if (ingredient == null)
                 return NotFound();
             return Ok(ingredient);
@@ -37,33 +42,27 @@ namespace CaloriesTracker.Api.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateIngredient([FromBody] IngredientForCreateDto ingredientDto)
         {
-            var ingredientView = await serviceManager.Ingredient.CreateIngredient(ingredientDto);
+            var ingredientView = await serviceManager.Ingredient.CreateIngredientAsync(ingredientDto);
             return CreatedAtRoute("IngredientById", new { id = ingredientView.Id }, ingredientView);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIngredient(Guid id)
         {
-            var result = await serviceManager.Ingredient.DeleteIngredient(id);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await serviceManager.Ingredient.DeleteIngredientAsync(id);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateIngredient(Guid id, [FromBody] IngredientForUpdateDto ingredientDto)
         {
-            var result = await serviceManager.Ingredient.UpdateIngredient(id, ingredientDto);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await serviceManager.Ingredient.UpdateIngredientAsync(id, ingredientDto);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPatch("{id}")]
         public async Task<IActionResult> PartiallyUpdateIngredient(Guid id, [FromBody] JsonPatchDocument<IngredientForUpdateDto> patchDoc)
         {
-            var result = await serviceManager.Ingredient.PartiallyUpdateIngredient(id, patchDoc);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await serviceManager.Ingredient.PartiallyUpdateIngredientAsync(id, patchDoc);
+            return StatusCode(result.StatusCode, result.Message);
         }
     }
 }

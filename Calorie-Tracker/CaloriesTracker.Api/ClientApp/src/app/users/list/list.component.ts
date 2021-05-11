@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { ConfirmationDialog } from 'src/app/confirmation-dialog.component';
 import { User } from 'src/app/model/user';
 import { UsersService } from '../users.service';
@@ -15,36 +15,58 @@ import { UsersService } from '../users.service';
 export class ListComponent implements OnInit {
 
   users: User[] = [];
+  userName: string = '';
+  email: string = '';
+  loading = true;
+  event: any;
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  // tslint:disable-next-line:typedef
-  applyFilter(filterValue: any) {
-    filterValue = filterValue.target.value;
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    console.log(filterValue);
-    this.dataSource.filter = filterValue;
-  }
 
   constructor(public usersService: UsersService,
+              public authService: AuthenticationService,
               private dialog: MatDialog) {  }
 
   ngOnInit(): void {
-    this.displayedColumns = ['userName', 'email', 'actions'];
-    this.usersService.apiUsersGet().subscribe(res => {
-      this.dataSource = new MatTableDataSource(res);
-      this.paginator._intl.itemsPerPageLabel = 'Users Per Page';
+    this.displayedColumns = ['userName', 'email', 'password', 'actions'];
+    this.getData(1, 5);
+  }
+  getData(page: number, pageSize: number) {
+    this.usersService.apiUsersPageNumberSizePageSizeParamsGet(pageSize, page, this.userName, this.email).subscribe((res: any) => {
+      this.loading = false;
+      this.users = res.objects;
+      this.users.length = res.pageViewModel.count;
+      this.event = {
+        previousPageIndex: 0,
+        pageIndex: 0,
+        pageSize,
+        length: res.pageViewModel.count
+      };
+      this.dataSource = new MatTableDataSource(res.objects);
+      this.paginator._intl.itemsPerPageLabel = 'Users Per Page:';
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      console.log(this.dataSource.data);
     });
   }
-  // tslint:disable-next-line:typedef
-  deleteRecipe(id: string) {
+  filterData() {
+    this.getData(1, 5);
+  }
+  pageChanged(event: any) {
+    this.event = event;
+    this.loading = true;
+    this.getNextData(event.pageSize * event.pageIndex, event.pageSize, event.pageIndex);
+  }
+  getNextData(currentSize: number, pageSize: number, page: number) {
+    this.usersService.apiUsersPageNumberSizePageSizeParamsGet(pageSize, ++page, this.userName, this.email).subscribe(response => {
+      this.loading = false;
+      this.users.length = currentSize;
+      this.users.push(...response.objects);
+      this.users.length = response.pageViewModel.count;
+      this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  deleteUser(id: string) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {
         message: 'Are you sure want to delete?',
@@ -57,7 +79,34 @@ export class ListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.usersService.apiUsersIdDelete(id).subscribe(res => {
-          this.users = this.users.filter(item => item.id !== id);
+          this.loading = true;
+          this.paginator.pageIndex = 0;
+          this.getData(1, this.paginator.pageSize);
+        });
+      }
+    });
+  }
+  resetPassword(id: string) {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      data: {
+        message: 'Are you sure want to reset password?',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'No'
+        }
+      }
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.authService.apiAuthenticationGeneratenewpasswordIdGet(id).subscribe(res => {
+          const result = this.dialog.open(ConfirmationDialog, {
+            data: {
+              message: 'New Password: ' + res,
+              buttonText: {
+                cancel: 'I send it to user'
+              }
+            }
+          });
         });
       }
     });

@@ -2,7 +2,10 @@
     <h3>Edit Profile</h3>
 </mat-toolbar>
 <br>
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+<div class="form">
+<a href="#" [routerLink]="['/profile/']" mat-raised-button color="primary">Back To Profile</a>
+<br><br>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
     <mat-form-field appearance="outline">
         <mat-label>Weight</mat-label>
         <input type="number" matInput placeholder="from 35 to 350" formControlName="weight">
@@ -35,3 +38,4 @@
     <br>
     <button mat-raised-button color="primary" [disabled]="!formGroup.valid" type="submit">Submit</button>
 </form>
+</div>

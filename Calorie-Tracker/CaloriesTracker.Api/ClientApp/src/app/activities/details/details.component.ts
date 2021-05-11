@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Activity } from 'src/app/model/activity';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { ActivitiesService } from '../activities.service';
 
 @Component({
@@ -42,13 +42,12 @@ export class DetailsComponent implements OnInit {
     this.id = decoded.userId;
     this.userPr.apiUserprofilesGet(this.id).subscribe(res => {
       this.id = res.id;
-      this.activityService.getActivity(res.id, this.idActivity).subscribe(activity => {
+      this.activityService.getActivity(this.idActivity, res.id).subscribe(activity => {
         this.activity = activity;
         this.editForm.patchValue(activity);
       });
     });
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.editForm = this.formBuilder.group({
       name: [null],

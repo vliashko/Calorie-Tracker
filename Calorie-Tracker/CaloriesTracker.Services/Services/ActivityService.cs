@@ -6,140 +6,116 @@ using CaloriesTracker.Services.Interfaces;
 using Marvin.JsonPatch;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CaloriesTracker.Services.Services
 {
     public class ActivityService : IActivityService
     {
-        private readonly IRepositoryManager repositoryManager;
-        private readonly ILoggerManager logger;
-        private readonly IMapper mapper;
+        private readonly IRepositoryManager _repositoryManager;
+        private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
         public ActivityService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
         {
-            this.repositoryManager = repositoryManager;
-            this.logger = logger;
-            this.mapper = mapper;
+            _repositoryManager = repositoryManager;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<ActivityForReadDto> CreateActivity(Guid userId, ActivityForCreateDto activityDto)
+        public async Task<ActivityForReadDto> CreateActivityForUserProfileAsync(Guid id, ActivityForCreateDto activityDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
+            var user = await _repositoryManager.User.GetUserProfileAsync(id, trackChanges: true);
             if (user == null)
             {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+                _logger.LogInfo($"UserProfile with id: {id} doesn't exist in the database");
                 return null;
             }
+
             foreach (var iteration in activityDto.ExercisesWithReps)
             {
-                iteration.Exercise = await GetExerciseById(iteration.ExerciseId);
+                iteration.Exercise = await _repositoryManager.Exercise.GetExerciseAsync(iteration.ExerciseId, true);
             }
-            var activityEntity = mapper.Map<Activity>(activityDto);
-            repositoryManager.Activity.CreateActivity(activityEntity);
-            var activityView = mapper.Map<ActivityForReadDto>(activityEntity);
+
+            var activityEntity = _mapper.Map<Activity>(activityDto);
+            _repositoryManager.Activity.CreateActivity(activityEntity);
+            var activityView = _mapper.Map<ActivityForReadDto>(activityEntity);
             user.Activities.Add(activityEntity);
-            await repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
             return activityView;
         }
 
-        public async Task<bool> DeleteActivity(Guid userId, Guid activityId)
+        public async Task<MessageDetailsDto> DeleteActivityAsync(Guid activityId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: false);
+            var activity = await _repositoryManager.Activity.GetActivityAsync(activityId, trackChanges: false);
             if (activity == null)
             {
-                logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Activity with id: {activityId} doesn't exist in the database" };
+
             }
-            repositoryManager.Activity.DeleteActivity(activity);
-            await repositoryManager.SaveAsync();
-            return true;
+            _repositoryManager.Activity.DeleteActivity(activity);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<IEnumerable<ActivityForReadDto>> GetActivities(Guid userId)
+        public async Task<IEnumerable<ActivityForReadDto>> GetActivitiesForUserProfileForDateAsync(Guid id)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return null;
-            }
-            var activities = await repositoryManager.Activity.GetAllActivitiesForUserAsync(userId, trackChanges: false);
-            var activitiesDto = mapper.Map<IEnumerable<ActivityForReadDto>>(activities);
+            DateTime dateTime = DateTime.Now;
+            var activities = await _repositoryManager.Activity.GetAllActivitiesForUserForDateAsync(id, dateTime, trackChanges: false);
+            var activitiesDto = _mapper.Map<IEnumerable<ActivityForReadDto>>(activities);
             return activitiesDto;
         }
 
-        public async Task<ActivityForReadDto> GetActivity(Guid userId, Guid activityId)
+        public async Task<IEnumerable<ActivityForReadDto>> GetActivitiesForUserProfilePerDaysAsync(Guid id, int days)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return null;
-            }
-            var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: false);
+            var activities = await _repositoryManager.Activity.GetAllActivitiesForUserPerDays(id, days, trackChanges: false);
+            var activitiesDto = _mapper.Map<IEnumerable<ActivityForReadDto>>(activities);
+            return activitiesDto;
+        }
+
+        public async Task<ActivityForReadDto> GetActivityAsync(Guid activityId)
+        {
+            var activity = await _repositoryManager.Activity.GetActivityAsync(activityId, trackChanges: false);
             if (activity == null)
             {
-                logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
+                _logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
                 return null;
             }
-            var activityDto = mapper.Map<ActivityForReadDto>(activity);
+            var activityDto = _mapper.Map<ActivityForReadDto>(activity);
             return activityDto;
         }
 
-        public async Task<bool> PartiallyUpdateActivity(Guid userId, Guid activityId, JsonPatchDocument<ActivityForUpdateDto> patchDoc)
+        public async Task<MessageDetailsDto> PartiallyUpdateActivityAsync(Guid activityId, JsonPatchDocument<ActivityForUpdateDto> patchDoc)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: true);
+            var activity = await _repositoryManager.Activity.GetActivityAsync(activityId, trackChanges: true);
             if (activity == null)
             {
-                logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Activity with id: {activityId} doesn't exist in the database" };
             }
-            var activityToPatch = mapper.Map<ActivityForUpdateDto>(activity);
+            var activityToPatch = _mapper.Map<ActivityForUpdateDto>(activity);
             patchDoc.ApplyTo(activityToPatch);
-            mapper.Map(activityToPatch, activity);
-            await repositoryManager.SaveAsync();
-            return true;
+            _mapper.Map(activityToPatch, activity);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<bool> UpdateActivity(Guid userId, Guid activityId, ActivityForUpdateDto activityDto)
+        public async Task<MessageDetailsDto> UpdateActivityAsync(Guid activityId, ActivityForUpdateDto activityDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var activity = await repositoryManager.Activity.GetActivityForUserAsync(userId, activityId, trackChanges: true);
+            var activity = await _repositoryManager.Activity.GetActivityAsync(activityId, trackChanges: true);
             if (activity == null)
             {
-                logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Activity with id: {activityId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Activity with id: {activityId} doesn't exist in the database" };
             }
             foreach (var iteration in activityDto.ExercisesWithReps)
             {
-                iteration.Exercise = await GetExerciseById(iteration.ExerciseId);
+                iteration.Exercise = await _repositoryManager.Exercise.GetExerciseAsync(iteration.ExerciseId, true);
             }
-            mapper.Map(activityDto, activity);
-            await repositoryManager.SaveAsync();
-            return true;
-        }
-        private async Task<Exercise> GetExerciseById(Guid id)
-        {
-            return await repositoryManager.Exercise.GetExerciseAsync(id, trackChanges: true);
+            _mapper.Map(activityDto, activity);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
     }
 }

@@ -12,133 +12,111 @@ namespace CaloriesTracker.Services.Services
 {
     public class EatingService : IEatingService
     {
-        private readonly IRepositoryManager repositoryManager;
-        private readonly ILoggerManager logger;
-        private readonly IMapper mapper;
+        private readonly IRepositoryManager _repositoryManager;
+        private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
-        public EatingService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
+        public EatingService(IRepositoryManager repositoryManager, 
+                             ILoggerManager logger, 
+                             IMapper mapper)
         {
-            this.repositoryManager = repositoryManager;
-            this.logger = logger;
-            this.mapper = mapper;
+            _repositoryManager = repositoryManager;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<EatingForReadDto> CreateEating(Guid userId, EatingForCreateDto eatingDto)
+        public async Task<EatingForReadDto> CreateEatingForUserProfileAsync(Guid id, EatingForCreateDto eatingDto)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: true);
+            var user = await _repositoryManager.User.GetUserProfileAsync(id, trackChanges: true);
             if (user == null)
             {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
+                _logger.LogInfo($"UserProfile with id: {id} doesn't exist in the database");
                 return null;
             }
+            
             foreach (var iteration in eatingDto.IngredientsWithGrams)
             {
-                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+                iteration.Ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(iteration.IngredientId, true);
             }
-            var eatingEntity = mapper.Map<Eating>(eatingDto);
-            repositoryManager.Eating.CreateEating(eatingEntity);
-            var eatingView = mapper.Map<EatingForReadDto>(eatingEntity);
+
+            var eatingEntity = _mapper.Map<Eating>(eatingDto);
+            _repositoryManager.Eating.CreateEating(eatingEntity);
+            var eatingView = _mapper.Map<EatingForReadDto>(eatingEntity);
             user.Eatings.Add(eatingEntity);
-            await repositoryManager.SaveAsync();
+            await _repositoryManager.SaveAsync();
             return eatingView;
         }
 
-        public async Task<bool> DeleteEating(Guid userId, Guid eatingId)
+        public async Task<MessageDetailsDto> DeleteEatingAsync(Guid eatingId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: false);
+            var eating = await _repositoryManager.Eating.GetEatingAsync(eatingId, trackChanges: false);
             if (eating == null)
             {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Eating with id: {eatingId} doesn't exist in the database" };
             }
-            repositoryManager.Eating.DeleteEating(eating);
-            await repositoryManager.SaveAsync();
-            return true;
+            _repositoryManager.Eating.DeleteEating(eating);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<EatingForReadDto> GetEating(Guid userId, Guid eatingId)
+        public async Task<EatingForReadDto> GetEatingAsync(Guid eatingId)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return null;
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: false);
+            var eating = await _repositoryManager.Eating.GetEatingAsync(eatingId, trackChanges: false);
             if (eating == null)
             {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
+                _logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
                 return null;
             }
-            var eatingDto = mapper.Map<EatingForReadDto>(eating);
+            var eatingDto = _mapper.Map<EatingForReadDto>(eating);
             return eatingDto;
         }
 
-        public async Task<IEnumerable<EatingForReadDto>> GetEatings(Guid userId)
+        public async Task<IEnumerable<EatingForReadDto>> GetEatingsForUserProfileForDateAsync(Guid id)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return null;
-            }
-            var eatings = await repositoryManager.Eating.GetAllEatingsForUserAsync(userId, trackChanges: false);
-            var eatingsDto = mapper.Map<IEnumerable<EatingForReadDto>>(eatings);
+            DateTime dateTime = DateTime.Now;
+            var eatings = await _repositoryManager.Eating.GetAllEatingsForUserForDateAsync(id, dateTime, trackChanges: false);
+            var eatingsDto = _mapper.Map<IEnumerable<EatingForReadDto>>(eatings);
             return eatingsDto;
         }
 
-        public async Task<bool> PartiallyUpdateEating(Guid userId, Guid eatingId, JsonPatchDocument<EatingForUpdateDto> patchDoc)
+        public async Task<IEnumerable<EatingForReadDto>> GetEatingsForUserProfilePerDaysAsync(Guid id, int days)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: true);
-            if (eating == null)
-            {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
-                return false;
-            }
-            var eatingToPatch = mapper.Map<EatingForUpdateDto>(eating);
-            patchDoc.ApplyTo(eatingToPatch);
-            mapper.Map(eatingToPatch, eating);
-            await repositoryManager.SaveAsync();
-            return true;
+            var eatings = await _repositoryManager.Eating.GetAllEatingsForUserPerDays(id, days, trackChanges: false);
+            var eatingsDto = _mapper.Map<IEnumerable<EatingForReadDto>>(eatings);
+            return eatingsDto;
         }
 
-        public async Task<bool> UpdateEating(Guid userId, Guid eatingId, EatingForUpdateDto eatingDto)
+        public async Task<MessageDetailsDto> PartiallyUpdateEatingAsync(Guid eatingId, JsonPatchDocument<EatingForUpdateDto> patchDoc)
         {
-            var user = await repositoryManager.User.GetUserAsync(userId, trackChanges: false);
-            if (user == null)
-            {
-                logger.LogInfo($"UserProfile with id: {userId} doesn't exist in the database");
-                return false;
-            }
-            var eating = await repositoryManager.Eating.GetEatingForUserAsync(userId, eatingId, trackChanges: true);
+            var eating = await _repositoryManager.Eating.GetEatingAsync(eatingId, trackChanges: true);
             if (eating == null)
             {
-                logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Eating with id: {eatingId} doesn't exist in the database" };
+            }
+            var eatingToPatch = _mapper.Map<EatingForUpdateDto>(eating);
+            patchDoc.ApplyTo(eatingToPatch);
+            _mapper.Map(eatingToPatch, eating);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
+        }
+
+        public async Task<MessageDetailsDto> UpdateEatingAsync(Guid eatingId, EatingForUpdateDto eatingDto)
+        {
+            var eating = await _repositoryManager.Eating.GetEatingAsync(eatingId, trackChanges: true);
+            if (eating == null)
+            {
+                _logger.LogInfo($"Eating with id: {eatingId} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Eating with id: {eatingId} doesn't exist in the database" };
             }
             foreach (var iteration in eatingDto.IngredientsWithGrams)
             {
-                iteration.Ingredient = await GetIngredientById(iteration.IngredientId);
+                iteration.Ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(iteration.IngredientId, true);
             }
-            mapper.Map(eatingDto, eating);
-            await repositoryManager.SaveAsync();
-            return true;
-        }
-        private async Task<Ingredient> GetIngredientById(Guid id)
-        {
-            return await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
+            _mapper.Map(eatingDto, eating);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
     }
 }

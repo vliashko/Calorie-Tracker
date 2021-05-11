@@ -15,12 +15,16 @@ namespace CaloriesTracker.Repositories
         {
         }
 
+        public async Task<int> CountOfIngredientsAsync(string searchName, bool trackChanges) => await FindByCondition(ingr => string.IsNullOrWhiteSpace(searchName) || ingr.Name.Contains(searchName), trackChanges).CountAsync();
+
         public void CreateIngredient(Ingredient ingredient) => Create(ingredient);
 
         public void DeleteIngredient(Ingredient ingredient) => Delete(ingredient);
 
-        public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Ingredient>> GetAllIngredientsPaginationAsync(int pageSize, int number,  string searchName, bool trackChanges) =>
+            await FindByCondition(ingr => string.IsNullOrWhiteSpace(searchName) || ingr.Name.Contains(searchName), trackChanges)
+                .Skip((number - 1) * pageSize)
+                .Take(pageSize)
                 .OrderBy(ingr => ingr.Name)
                 .ToListAsync();
 

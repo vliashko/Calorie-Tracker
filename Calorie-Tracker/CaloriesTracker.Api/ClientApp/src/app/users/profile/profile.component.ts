@@ -4,8 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
-import { UserProfile } from 'src/app/model/userProfile';
-import { UserProfilesService } from 'src/app/userProfiles.service';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -35,7 +34,6 @@ export class ProfileComponent implements OnInit {
       this.formGroup.patchValue(res);
     });
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.formGroup = this.formBuilder.group({
       weight: [null],

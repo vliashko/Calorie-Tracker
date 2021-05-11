@@ -12,7 +12,6 @@ export class AppComponent {
   constructor(public authService: AuthenticationService,
               private router: Router) {}
 
-  // tslint:disable-next-line:typedef
   logout() {
     this.authService.doLogout();
     this.router.navigateByUrl('/');

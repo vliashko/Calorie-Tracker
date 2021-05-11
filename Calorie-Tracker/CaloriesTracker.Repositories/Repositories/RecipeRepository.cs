@@ -15,19 +15,18 @@ namespace CaloriesTracker.Repositories
         {
         }
 
+        public async Task<int> CountOfRecipesAsync(Guid id, bool trackChanges) => 
+            await FindByCondition(rec => rec.UserProfileId.Equals(id), trackChanges)
+                .CountAsync();
+
         public void CreateRecipe(Recipe recipe) => Create(recipe);
 
         public void DeleteRecipe(Recipe recipe) => Delete(recipe);
 
-        public async Task<IEnumerable<Recipe>> GetAllRecipesAsync(bool trackChanges) =>
-            await FindAll(trackChanges)
-                .OrderBy(rec => rec.Name)
-                .Include(rec => rec.IngredientsWithGrams)
-                    .ThenInclude(ig => ig.Ingredient)
-                .ToListAsync();
-
-        public async Task<IEnumerable<Recipe>> GetAllRecipesForUserAsync(Guid userId, bool trackChanges) =>
+        public async Task<IEnumerable<Recipe>> GetAllRecipesForUserPaginationAsync(Guid userId, int pageSize, int number, bool trackChanges) =>
             await FindByCondition(rec => rec.UserProfileId.Equals(userId), trackChanges)
+                .Skip((number - 1) * pageSize)
+                .Take(pageSize)
                 .OrderBy(rec => rec.Name)
                 .Include(rec => rec.IngredientsWithGrams)
                     .ThenInclude(ig => ig.Ingredient)
@@ -35,13 +34,6 @@ namespace CaloriesTracker.Repositories
 
         public async Task<Recipe> GetRecipeAsync(Guid recipeId, bool trackChanges) =>
             await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
-                .Include(rec => rec.IngredientsWithGrams)
-                    .ThenInclude(ig => ig.Ingredient)
-                .SingleOrDefaultAsync();
-
-        public async Task<Recipe> GetRecipeForUserAsync(Guid userId, Guid recipeId, bool trackChanges) =>
-            await FindByCondition(rec => rec.Id.Equals(recipeId), trackChanges)
-                .Where(rec => rec.UserProfileId.Equals(userId))
                 .Include(rec => rec.IngredientsWithGrams)
                     .ThenInclude(ig => ig.Ingredient)
                 .SingleOrDefaultAsync();

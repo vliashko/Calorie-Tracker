@@ -8,11 +8,12 @@ namespace CaloriesTracker.Services.Interfaces
 {
     public interface IActivityService
     {
-        Task<IEnumerable<ActivityForReadDto>> GetActivities(Guid userId);
-        Task<ActivityForReadDto> GetActivity(Guid userId, Guid activityId);
-        Task<ActivityForReadDto> CreateActivity(Guid userId, ActivityForCreateDto activityDto);
-        Task<bool> DeleteActivity(Guid userId, Guid activityId);
-        Task<bool> UpdateActivity(Guid userId, Guid activityId, ActivityForUpdateDto activityDto);
-        Task<bool> PartiallyUpdateActivity(Guid userId, Guid activityId, JsonPatchDocument<ActivityForUpdateDto> patchDoc);
+        Task<IEnumerable<ActivityForReadDto>> GetActivitiesForUserProfileForDateAsync(Guid id);
+        Task<IEnumerable<ActivityForReadDto>> GetActivitiesForUserProfilePerDaysAsync(Guid id, int days);
+        Task<ActivityForReadDto> CreateActivityForUserProfileAsync(Guid id, ActivityForCreateDto activityDto);
+        Task<ActivityForReadDto> GetActivityAsync(Guid activityId);
+        Task<MessageDetailsDto> DeleteActivityAsync(Guid activityId);
+        Task<MessageDetailsDto> UpdateActivityAsync(Guid activityId, ActivityForUpdateDto activityDto);
+        Task<MessageDetailsDto> PartiallyUpdateActivityAsync(Guid activityId, JsonPatchDocument<ActivityForUpdateDto> patchDoc);
     }
 }

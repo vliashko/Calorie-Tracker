@@ -15,12 +15,19 @@ namespace CaloriesTracker.Repositories
         {
         }
 
+        public async Task<int> CountOfExercisesAsync(string searchName, bool trackChanges) => 
+            await FindByCondition(exer => string.IsNullOrWhiteSpace(searchName) || exer.Name.Contains(searchName), trackChanges).CountAsync();
+
         public void CreateExercise(Exercise exercise) => Create(exercise);
 
         public void DeleteExercise(Exercise exercise) => Delete(exercise);
 
-        public async Task<IEnumerable<Exercise>> GetAllExercisesAsync(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(exer => exer.Name).ToListAsync();
+        public async Task<IEnumerable<Exercise>> GetAllExercisesPaginationAsync(int pageSize, int number, string searchName, bool trackChanges) =>
+            await FindByCondition(exer => string.IsNullOrWhiteSpace(searchName) || exer.Name.Contains(searchName), trackChanges)
+                .Skip((number - 1) * pageSize)
+                .Take(pageSize)
+                .OrderBy(exer => exer.Name)
+                .ToListAsync();
 
         public async Task<Exercise> GetExerciseAsync(Guid exerciseId, bool trackChanges) =>
             await FindByCondition(exer => exer.Id.Equals(exerciseId), trackChanges)

@@ -36,23 +36,19 @@ namespace CaloriesTracker.Services.Tests
         [Fact]
         public async void GetAllIngredients_ReturnsZeroItems_WhenDBEmpty()
         {
-            mockRepo.Setup(x => x.Ingredient.GetAllIngredientsAsync(false))
+            mockRepo.Setup(x => x.Ingredient.GetAllIngredientsPaginationAsync(1, 5, "", false))
                 .ReturnsAsync(GetIngredients(0));
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetIngredients();
-
+            var result = await service.GetIngredientsPaginationAsync(1, 5, "");
             Assert.Empty(result);
         }
         [Fact]
         public async void GetAllIngredients_ReturnsOneItem_WhenDBHasOneResource()
         {
-            mockRepo.Setup(x => x.Ingredient.GetAllIngredientsAsync(false))
+            mockRepo.Setup(x => x.Ingredient.GetAllIngredientsPaginationAsync(1, 5, "", false))
                 .ReturnsAsync(GetIngredients(1));
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetIngredients();
-
+            var result = await service.GetIngredientsPaginationAsync(1, 5, "");
             Assert.Single(result);
         }
         [Fact]
@@ -60,10 +56,8 @@ namespace CaloriesTracker.Services.Tests
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
                 .ReturnsAsync(() => null);
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-
+            var result = await service.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Null(result);
         }
         [Fact]
@@ -82,10 +76,8 @@ namespace CaloriesTracker.Services.Tests
                         Carbohydrates = 16.3f
                     }
                 );
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.GetIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-
+            var result = await service.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Equal("Potato", result.Name);
             Assert.IsType<IngredientForReadDto>(result);           
         }
@@ -105,9 +97,8 @@ namespace CaloriesTracker.Services.Tests
                         Carbohydrates = 16.3f
                     }
                 );
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.CreateIngredient(new IngredientForCreateDto
+            var result = await service.CreateIngredientAsync(new IngredientForCreateDto
             {
                 Name = "Test",
                 Calories = 100f,
@@ -115,23 +106,20 @@ namespace CaloriesTracker.Services.Tests
                 Fats = 0f,
                 Proteins = 5f
             });
-
             Assert.IsType<IngredientForReadDto>(result);
             Assert.Equal("Test", result.Name);
         }
         [Fact]
-        public async void UpdateIngredient_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void UpdateIngredient_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
                 .ReturnsAsync(() => null);
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.UpdateIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new IngredientForUpdateDto { });
-
-            Assert.False(result);
+            var result = await service.UpdateIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new IngredientForUpdateDto { });
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void UpdateIngredient_ReturnsTrue_WhenValidIDProvided()
+        public async void UpdateIngredient_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync
@@ -146,9 +134,8 @@ namespace CaloriesTracker.Services.Tests
                         Carbohydrates = 16.3f
                     }
                 );
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.UpdateIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new IngredientForUpdateDto 
+            var result = await service.UpdateIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new IngredientForUpdateDto 
             {
                 Name = "Test",
                 Calories = 100f,
@@ -156,23 +143,20 @@ namespace CaloriesTracker.Services.Tests
                 Fats = 0f,
                 Proteins = 5f
             });
-
-            Assert.True(result);
+            Assert.Equal(204, result.StatusCode);
         }
         [Fact]
-        public async void PartiallyUpdateIngredient_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void PartiallyUpdateIngredient_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
                .ReturnsAsync(() => null);
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.PartiallyUpdateIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), 
+            var result = await service.PartiallyUpdateIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), 
                 new Marvin.JsonPatch.JsonPatchDocument<IngredientForUpdateDto> { });
-
-            Assert.False(result);
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void PartiallyUpdateIngredient_ReturnsTrue_WhenValidIDProvided()
+        public async void PartiallyUpdateIngredient_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync
@@ -187,26 +171,22 @@ namespace CaloriesTracker.Services.Tests
                         Carbohydrates = 16.3f
                     }
                 );
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.PartiallyUpdateIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), 
+            var result = await service.PartiallyUpdateIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), 
                 new Marvin.JsonPatch.JsonPatchDocument<IngredientForUpdateDto> { });
-
-            Assert.True(result);
+            Assert.Equal(204, result.StatusCode);
         }
         [Fact]
-        public async void DeleteIngredient_ReturnsFalse_WhenNonExistentIDProvided()
+        public async void DeleteIngredient_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
                .ReturnsAsync(() => null);
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.DeleteIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-
-            Assert.False(result);
+            var result = await service.DeleteIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
+            Assert.Equal(404, result.StatusCode);
         }
         [Fact]
-        public async void DeleteIngredient_ReturnsTrue_WhenValidIDProvided()
+        public async void DeleteIngredient_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.Ingredient.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                .ReturnsAsync
@@ -221,11 +201,9 @@ namespace CaloriesTracker.Services.Tests
                        Carbohydrates = 16.3f
                    }
                );
-
             var service = new IngredientService(mockRepo.Object, new LoggerManager(), mapper);
-            var result = await service.DeleteIngredient(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
-
-            Assert.True(result);
+            var result = await service.DeleteIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
+            Assert.Equal(204, result.StatusCode);
         }
         private IEnumerable<Ingredient> GetIngredients(int num)
         {

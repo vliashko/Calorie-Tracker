@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { UserProfileForCreateDto } from 'src/app/model/userProfileForCreateDto';
+import { UserProfilesService } from 'src/app/users/userProfiles.service';
 import { UsersService } from 'src/app/users/users.service';
 import { AuthenticationService } from '../authentication.service';
 
@@ -14,16 +18,17 @@ export class RegisterComponent implements OnInit {
 
   form!: FormGroup;
   hide = true;
+  isError = false;
+  error: string = '';
 
   constructor(private authService: AuthenticationService,
-              private usersService: UsersService,
+              private usersService: UserProfilesService,
               private formBuilder: FormBuilder,
               private router: Router) { }
 
   ngOnInit(): void {
     this.createForm();
   }
-    // tslint:disable-next-line:typedef
     createForm() {
       this.form = this.formBuilder.group({
         username: [null, Validators.required],
@@ -48,10 +53,16 @@ export class RegisterComponent implements OnInit {
           gender: 0,
           dateOfBirth: new Date()
         };
-        this.usersService.apiUsersPost(userPr).subscribe(() => {
+        const token = this.authService.getToken();
+        const decoded: any = jwtDecode(token);
+        this.usersService.apiUserprofilesIdPost(decoded.userId, userPr).subscribe(() => {
           this.router.navigateByUrl('/profile/edit');
         });
       });
+    },
+    (error) => {
+      this.error = error.error;
+      this.isError = true;
     });
   }
 

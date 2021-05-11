@@ -8,11 +8,12 @@ namespace CaloriesTracker.Services.Interfaces
 {
     public interface IRecipeService
     {
-        Task<IEnumerable<RecipeForReadDto>> GetRecipes(Guid userId);
-        Task<RecipeForReadDto> GetRecipe(Guid userId, Guid recipeId);
-        Task<RecipeForReadDto> CreateRecipe(Guid userId, RecipeForCreateDto recipeDto);
-        Task<bool> DeleteRecipe(Guid userId, Guid recipeId);
-        Task<bool> UpdateRecipe(Guid userId, Guid recipeId, RecipeForUpdateDto recipeDto);
-        Task<bool> PartiallyUpdateRecipe(Guid userId, Guid recipeId, JsonPatchDocument<RecipeForUpdateDto> patchDoc);
+        Task<IEnumerable<RecipeForReadDto>> GetRecipesForUserProfilePaginationAsync(Guid id, int pageSize, int number);
+        Task<int> GetRecipesCount(Guid userId);
+        Task<RecipeForReadDto> GetRecipeAsync(Guid recipeId);
+        Task<RecipeForReadDto> CreateRecipeForUserProfileAsync(Guid id, RecipeForCreateDto recipeDto);
+        Task<MessageDetailsDto> DeleteRecipeAsync(Guid recipeId);
+        Task<MessageDetailsDto> UpdateRecipeAsync(Guid recipeId, RecipeForUpdateDto recipeDto);
+        Task<MessageDetailsDto> PartiallyUpdateRecipeAsync(Guid recipeId, JsonPatchDocument<RecipeForUpdateDto> patchDoc);
     }
 }

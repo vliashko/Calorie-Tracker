@@ -3,6 +3,8 @@
 </mat-toolbar>
 <br>
   <a href="#" [routerLink]="['/profile/']" mat-raised-button color="primary">Back To Profile</a>
+  <div class="divider"></div>
+  <a href="#" [routerLink]="['/eatings/', 'create']" mat-raised-button color="primary">Create New</a>
 <br><br>
 <table mat-table [dataSource] ="eatings" class="mat-elevation-z8">
   <ng-container matColumnDef="name">
@@ -30,5 +32,3 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<br>
-<a href="#" [routerLink]="['/eatings/', 'create']" mat-raised-button color="primary">Create New</a>

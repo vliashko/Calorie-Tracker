@@ -22,28 +22,38 @@ namespace CaloriesTracker.Repositories
         public async Task<IEnumerable<Eating>> GetAllEatingsForUserAsync(Guid userId, bool trackChanges) =>
             await FindByCondition(eat => eat.UserProfileId == userId, trackChanges)
                 .Include(eat => eat.IngredientsWithGrams)
-                    .ThenInclude(ig => ig.Ingredient)
+                    .ThenInclude(ing => ing.Ingredient)
                 .OrderBy(eat => eat.Moment)
                 .ToListAsync();
 
-        public async Task<IEnumerable<Eating>> GetAllEatingsAsync(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Eating>> GetAllEatingsForUserForDateAsync(Guid userId, 
+                DateTime dateTime, 
+                bool trackChanges) =>
+            await FindByCondition(eat =>
+                    eat.UserProfileId == userId &&
+                        eat.Moment.Date == dateTime.Date, trackChanges)
                 .Include(eat => eat.IngredientsWithGrams)
-                    .ThenInclude(ig => ig.Ingredient)
+                    .ThenInclude(ing => ing.Ingredient)
                 .OrderBy(eat => eat.Moment)
                 .ToListAsync();
+
+        public async Task<IEnumerable<Eating>> GetAllEatingsForUserPerDays(Guid userId, int days, bool trackChanges)
+        {
+            var date1 = DateTime.Now.Date.AddDays(-days);
+            var date2 = DateTime.Now.Date;
+            var res = await FindByCondition(eat => eat.UserProfileId == userId &&
+                eat.Moment.Date >= date1 && eat.Moment.Date <= date2, trackChanges)
+                .Include(eat => eat.IngredientsWithGrams)
+                    .ThenInclude(er => er.Ingredient)
+                .OrderBy(eat => eat.Moment)
+                .ToListAsync();
+            return res;
+        }
 
         public async Task<Eating> GetEatingAsync(Guid eatingId, bool trackChanges) =>
             await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
                 .Include(eat => eat.IngredientsWithGrams)
-                    .ThenInclude(ig => ig.Ingredient)
-                .SingleOrDefaultAsync();
-
-        public async Task<Eating> GetEatingForUserAsync(Guid userId, Guid eatingId, bool trackChanges) =>
-            await FindByCondition(eat => eat.Id.Equals(eatingId), trackChanges)
-                .Where(eat => eat.UserProfileId == userId)
-                .Include(eat => eat.IngredientsWithGrams)
-                    .ThenInclude(ig => ig.Ingredient)
+                    .ThenInclude(ing => ing.Ingredient)
                 .SingleOrDefaultAsync();
     }
 }

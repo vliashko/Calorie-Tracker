@@ -14,24 +14,24 @@ namespace CaloriesTracker.Api.Controllers
     [Authorize]
     public class ActivitiesController : ControllerBase
     {
-        private readonly IServiceManager serviceManager;
+        private readonly IServiceManager _serviceManager;
 
         public ActivitiesController(IServiceManager serviceManager)
         {
-            this.serviceManager = serviceManager;
+            _serviceManager = serviceManager;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetActivities(Guid userId)
         {
-            var activities = await serviceManager.Activity.GetActivities(userId);
-            if (activities == null)
-                return NotFound();
+            var activities = await _serviceManager.Activity.GetActivitiesForUserProfileForDateAsync(userId);
             return Ok(activities);
         }
+
         [HttpGet("{activityId}", Name = "GetActivity")]
-        public async Task<IActionResult> GetActivity(Guid userId, Guid activityId)
+        public async Task<IActionResult> GetActivity(Guid activityId)
         {
-            var activity = await serviceManager.Activity.GetActivity(userId, activityId);
+            var activity = await _serviceManager.Activity.GetActivityAsync(activityId);
             if (activity == null)
                 return NotFound();
             return Ok(activity);
@@ -40,35 +40,29 @@ namespace CaloriesTracker.Api.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateActivity(Guid userId, [FromBody] ActivityForCreateDto activityDto)
         {
-            var activityView = await serviceManager.Activity.CreateActivity(userId, activityDto);
+            var activityView = await _serviceManager.Activity.CreateActivityForUserProfileAsync(userId, activityDto);
             if (activityView == null)
                 return NotFound();
             return CreatedAtRoute("GetActivity", new { userId, activityId = activityView.Id }, activityView);
         }
         [HttpDelete("{activityId}")]
-        public async Task<IActionResult> DeleteActivity(Guid userId, Guid activityId)
+        public async Task<IActionResult> DeleteActivity(Guid activityId)
         {
-            var result = await serviceManager.Activity.DeleteActivity(userId, activityId);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Activity.DeleteActivityAsync(activityId);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPut("{activityId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> UpdateActivity(Guid userId, Guid activityId, [FromBody] ActivityForUpdateDto activityDto)
+        public async Task<IActionResult> UpdateActivity(Guid activityId, [FromBody] ActivityForUpdateDto activityDto)
         {
-            var result = await serviceManager.Activity.UpdateActivity(userId, activityId, activityDto);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Activity.UpdateActivityAsync(activityId, activityDto);
+            return StatusCode(result.StatusCode, result.Message);
         }
         [HttpPatch("{activityId}")]
-        public async Task<IActionResult> PartiallyUpdateActivity(Guid userId, Guid activityId, [FromBody] JsonPatchDocument<ActivityForUpdateDto> patchDoc)
+        public async Task<IActionResult> PartiallyUpdateActivity(Guid activityId, [FromBody] JsonPatchDocument<ActivityForUpdateDto> patchDoc)
         {
-            var result = await serviceManager.Activity.PartiallyUpdateActivity(userId, activityId, patchDoc);
-            if (!result)
-                return NotFound();
-            return NoContent();
+            var result = await _serviceManager.Activity.PartiallyUpdateActivityAsync(activityId, patchDoc);
+            return StatusCode(result.StatusCode, result.Message);
         }
     }
 }

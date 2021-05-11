@@ -11,7 +11,7 @@
  */
 import { Gender } from './gender';
 
-export interface UserProfileForCreateDto { 
+export interface UserProfileForCreateDto {
     weight: number;
     height: number;
     gender: Gender;

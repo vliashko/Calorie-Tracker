@@ -13,6 +13,6 @@ import { Ingredient } from './ingredient';
 
 export interface IngredientEatingForUpdateDto {
     ingredientId: string;
-    ingredient: Ingredient;
+    ingredient?: Ingredient;
     grams: number;
 }

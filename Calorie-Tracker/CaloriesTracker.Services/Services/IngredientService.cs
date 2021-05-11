@@ -12,85 +12,90 @@ namespace CaloriesTracker.Services.Services
 {
     public class IngredientService : IIngredientService
     {
-        private readonly IRepositoryManager repositoryManager;
-        private readonly ILoggerManager logger;
-        private readonly IMapper mapper;
+        private readonly IRepositoryManager _repositoryManager;
+        private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
         public IngredientService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
         {
-            this.repositoryManager = repositoryManager;
-            this.logger = logger;
-            this.mapper = mapper;
+            _repositoryManager = repositoryManager;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<IngredientForReadDto> CreateIngredient(IngredientForCreateDto ingredientCreateDto)
+        public async Task<IngredientForReadDto> CreateIngredientAsync(IngredientForCreateDto ingredientCreateDto)
         {
-            var ingredientEntity = mapper.Map<Ingredient>(ingredientCreateDto);
-            repositoryManager.Ingredient.CreateIngredient(ingredientEntity);
-            await repositoryManager.SaveAsync();
-            var ingredientView = mapper.Map<IngredientForReadDto>(ingredientEntity);
+            var ingredientEntity = _mapper.Map<Ingredient>(ingredientCreateDto);
+            _repositoryManager.Ingredient.CreateIngredient(ingredientEntity);
+            await _repositoryManager.SaveAsync();
+            var ingredientView = _mapper.Map<IngredientForReadDto>(ingredientEntity);
             return ingredientView;
         }
 
-        public async Task<bool> DeleteIngredient(Guid id)
+        public async Task<MessageDetailsDto> DeleteIngredientAsync(Guid id)
         {
-            var ingredient = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: false);
+            var ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: false);
             if (ingredient == null)
             {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Ingredient with id: {id} doesn't exist in the database" };
             }
-            repositoryManager.Ingredient.DeleteIngredient(ingredient);
-            await repositoryManager.SaveAsync();
-            return true;
+            _repositoryManager.Ingredient.DeleteIngredient(ingredient);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<IngredientForReadDto> GetIngredient(Guid id)
+        public async Task<IngredientForReadDto> GetIngredientAsync(Guid id)
         {
-            var ingredient = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: false);
+            var ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: false);
             if (ingredient == null)
             {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+                _logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
                 return null;
             }
-            var ingredientDto = mapper.Map<IngredientForReadDto>(ingredient);
+            var ingredientDto = _mapper.Map<IngredientForReadDto>(ingredient);
             return ingredientDto;
         }
 
-        public async Task<IEnumerable<IngredientForReadDto>> GetIngredients()
+        public async Task<int> GetIngredientsCounts(string searchName)
         {
-            var ingredients = await repositoryManager.Ingredient.GetAllIngredientsAsync(trackChanges: false);
-            var ingredientsDto = mapper.Map<IEnumerable<IngredientForReadDto>>(ingredients);
+            return await _repositoryManager.Ingredient.CountOfIngredientsAsync(searchName, false);
+        }
+
+        public async Task<IEnumerable<IngredientForReadDto>> GetIngredientsPaginationAsync(int pageSize, int number, string searchName)
+        {
+            var ingredients = await _repositoryManager.Ingredient.GetAllIngredientsPaginationAsync(pageSize, number, searchName, trackChanges: false);
+            var ingredientsDto = _mapper.Map<IEnumerable<IngredientForReadDto>>(ingredients);
             return ingredientsDto;
         }
 
-        public async Task<bool> PartiallyUpdateIngredient(Guid id, JsonPatchDocument<IngredientForUpdateDto> ingredientUpdateDto)
+        public async Task<MessageDetailsDto> PartiallyUpdateIngredientAsync(Guid id, JsonPatchDocument<IngredientForUpdateDto> ingredientUpdateDto)
         {
-            var ingredientEntity = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
+            var ingredientEntity = await _repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
             if (ingredientEntity == null)
             {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Ingredient with id: {id} doesn't exist in the database" };
             }
-            var ingredientToPatch = mapper.Map<IngredientForUpdateDto>(ingredientEntity);
+            var ingredientToPatch = _mapper.Map<IngredientForUpdateDto>(ingredientEntity);
 
             ingredientUpdateDto.ApplyTo(ingredientToPatch);
-            mapper.Map(ingredientToPatch, ingredientEntity);
-            await repositoryManager.SaveAsync();
-            return true;
+            _mapper.Map(ingredientToPatch, ingredientEntity);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
 
-        public async Task<bool> UpdateIngredient(Guid id, IngredientForUpdateDto ingredientUpdateDto)
+        public async Task<MessageDetailsDto> UpdateIngredientAsync(Guid id, IngredientForUpdateDto ingredientUpdateDto)
         {
-            var ingredient = await repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
+            var ingredient = await _repositoryManager.Ingredient.GetIngredientAsync(id, trackChanges: true);
             if (ingredient == null)
             {
-                logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
-                return false;
+                _logger.LogInfo($"Ingredient with id: {id} doesn't exist in the database");
+                return new MessageDetailsDto { StatusCode = 404, Message = $"Ingredient with id: {id} doesn't exist in the database" };
             }
-            mapper.Map(ingredientUpdateDto, ingredient);
-            await repositoryManager.SaveAsync();
-            return true;
+            _mapper.Map(ingredientUpdateDto, ingredient);
+            await _repositoryManager.SaveAsync();
+            return new MessageDetailsDto { StatusCode = 204 };
         }
     }
 }

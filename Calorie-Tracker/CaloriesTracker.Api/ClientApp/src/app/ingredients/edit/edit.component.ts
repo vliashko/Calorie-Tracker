@@ -31,7 +31,6 @@ export class EditComponent implements OnInit {
   public checkError = (controlName: string, errorName: string) => {
     return this.editForm.controls[controlName].hasError(errorName);
   }
-  // tslint:disable-next-line:typedef
   createForm() {
     this.editForm = this.formBuilder.group({
       name: [null, Validators.required],
@@ -42,7 +41,6 @@ export class EditComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   onSubmit(formData: any) {
     this.ingredientsService.apiIngredientsIdPut(this.id, formData).subscribe(res => {
       this.router.navigateByUrl('ingredients/list');
