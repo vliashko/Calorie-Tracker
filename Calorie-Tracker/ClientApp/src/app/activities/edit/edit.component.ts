@@ -181,6 +181,7 @@ export class EditComponent implements OnInit {
     const date = new Date();
     const hours = this.post.moment.split(':')[0];
     const minutes = this.post.moment.split(':')[1];
+    date.setHours(hours);
     date.setMinutes(minutes);
     date.setSeconds(0);
     this.activity = {
