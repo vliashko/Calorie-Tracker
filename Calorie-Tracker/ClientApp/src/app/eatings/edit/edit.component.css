@@ -1,0 +1,16 @@
+.form {
+  min-width: 200px;
+  max-width: 640px;
+  width: 100%;
+}
+.formField {
+  width: 580px;
+}
+mat-form-field {
+width: 100%;
+}
+.divider{
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}

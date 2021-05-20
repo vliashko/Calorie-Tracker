@@ -1,0 +1,92 @@
+<mat-toolbar>
+  <h3>Edit Activity</h3>
+</mat-toolbar>
+<br>
+<div style="display: flex; justify-content: center">
+  <div>
+    <a href="#" routerLink="/activities/list/" mat-raised-button color="primary">Back to Activities List</a>
+  <br><br>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <mat-form-field appearance="outline" class="formField">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Activity" formControlName="name">
+        <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="formField">
+        <mat-label>Moment</mat-label>
+        <input matInput [ngxTimepicker]="picker" formControlName="moment" [format]="24" readonly>
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
+        <mat-error *ngIf="checkError('moment', 'required')">Moment is required</mat-error>
+    </mat-form-field> 
+    <div formArrayName="exercisesWithReps">
+      <div *ngIf="!visible;else formTable">
+        <mat-form-field appearance="outline" class="formField">
+          <mat-label>Add Some Exercises From Table</mat-label>
+          <input matInput readonly>
+      </mat-form-field>
+      </div>
+      <ng-template #formTable>
+        <table mat-table [dataSource] ="dataSourceForForm" class="mat-elevation-z8 formField">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroupName]="i"> <input matInput formControlName="name" readonly> </td>
+          </ng-container>
+          <ng-container matColumnDef="caloriesSpent">
+            <th mat-header-cell *matHeaderCellDef> Calories </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroupName]="i"> <input matInput formControlName="caloriesSpent" readonly> </td>
+          </ng-container>
+          <ng-container matColumnDef="numberOfRepetitions">
+            <th mat-header-cell *matHeaderCellDef> Repetitions</th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroupName]="i"> <input matInput type="number" formControlName="numberOfRepetitions"> </td>
+          </ng-container>
+          <ng-container matColumnDef="numberOfSets">
+            <th mat-header-cell *matHeaderCellDef> Sets </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroupName]="i"> <input matInput type="number" formControlName="numberOfSets"> </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element" >
+              <button type="button" (click)="deleteExercise(element.name)" mat-raised-button color="warn">Delete</button> 
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsForForm"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsForForm;"></tr>
+        </table>
+        <br>
+      </ng-template>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid" type="submit">Update</button>
+  </form>
+  </div>
+  <br>
+  <div class="formFieldExer">
+    <mat-form-field appearance="outline">
+      <mat-label>Name of Exercise</mat-label>
+      <input matInput placeholder="Name" name="searchName" [(ngModel)]="searchName">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="filterData()">Search</button>
+    <br><br>
+    <div *ngIf="loading;else table"></div>
+    <ng-template #table>
+    <table mat-table [dataSource] ="dataSource" class="mat-elevation-z8" style="width: 100%;">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> <input matInput readonly> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="caloriesSpent">
+        <th mat-header-cell *matHeaderCellDef> Calories Spent </th>
+        <td mat-cell *matCellDef="let element"> <input matInput readonly> {{element.caloriesSpent}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element" >
+          <button type="button" (click)="addExercise(element.id, element.name)" mat-raised-button color="primary">Add</button> 
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </ng-template>
+    <mat-paginator (page)="pageChanged($event)" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

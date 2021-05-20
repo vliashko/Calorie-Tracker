@@ -1,0 +1,39 @@
+<mat-toolbar>
+    <h3>Recipes</h3>
+</mat-toolbar>
+<br>
+  <a href="#" [routerLink]="['/profile/']" mat-raised-button color="primary">Back To Profile</a>
+  <div class="divider"></div>
+  <a href="#" [routerLink]="['/recipes/', 'create']" mat-raised-button color="primary">Create New</a>
+<br><br>
+<div *ngIf="loading;else table"></div>
+<ng-template #table>
+  <table mat-table [dataSource] ="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="instruction">
+      <th mat-header-cell *matHeaderCellDef> Instruction </th>
+      <td mat-cell *matCellDef="let element"> {{element.instruction}} </td>
+    </ng-container>
+    <ng-container matColumnDef="totalCalories">
+      <th mat-header-cell *matHeaderCellDef> Total Calories </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalCalories}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element" >
+        <a href="#" [routerLink]="['/recipes/', element.id, 'details']" mat-raised-button color="accent">Details</a> 
+        <div class="divider"></div>
+        <a href="#" [routerLink]="['/recipes/', element.id, 'edit']" mat-raised-button color="accent">Edit</a> 
+        <div class="divider"></div>
+        <button type="button" (click)="deleteRecipe(element.id)" mat-raised-button color="warn">Delete</button> 
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>
+<br>
+<mat-paginator (page)="pageChanged($event)" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

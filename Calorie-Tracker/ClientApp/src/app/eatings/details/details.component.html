@@ -1,0 +1,34 @@
+<mat-toolbar>
+    <h3>Ingredients</h3>
+</mat-toolbar>
+<br>
+  <a href="#" routerLink="/eatings/list/" mat-raised-button color="primary">Back To Eatings List</a>
+<br><br>
+<table  mat-table [dataSource] ="eating.ingredientsWithGrams" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="calories">
+    <th mat-header-cell *matHeaderCellDef> Calories </th>
+    <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
+  </ng-container>
+  <ng-container matColumnDef="proteins">
+    <th mat-header-cell *matHeaderCellDef> Proteins </th>
+    <td mat-cell *matCellDef="let element"> {{element.proteins}} </td>
+  </ng-container>
+  <ng-container matColumnDef="fats">
+    <th mat-header-cell *matHeaderCellDef> Fats </th>
+    <td mat-cell *matCellDef="let element"> {{element.fats}} </td>
+  </ng-container>
+  <ng-container matColumnDef="carbohydrates">
+    <th mat-header-cell *matHeaderCellDef> Carbohydrates </th>
+    <td mat-cell *matCellDef="let element"> {{element.carbohydrates}} </td>
+  </ng-container>
+  <ng-container matColumnDef="grams">
+    <th mat-header-cell *matHeaderCellDef> Grams </th>
+    <td mat-cell *matCellDef="let element"> {{element.grams}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

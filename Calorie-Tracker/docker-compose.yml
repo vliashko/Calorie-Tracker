@@ -7,21 +7,70 @@ services:
       dockerfile: Db/Dockerfile
     volumes:
       - ./Db:/usr/src/app 
-  backend:
-    image: ${DOCKER_REGISTRY-}caloriestrackerapi
+  eating_microservice:
+    hostname: eating_microservice
     build:
       context: .
-      dockerfile: CaloriesTracker.Api/Dockerfile
+      dockerfile: EatingMicroService/Dockerfile
+    depends_on:
+      - db  
+  recipe_microservice:
+    hostname: recipe_microservice
+    build:
+      context: .
+      dockerfile: RecipeMicroService/Dockerfile
+    depends_on:
+      - db  
+  activity_microservice:
+    hostname: activity_microservice
+    build:
+      context: .
+      dockerfile: ActivityMicroService/Dockerfile
+    depends_on:
+      - db  
+  user_microservice:
+    hostname: user_microservice
+    build:
+      context: .
+      dockerfile: UserMicroService/Dockerfile
     depends_on:
       - db
-    volumes:
-    - "/etc/timezone:/etc/timezone:ro"
-    - "/etc/localtime:/etc/localtime:ro"
+  exercise_microservice:
+    hostname: exercise_microservice
+    build:
+      context: .
+      dockerfile: ExerciseMicroService/Dockerfile
+    depends_on:
+      - db
+  ingredient_microservice:
+    hostname: ingredient_microservice
+    build:
+      context: .
+      dockerfile: IngredientMicroService/Dockerfile
+    depends_on:
+      - db
+  gateway:
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    links:
+      - eating_microservice
+      - recipe_microservice
+      - activity_microservice
+      - user_microservice
+      - exercise_microservice
+      - ingredient_microservice
+    depends_on:
+      - eating_microservice
+      - recipe_microservice
+      - activity_microservice
+      - user_microservice
+      - exercise_microservice
+      - ingredient_microservice
   front:
     image: clientapp
     build:
       context: .
-      dockerfile: CaloriesTracker.Api/ClientApp/Dockerfile
+      dockerfile: ClientApp/Dockerfile
     depends_on:
-       - backend
-    
+      - gateway

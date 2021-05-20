@@ -1,168 +1,434 @@
 USE [master]
 GO
 
-/****** Object:  Database [CaloriesTracker]    Script Date: 21.04.2021 15:23:53 ******/
-CREATE DATABASE [CaloriesTracker]
+/****** Object:  Database [IngredientMicroServiceDB]    Script Date: 17.05.2021 15:37:06 ******/
+CREATE DATABASE [IngredientMicroServiceDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'CaloriesTracker', FILENAME = N'/var/opt/mssql/data/CaloriesTracker.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'IngredientMicroServiceDB', FILENAME = N'/var/opt/mssql/data/IngredientMicroServiceDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'CaloriesTracker_log', FILENAME = N'/var/opt/mssql/data/CaloriesTracker_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
+( NAME = N'IngredientMicroServiceDB_log', FILENAME = N'/var/opt/mssql/data/IngredientMicroServiceDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 GO
 
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
-EXEC [CaloriesTracker].[dbo].[sp_fulltext_database] @action = 'enable'
+EXEC [IngredientMicroServiceDB].[dbo].[sp_fulltext_database] @action = 'enable'
 end
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ANSI_NULL_DEFAULT OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET ANSI_NULL_DEFAULT OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ANSI_NULLS OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET ANSI_NULLS OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ANSI_PADDING OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET ANSI_PADDING OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ANSI_WARNINGS OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET ANSI_WARNINGS OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ARITHABORT OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET ARITHABORT OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET AUTO_CLOSE ON 
+ALTER DATABASE [IngredientMicroServiceDB] SET AUTO_CLOSE ON 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET AUTO_SHRINK OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET AUTO_SHRINK OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET AUTO_UPDATE_STATISTICS ON 
+ALTER DATABASE [IngredientMicroServiceDB] SET AUTO_UPDATE_STATISTICS ON 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET CURSOR_CLOSE_ON_COMMIT OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET CURSOR_DEFAULT  GLOBAL 
+ALTER DATABASE [IngredientMicroServiceDB] SET CURSOR_DEFAULT  GLOBAL 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET CONCAT_NULL_YIELDS_NULL OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET CONCAT_NULL_YIELDS_NULL OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET NUMERIC_ROUNDABORT OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET NUMERIC_ROUNDABORT OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET QUOTED_IDENTIFIER OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET QUOTED_IDENTIFIER OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET RECURSIVE_TRIGGERS OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET RECURSIVE_TRIGGERS OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET  ENABLE_BROKER 
+ALTER DATABASE [IngredientMicroServiceDB] SET  ENABLE_BROKER 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET DATE_CORRELATION_OPTIMIZATION OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET TRUSTWORTHY OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET TRUSTWORTHY OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET PARAMETERIZATION SIMPLE 
+ALTER DATABASE [IngredientMicroServiceDB] SET PARAMETERIZATION SIMPLE 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET READ_COMMITTED_SNAPSHOT ON 
+ALTER DATABASE [IngredientMicroServiceDB] SET READ_COMMITTED_SNAPSHOT ON 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET HONOR_BROKER_PRIORITY OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET HONOR_BROKER_PRIORITY OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET RECOVERY FULL 
+ALTER DATABASE [IngredientMicroServiceDB] SET RECOVERY SIMPLE 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET  MULTI_USER 
+ALTER DATABASE [IngredientMicroServiceDB] SET  MULTI_USER 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET PAGE_VERIFY CHECKSUM  
+ALTER DATABASE [IngredientMicroServiceDB] SET PAGE_VERIFY CHECKSUM  
 GO
 
-ALTER DATABASE [CaloriesTracker] SET DB_CHAINING OFF 
+ALTER DATABASE [IngredientMicroServiceDB] SET DB_CHAINING OFF 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+ALTER DATABASE [IngredientMicroServiceDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+ALTER DATABASE [IngredientMicroServiceDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET DELAYED_DURABILITY = DISABLED 
+ALTER DATABASE [IngredientMicroServiceDB] SET DELAYED_DURABILITY = DISABLED 
 GO
 
-ALTER DATABASE [CaloriesTracker] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+ALTER DATABASE [IngredientMicroServiceDB] SET QUERY_STORE = OFF
 GO
 
-ALTER DATABASE [CaloriesTracker] SET QUERY_STORE = OFF
+USE [IngredientMicroServiceDB]
 GO
 
-ALTER DATABASE [CaloriesTracker] SET  READ_WRITE 
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
 GO
 
-USE [CaloriesTracker]
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
 GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 21.04.2021 15:21:28 ******/
+
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+
+ALTER DATABASE [IngredientMicroServiceDB] SET  READ_WRITE 
+GO
+
+USE [IngredientMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[Ingredients]    Script Date: 17.05.2021 15:37:25 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[__EFMigrationsHistory](
-	[MigrationId] [nvarchar](150) NOT NULL,
-	[ProductVersion] [nvarchar](32) NOT NULL,
- CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
-(
-	[MigrationId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Activities]    Script Date: 21.04.2021 15:21:28 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Activities](
+
+CREATE TABLE [dbo].[Ingredients](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Name] [nvarchar](max) NULL,
-	[Moment] [smalldatetime] NOT NULL,
-	[TotalCaloriesSpent] [real] NOT NULL,
-	[UserProfileId] [uniqueidentifier] NOT NULL,
- CONSTRAINT [PK_Activities] PRIMARY KEY CLUSTERED 
+	[Calories] [real] NOT NULL,
+	[Proteins] [real] NOT NULL,
+	[Fats] [real] NOT NULL,
+	[Carbohydrates] [real] NOT NULL,
+ CONSTRAINT [PK_Ingredients] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+INSERT INTO Ingredients VALUES 
+	('c9d4c053-49b6-410c-bc78-2d54a9991870', 'Potato', 77.0, 2.0, 0.4, 16.3),
+	('3d490a70-94ce-4d15-9494-5248280c2ce3', 'Pasta', 98.0, 3.6, 0.4, 20.0),
+	('a1d8448e-b995-4783-b9d3-987c857c8c5d', 'Chicken breast', 113.0, 23.6, 1.9, 0.4);
+
+/****** Object:  Database [[ExerciseMicroServiceDB]]    Script Date: 17.05.2021 15:37:06 ******/
+CREATE DATABASE [ExerciseMicroServiceDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'ExerciseMicroServiceDB', FILENAME = N'/var/opt/mssql/data/ExerciseMicroServiceDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'ExerciseMicroServiceDB_log', FILENAME = N'/var/opt/mssql/data/ExerciseMicroServiceDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ExerciseMicroServiceDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET AUTO_CLOSE ON 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET  ENABLE_BROKER 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET QUERY_STORE = OFF
+GO
+
+USE [ExerciseMicroServiceDB]
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+
+ALTER DATABASE [ExerciseMicroServiceDB] SET  READ_WRITE 
+GO
+
+USE [ExerciseMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[Ingredients]    Script Date: 17.05.2021 15:37:25 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Exercises](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Description] [nvarchar](max) NULL,
+	[CaloriesSpent] [real] NOT NULL,
+ CONSTRAINT [PK_Exercises] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ActivityExercise]    Script Date: 21.04.2021 15:21:28 ******/
-SET ANSI_NULLS ON
+
+INSERT INTO Exercises VALUES
+	('7c2a51b6-ffd3-4f82-8e21-92ca4053a37e', 'Pull-ups', 'Performed on the crossbar. Duration 40 seconds', 5),
+	('291bf3d3-9c56-4f6c-b78e-9b100a2e7b55', 'Squats', 'From a standing position, feet shoulder width apart', 10);
+
 GO
-SET QUOTED_IDENTIFIER ON
+USE [master]
 GO
-CREATE TABLE [dbo].[ActivityExercise](
-	[Id] [uniqueidentifier] NOT NULL,
-	[ExerciseId] [uniqueidentifier] NOT NULL,
-	[ActivityId] [uniqueidentifier] NOT NULL,
-	[NumberOfRepetitions] [int] NOT NULL,
-	[NumberOfSets] [int] NOT NULL,
- CONSTRAINT [PK_ActivityExercise] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+
+/****** Object:  Database [UserMicroServiceDB]    Script Date: 18.05.2021 11:36:28 ******/
+CREATE DATABASE [UserMicroServiceDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'UserMicroServiceDB', FILENAME = N'/var/opt/mssql/data/UserMicroServiceDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'UserMicroServiceDB_log', FILENAME = N'/var/opt/mssql/data/UserMicroServiceDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [UserMicroServiceDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET AUTO_CLOSE ON 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET  ENABLE_BROKER 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET QUERY_STORE = OFF
+GO
+
+USE [UserMicroServiceDB]
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+
+ALTER DATABASE [UserMicroServiceDB] SET  READ_WRITE 
+GO
+
 /****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 21.04.2021 15:21:28 ******/
 SET ANSI_NULLS ON
 GO
@@ -292,90 +558,362 @@ GO
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
+
+USE [UserMicroServiceDB]
 GO
-CREATE TABLE [dbo].[Eatings](
-	[Id] [uniqueidentifier] NOT NULL,
-	[Name] [nvarchar](max) NULL,
-	[Moment] [smalldatetime] NOT NULL,
-	[TotalCalories] [real] NOT NULL,
-	[UserProfileId] [uniqueidentifier] NOT NULL,
- CONSTRAINT [PK_Eatings] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Exercises]    Script Date: 21.04.2021 15:21:28 ******/
+
+/****** Object:  Table [dbo].[UserProfiles]    Script Date: 18.05.2021 11:40:40 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Exercises](
+
+CREATE TABLE [dbo].[UserProfiles](
 	[Id] [uniqueidentifier] NOT NULL,
+	[Weight] [real] NOT NULL,
+	[Height] [int] NOT NULL,
+	[Gender] [int] NOT NULL,
+	[DateOfBirth] [datetime2](7) NOT NULL,
+	[Calories] [real] NOT NULL,
+	[UserId] [nvarchar](450) NULL,
+ CONSTRAINT [PK_UserProfiles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[UserProfiles]  WITH CHECK ADD  CONSTRAINT [FK_UserProfiles_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
+
+ALTER TABLE [dbo].[UserProfiles] CHECK CONSTRAINT [FK_UserProfiles_AspNetUsers_UserId]
+GO
+
+INSERT INTO AspNetRoles VALUES
+	('e164e274-d58e-40c7-9286-e41f8b482157', 'Manager', 'MANAGER', 'c4e3bc21-d0d2-483d-9b81-a3ccc0142da2'),
+	('d29a222d-a777-4396-bccc-e76dc07396ee', 'Administrator', 'ADMINISTRATOR', '9231e546-e1ee-4a65-9f4e-4778b6ac6fe8'),
+	('5eba0fe6-ed49-454b-bd7c-7a4ef2a8e6e1', 'User', 'USER', 'b545e1e7-09a0-4270-b904-6f9dec80f14e');
+
+USE [master]
+GO
+
+/****** Object:  Database [ActivityMicroServiceDB]    Script Date: 18.05.2021 14:37:56 ******/
+CREATE DATABASE [ActivityMicroServiceDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'ActivityMicroServiceDB', FILENAME = N'/var/opt/mssql/data/ActivityMicroServiceDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'ActivityMicroServiceDB_log', FILENAME = N'/var/opt/mssql/data/ActivityMicroServiceDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ActivityMicroServiceDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET AUTO_CLOSE ON 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET  ENABLE_BROKER 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET QUERY_STORE = OFF
+GO
+
+USE [ActivityMicroServiceDB]
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+
+ALTER DATABASE [ActivityMicroServiceDB] SET  READ_WRITE 
+GO
+
+USE [ActivityMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[Activities]    Script Date: 18.05.2021 14:38:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Activities](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Moment] [datetime2](7) NOT NULL,
+	[TotalCaloriesSpent] [real] NOT NULL,
+	[UserProfileId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Activities] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+USE [ActivityMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[ActivityExercises]    Script Date: 18.05.2021 14:39:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ActivityExercises](
+	[Id] [uniqueidentifier] NOT NULL,
+	[ActivityId] [uniqueidentifier] NOT NULL,
 	[Name] [nvarchar](max) NULL,
 	[Description] [nvarchar](max) NULL,
 	[CaloriesSpent] [real] NOT NULL,
- CONSTRAINT [PK_Exercises] PRIMARY KEY CLUSTERED 
+	[NumberOfRepetitions] [int] NOT NULL,
+	[NumberOfSets] [int] NOT NULL,
+ CONSTRAINT [PK_ActivityExercises] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[IngredientEating]    Script Date: 21.04.2021 15:21:28 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[IngredientEating](
-	[Id] [uniqueidentifier] NOT NULL,
-	[IngredientId] [uniqueidentifier] NOT NULL,
-	[EatingId] [uniqueidentifier] NOT NULL,
-	[Grams] [real] NOT NULL,
- CONSTRAINT [PK_IngredientEating] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[IngredientRecipe]    Script Date: 21.04.2021 15:21:28 ******/
+
+ALTER TABLE [dbo].[ActivityExercises]  WITH CHECK ADD  CONSTRAINT [FK_ActivityExercises_Activities_ActivityId] FOREIGN KEY([ActivityId])
+REFERENCES [dbo].[Activities] ([Id])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[ActivityExercises] CHECK CONSTRAINT [FK_ActivityExercises_Activities_ActivityId]
+GO
+
+USE [master]
+GO
+
+/****** Object:  Database [RecipeMicroServiceDB]    Script Date: 18.05.2021 15:27:40 ******/
+CREATE DATABASE [RecipeMicroServiceDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'RecipeMicroServiceDB', FILENAME = N'/var/opt/mssql/data/RecipeMicroServiceDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'RecipeMicroServiceDB_log', FILENAME = N'/var/opt/mssql/data/RecipeMicroServiceDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [RecipeMicroServiceDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET AUTO_CLOSE ON 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET  ENABLE_BROKER 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET QUERY_STORE = OFF
+GO
+
+USE [RecipeMicroServiceDB]
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+
+ALTER DATABASE [RecipeMicroServiceDB] SET  READ_WRITE 
+GO
+
+USE [RecipeMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[Recipes]    Script Date: 18.05.2021 15:28:41 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[IngredientRecipe](
-	[Id] [uniqueidentifier] NOT NULL,
-	[IngredientId] [uniqueidentifier] NOT NULL,
-	[RecipeId] [uniqueidentifier] NOT NULL,
-	[Grams] [real] NOT NULL,
- CONSTRAINT [PK_IngredientRecipe] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Ingredients]    Script Date: 21.04.2021 15:21:28 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Ingredients](
-	[Id] [uniqueidentifier] NOT NULL,
-	[Name] [nvarchar](max) NULL,
-	[Calories] [real] NOT NULL,
-	[Proteins] [real] NOT NULL,
-	[Fats] [real] NOT NULL,
-	[Carbohydrates] [real] NOT NULL,
- CONSTRAINT [PK_Ingredients] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Recipes]    Script Date: 21.04.2021 15:21:28 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [dbo].[Recipes](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Name] [nvarchar](max) NULL,
@@ -385,139 +923,226 @@ CREATE TABLE [dbo].[Recipes](
  CONSTRAINT [PK_Recipes] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserProfiles]    Script Date: 21.04.2021 15:21:28 ******/
+
+USE [RecipeMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[IngredientRecipes]    Script Date: 18.05.2021 15:28:32 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[UserProfiles](
+
+CREATE TABLE [dbo].[IngredientRecipes](
 	[Id] [uniqueidentifier] NOT NULL,
-	[Weight] [real] NOT NULL,
-	[Height] [int] NOT NULL,
-	[Gender] [int] NOT NULL,
-	[DateOfBirth] [date] NOT NULL,
+	[RecipeId] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
 	[Calories] [real] NOT NULL,
-	[CurrentCalories] [real] NOT NULL,
-	[UserId] [nvarchar](450) NULL,
- CONSTRAINT [PK_UserProfiles] PRIMARY KEY CLUSTERED 
+	[Proteins] [real] NOT NULL,
+	[Fats] [real] NOT NULL,
+	[Carbohydrates] [real] NOT NULL,
+	[Grams] [real] NOT NULL,
+ CONSTRAINT [PK_IngredientRecipes] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[Activities]  WITH CHECK ADD  CONSTRAINT [FK_Activities_UserProfiles_UserProfileId] FOREIGN KEY([UserProfileId])
-REFERENCES [dbo].[UserProfiles] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[Activities] CHECK CONSTRAINT [FK_Activities_UserProfiles_UserProfileId]
-GO
-ALTER TABLE [dbo].[ActivityExercise]  WITH CHECK ADD  CONSTRAINT [FK_ActivityExercise_Activities_ActivityId] FOREIGN KEY([ActivityId])
-REFERENCES [dbo].[Activities] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[ActivityExercise] CHECK CONSTRAINT [FK_ActivityExercise_Activities_ActivityId]
-GO
-ALTER TABLE [dbo].[ActivityExercise]  WITH CHECK ADD  CONSTRAINT [FK_ActivityExercise_Exercises_ExerciseId] FOREIGN KEY([ExerciseId])
-REFERENCES [dbo].[Exercises] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[ActivityExercise] CHECK CONSTRAINT [FK_ActivityExercise_Exercises_ExerciseId]
-GO
-ALTER TABLE [dbo].[AspNetRoleClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[AspNetRoles] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetRoleClaims] CHECK CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId]
-GO
-ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId]
-GO
-ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId]
-GO
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[AspNetRoles] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId]
-GO
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId]
-GO
-ALTER TABLE [dbo].[AspNetUserTokens]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserTokens] CHECK CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId]
-GO
-ALTER TABLE [dbo].[Eatings]  WITH CHECK ADD  CONSTRAINT [FK_Eatings_UserProfiles_UserProfileId] FOREIGN KEY([UserProfileId])
-REFERENCES [dbo].[UserProfiles] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[Eatings] CHECK CONSTRAINT [FK_Eatings_UserProfiles_UserProfileId]
-GO
-ALTER TABLE [dbo].[IngredientEating]  WITH CHECK ADD  CONSTRAINT [FK_IngredientEating_Eatings_EatingId] FOREIGN KEY([EatingId])
-REFERENCES [dbo].[Eatings] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[IngredientEating] CHECK CONSTRAINT [FK_IngredientEating_Eatings_EatingId]
-GO
-ALTER TABLE [dbo].[IngredientEating]  WITH CHECK ADD  CONSTRAINT [FK_IngredientEating_Ingredients_IngredientId] FOREIGN KEY([IngredientId])
-REFERENCES [dbo].[Ingredients] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[IngredientEating] CHECK CONSTRAINT [FK_IngredientEating_Ingredients_IngredientId]
-GO
-ALTER TABLE [dbo].[IngredientRecipe]  WITH CHECK ADD  CONSTRAINT [FK_IngredientRecipe_Ingredients_IngredientId] FOREIGN KEY([IngredientId])
-REFERENCES [dbo].[Ingredients] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[IngredientRecipe] CHECK CONSTRAINT [FK_IngredientRecipe_Ingredients_IngredientId]
-GO
-ALTER TABLE [dbo].[IngredientRecipe]  WITH CHECK ADD  CONSTRAINT [FK_IngredientRecipe_Recipes_RecipeId] FOREIGN KEY([RecipeId])
+
+ALTER TABLE [dbo].[IngredientRecipes]  WITH CHECK ADD  CONSTRAINT [FK_IngredientRecipes_Recipes_RecipeId] FOREIGN KEY([RecipeId])
 REFERENCES [dbo].[Recipes] ([Id])
 ON DELETE CASCADE
 GO
-ALTER TABLE [dbo].[IngredientRecipe] CHECK CONSTRAINT [FK_IngredientRecipe_Recipes_RecipeId]
+
+ALTER TABLE [dbo].[IngredientRecipes] CHECK CONSTRAINT [FK_IngredientRecipes_Recipes_RecipeId]
 GO
-ALTER TABLE [dbo].[Recipes]  WITH CHECK ADD  CONSTRAINT [FK_Recipes_UserProfiles_UserProfileId] FOREIGN KEY([UserProfileId])
-REFERENCES [dbo].[UserProfiles] ([Id])
+
+USE [master]
+GO
+
+/****** Object:  Database [EatingMicroServiceDB]    Script Date: 18.05.2021 15:56:27 ******/
+CREATE DATABASE [EatingMicroServiceDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'EatingMicroServiceDB', FILENAME = N'/var/opt/mssql/data/EatingMicroServiceDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'EatingMicroServiceDB_log', FILENAME = N'/var/opt/mssql/data/EatingMicroServiceDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [EatingMicroServiceDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET AUTO_CLOSE ON 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET  ENABLE_BROKER 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET QUERY_STORE = OFF
+GO
+
+USE [EatingMicroServiceDB]
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+
+ALTER DATABASE [EatingMicroServiceDB] SET  READ_WRITE 
+GO
+
+USE [EatingMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[Eatings]    Script Date: 18.05.2021 15:57:02 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Eatings](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Moment] [datetime2](7) NOT NULL,
+	[TotalCalories] [real] NOT NULL,
+	[UserProfileId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Eatings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+USE [EatingMicroServiceDB]
+GO
+
+/****** Object:  Table [dbo].[IngredientEatings]    Script Date: 18.05.2021 15:57:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[IngredientEatings](
+	[Id] [uniqueidentifier] NOT NULL,
+	[EatingId] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Calories] [real] NOT NULL,
+	[Proteins] [real] NOT NULL,
+	[Fats] [real] NOT NULL,
+	[Carbohydrates] [real] NOT NULL,
+	[Grams] [real] NOT NULL,
+ CONSTRAINT [PK_IngredientEatings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[IngredientEatings]  WITH CHECK ADD  CONSTRAINT [FK_IngredientEatings_Eatings_EatingId] FOREIGN KEY([EatingId])
+REFERENCES [dbo].[Eatings] ([Id])
 ON DELETE CASCADE
 GO
-ALTER TABLE [dbo].[Recipes] CHECK CONSTRAINT [FK_Recipes_UserProfiles_UserProfileId]
-GO
-ALTER TABLE [dbo].[UserProfiles]  WITH CHECK ADD  CONSTRAINT [FK_UserProfiles_AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-GO
-ALTER TABLE [dbo].[UserProfiles] CHECK CONSTRAINT [FK_UserProfiles_AspNetUsers_UserId]
+
+ALTER TABLE [dbo].[IngredientEatings] CHECK CONSTRAINT [FK_IngredientEatings_Eatings_EatingId]
 GO
 
-USE [CaloriesTracker]
-
-INSERT INTO AspNetRoles VALUES
-	('e164e274-d58e-40c7-9286-e41f8b482157', 'Manager', 'MANAGER', 'c4e3bc21-d0d2-483d-9b81-a3ccc0142da2'),
-	('d29a222d-a777-4396-bccc-e76dc07396ee', 'Administrator', 'ADMINISTRATOR', '9231e546-e1ee-4a65-9f4e-4778b6ac6fe8'),
-	('5eba0fe6-ed49-454b-bd7c-7a4ef2a8e6e1', 'User', 'USER', 'b545e1e7-09a0-4270-b904-6f9dec80f14e');
-
-INSERT INTO Exercises VALUES
-	('7c2a51b6-ffd3-4f82-8e21-92ca4053a37e', 'Pull-ups', 'Performed on the crossbar. Duration 40 seconds', 5),
-	('291bf3d3-9c56-4f6c-b78e-9b100a2e7b55', 'Squats', 'From a standing position, feet shoulder width apart', 10);
-
-INSERT INTO Ingredients VALUES 
-	('c9d4c053-49b6-410c-bc78-2d54a9991870', 'Potato', 77.0, 2.0, 0.4, 16.3),
-	('3d490a70-94ce-4d15-9494-5248280c2ce3', 'Pasta', 98.0, 3.6, 0.4, 20.0),
-	('a1d8448e-b995-4783-b9d3-987c857c8c5d', 'Chicken breast', 113.0, 23.6, 1.9, 0.4);
 
 

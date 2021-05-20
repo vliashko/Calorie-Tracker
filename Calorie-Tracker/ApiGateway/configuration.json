@@ -1,0 +1,246 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/recipes",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "recipe_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/recipes",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/recipes/page/{number}/size/{pageSize}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "recipe_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/recipes/page/{number}/size/{pageSize}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/recipes/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "recipe_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/recipes/{id}",
+      "UpstreamHttpMethod": [ "PUT", "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/eatings",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eating_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/eatings",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/eatings/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eating_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/eatings/{id}",
+      "UpstreamHttpMethod": [ "PUT", "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/activities",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "activity_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/activities",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{userId}/activities/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "activity_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{userId}/activities/{id}",
+      "UpstreamHttpMethod": [ "PUT", "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/authentication",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/authentication",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/authentication/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/authentication/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/authentication/generatenewpassword/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/authentication/generatenewpassword/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/userprofiles",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/userprofiles",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/userprofiles/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/userprofiles/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/page/{number}/size/{pageSize}/params",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/page/{number}/size/{pageSize}/params",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/users/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ingredients",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ingredient_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ingredients",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ingredients/page/{number}/size/{pageSize}/params",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ingredient_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ingredients/page/{number}/size/{pageSize}/params",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ingredients/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ingredient_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ingredients/{id}",
+      "UpstreamHttpMethod": [ "PUT", "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/exercises",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "exercise_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/exercises",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/exercises/page/{number}/size/{pageSize}/params",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "exercise_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/exercises/page/{number}/size/{pageSize}/params",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/exercises/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "exercise_microservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/exercises/{id}",
+      "UpstreamHttpMethod": [ "PUT", "GET", "DELETE" ]
+    }
+  ],
+  "GlobalConfiguration": {
+  }
+}  
