@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   hide = true;
   isError = false;
-  error: string = '';
+  error = '';
 
   constructor(private authService: AuthenticationService,
               private usersService: UserProfilesService,
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
   }
-    createForm() {
+    createForm(): void {
       this.form = this.formBuilder.group({
         username: [null, Validators.required],
         email: [null, [Validators.required, Validators.email]],

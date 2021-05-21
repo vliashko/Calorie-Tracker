@@ -35,6 +35,20 @@ namespace UserMicroService.Services
             return new MessageDetailsDto { StatusCode = 200, Message = $"{token}" };
         }
 
+        public async Task<MessageDetailsDto> ConfirmEmail(string id, string code)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return new MessageDetailsDto { StatusCode = 404, Message = "User not found." };
+            }
+            var result = await userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+                return new MessageDetailsDto { StatusCode = 200, Message = "Confirmed" };
+            else
+                return new MessageDetailsDto { StatusCode = 400, Message = "Exception with confirming." };
+        }
+
         public async Task<MessageDetailsDto> GenerateNewPassword(string id)
         {
             var user = await userManager.FindByIdAsync(id);
@@ -71,11 +85,14 @@ namespace UserMicroService.Services
                 }
                 return new MessageDetailsDto { StatusCode = 400, Message = message.ToString() };
             }
+
+            var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
             if (!string.IsNullOrWhiteSpace(userDto.Role))
             {
                 await userManager.AddToRoleAsync(user, userDto.Role);
             }
-            return new MessageDetailsDto { StatusCode = 201, Message = "Successfully registered." };
+            return new MessageDetailsDto { StatusCode = 201, Message = $"{code}||{user.Id}" };
         }
     }
 }

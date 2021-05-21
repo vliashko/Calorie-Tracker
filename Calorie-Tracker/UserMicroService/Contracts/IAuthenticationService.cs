@@ -8,5 +8,6 @@ namespace UserMicroService.Contracts
         Task<MessageDetailsDto> RegisterUser(UserForRegistrationDto userDto);
         Task<MessageDetailsDto> Authenticate(UserForAuthenticationDto userDto);
         Task<MessageDetailsDto> GenerateNewPassword(string id);
+        Task<MessageDetailsDto> ConfirmEmail(string id, string code);
     }
 }

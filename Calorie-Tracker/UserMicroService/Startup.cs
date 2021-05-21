@@ -30,6 +30,8 @@ namespace IdentityMicroService
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IUserProfileService, UserProfileService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddSingleton<IHostedService, HostedService>();
 
             services.AddCors(options =>
             {
