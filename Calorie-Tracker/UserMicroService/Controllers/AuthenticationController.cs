@@ -27,7 +27,7 @@ namespace UserMicroService.Controllers
             if(result.StatusCode == 201)
             {
                 var callBackUrl = Url.Action("ConfirmEmail", "Authentication", new { code = result.Message.Split("||")[0], id = result.Message.Split("||")[1] }, 
-                    protocol: HttpContext.Request.Scheme);
+                    protocol: HttpContext.Request.Scheme, "localhost:5003");
                 await _emailService.SendEmailAsync(userDto.Email, "Confirm your account", $"Confirm your account with link: <a href='{callBackUrl}'>link</a>");
             }
             return StatusCode(result.StatusCode, result.Message);

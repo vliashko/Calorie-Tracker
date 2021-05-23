@@ -7,8 +7,8 @@ namespace UserMicroService.Services
 {
     public class EmailService : IEmailService
     {
-        private const string emailLogin = "vladimir.lyashko@gmail.com";
-        private const string password = "master12345A";
+        private const string emailLogin = "caloriestracker@mail.ru";
+        private const string password = "IteEviSUy43)";
 
         public async Task SendEmailAsync(string email, string subject, string message)
         {
@@ -23,7 +23,7 @@ namespace UserMicroService.Services
             };
 
             using var client = new SmtpClient();
-            await client.ConnectAsync("smtp.gmail.com", 465, true);
+            await client.ConnectAsync("smtp.mail.ru", 465, true);
             await client.AuthenticateAsync(emailLogin, password);
             await client.SendAsync(emailMessage);
             await client.DisconnectAsync(true);

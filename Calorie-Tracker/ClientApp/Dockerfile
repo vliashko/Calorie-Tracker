@@ -10,7 +10,7 @@ WORKDIR /ClientApp
 COPY . .
 
 # Install all the dependencies
-RUN npm install -g npm@7.13.0
+RUN npm install -g npm@7.14.0
 
 # Generate the build of the application
 RUN npm run build

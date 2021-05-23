@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EatingMicroService", "Eatin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{D5DEC72D-6A98-499E-B108-A877948A85C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctions", "..\AzureFunctions\AzureFunctions.csproj", "{5851003B-0176-41EF-8DDA-D616E1EEF5C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctions", "..\AzureFunctions\AzureFunctions.csproj", "{5851003B-0176-41EF-8DDA-D616E1EEF5C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

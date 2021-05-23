@@ -4,14 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using UserMicroService;
 using UserMicroService.Contracts;
 using UserMicroService.Filter;
 using UserMicroService.Models;
 using UserMicroService.Repositories;
 using UserMicroService.Services;
 
-namespace IdentityMicroService
+namespace UserMicroService
 {
     public class Startup
     {
@@ -31,7 +30,6 @@ namespace IdentityMicroService
             services.AddScoped<IUserProfileService, UserProfileService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailService, EmailService>();
-            services.AddSingleton<IHostedService, HostedService>();
 
             services.AddCors(options =>
             {
