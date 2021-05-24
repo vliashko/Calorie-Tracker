@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 using UserMicroService.Contracts;
 using UserMicroService.DataTransferObjects;
@@ -29,6 +30,7 @@ namespace UserMicroService.Controllers
             ViewModel<UserForReadDto> userViewModel = new ViewModel<UserForReadDto> { PageViewModel = page, Objects = users };
             return Ok(userViewModel);
         }
+
         [HttpGet("{id}", Name = "UserById")]
         public async Task<IActionResult> GetUser(string id)
         {
@@ -36,6 +38,14 @@ namespace UserMicroService.Controllers
             if (user == null)
                 return NotFound();
             return Ok(user);
+        }
+
+        [HttpGet("confirmedemail")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetUsersWithConfirmedEmail()
+        {
+            var users = await _service.GetUsersWithConfirmedEmail();
+            return Ok(users);
         }
 
         [HttpDelete("{id}")]

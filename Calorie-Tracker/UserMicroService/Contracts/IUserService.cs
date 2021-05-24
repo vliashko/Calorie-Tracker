@@ -7,6 +7,7 @@ namespace UserMicroService.Contracts
     public interface IUserService
     {
         Task<IEnumerable<UserForReadDto>> GetUsersPaginationAsync(int pageSize, int number, UserSearchModelDto userSearch);
+        Task<IEnumerable<UserForReadDto>> GetUsersWithConfirmedEmail();
         Task<int> GetUsersCount(UserSearchModelDto userSearch);
         Task<UserForReadDto> GetUserAsync(string id);
         Task<MessageDetailsDto> DeleteUserAsync(string id);

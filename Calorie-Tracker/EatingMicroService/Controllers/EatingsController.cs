@@ -36,6 +36,7 @@ namespace EatingMicroService.Controllers
             return Ok(eating);
         }
         [HttpGet("days/{countDays}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetDataForChart(Guid userId, int countDays)
         {
             var result = await _service.GetDataForChartAsync(userId, countDays);

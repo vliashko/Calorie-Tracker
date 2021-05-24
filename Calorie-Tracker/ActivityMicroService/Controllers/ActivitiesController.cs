@@ -37,6 +37,7 @@ namespace ActivityMicroService.Controllers
             return Ok(activity);
         }
         [HttpGet("days/{countDays}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetDataForChart(Guid userId, int countDays)
         {
             var result = await _service.GetDataForChartAsync(userId, countDays);

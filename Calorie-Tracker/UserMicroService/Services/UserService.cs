@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserMicroService.Contracts;
@@ -71,6 +73,17 @@ namespace UserMicroService.Services
                 usersResult.Add(_mapper.Map<UserForReadDto>(tmp));
             }
             return usersResult;
+        }
+
+        public async Task<IEnumerable<UserForReadDto>> GetUsersWithConfirmedEmail()
+        {
+            var users = await userManager.Users.Where(x => x.EmailConfirmed).ToListAsync();
+            var usersDto = _mapper.Map<IEnumerable<UserForReadDto>>(users);
+            foreach (var user in usersDto)
+            {
+                user.UserProfileId = (await _repository.GetUserProfileByUserIdAsync(user.Id, false)).Id;
+            }
+            return _mapper.Map<IEnumerable<UserForReadDto>>(usersDto);
         }
 
         public async Task<MessageDetailsDto> UpdateUserAsync(string id, UserForUpdateDto userUpdateDto)

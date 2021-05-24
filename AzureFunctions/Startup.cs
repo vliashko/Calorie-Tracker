@@ -16,9 +16,6 @@ namespace AzureFunctions
         public override void Configure(IFunctionsHostBuilder builder)
         {
             builder.Services.AddScoped<IEmailService, EmailService>();
-            builder.Services.AddScoped<IActivityService, ActivityService>();
-            builder.Services.AddScoped<IEatingService, EatingService>();
-            builder.Services.AddScoped<IUserService, UserService>();
         }
     }
 }
