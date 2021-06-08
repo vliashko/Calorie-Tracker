@@ -1,7 +1,3 @@
-using ceTe.DynamicPDF;
-using ceTe.DynamicPDF.PageElements.Charting;
-using ceTe.DynamicPDF.PageElements.Charting.Axes;
-using ceTe.DynamicPDF.PageElements.Charting.Series;
 using Microsoft.Azure.WebJobs;
 using Syncfusion.Pdf.Parsing;
 using Syncfusion.XlsIO;
@@ -10,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using UserMicroService.Contracts;
 using UserMicroService.DataTransferObjects;
