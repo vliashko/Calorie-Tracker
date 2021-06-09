@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciseTests", "..\Tests\E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityTests", "..\Tests\ActivityTests\ActivityTests.csproj", "{68DA2DFA-C6E6-4B9E-A45F-95711022F183}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EatingTests", "..\Tests\EatingTests\EatingTests.csproj", "{2ECA29D5-708C-4A61-A4D2-253A69E10C5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{68DA2DFA-C6E6-4B9E-A45F-95711022F183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68DA2DFA-C6E6-4B9E-A45F-95711022F183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68DA2DFA-C6E6-4B9E-A45F-95711022F183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ECA29D5-708C-4A61-A4D2-253A69E10C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ECA29D5-708C-4A61-A4D2-253A69E10C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ECA29D5-708C-4A61-A4D2-253A69E10C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ECA29D5-708C-4A61-A4D2-253A69E10C5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
