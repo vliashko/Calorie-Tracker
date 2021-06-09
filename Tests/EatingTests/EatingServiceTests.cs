@@ -46,7 +46,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void GetEatingForUser_ReturnsNull_WhenNonExistentIDProvided()
+        public async void GetEating_ReturnsNull_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
@@ -56,7 +56,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void GetEatingForUser_ReturnsCorrectType_WhenValidIDProvided()
+        public async void GetEating_ReturnsCorrectType_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
@@ -76,7 +76,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void CreateEatingForUser_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
+        public async void CreateEating_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
@@ -103,7 +103,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void UpdateEatingForUser_Returns404_WhenNonExistentIDProvided()
+        public async void UpdateEating_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync(() => null);
@@ -113,7 +113,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void UpdateEatingForUser_Returns204_WhenValidIDProvided()
+        public async void UpdateEating_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                  .ReturnsAsync
@@ -133,7 +133,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void PartiallyUpdateEatingForUser_Returns404_WhenNonExistentIDProvided()
+        public async void PartiallyUpdateEating_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync(() => null);
@@ -143,7 +143,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void PartiallyUpdateEatingForUser_Returns204_WhenValidIDProvided()
+        public async void PartiallyUpdateEating_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                .ReturnsAsync
@@ -163,7 +163,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void DeleteEatingForUser_Returns404_WhenNonExistentIDProvided()
+        public async void DeleteEating_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
@@ -173,7 +173,7 @@ namespace EatingTests
         }
 
         [Fact]
-        public async void DeleteEatingForUser_Returns204_WhenValidIDProvided()
+        public async void DeleteEating_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetEatingAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                .ReturnsAsync
@@ -203,7 +203,7 @@ namespace EatingTests
                         Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
                         Name = "Eating",
                         Moment = DateTime.Now,
-                        UserProfileId = new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"),
+                        UserProfileId = userId,
                         IngredientsWithGrams = new List<IngredientEating>()
                     });
             }

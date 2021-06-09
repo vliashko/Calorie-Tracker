@@ -45,8 +45,9 @@ namespace ActivityTests
             var result = await service.GetActivitiesForUserProfileForDateAsync(userId);
             Assert.Empty(result);
         }
+
         [Fact]
-        public async void GetActivityForUser_ReturnsNull_WhenNonExistentIDProvided()
+        public async void GetActivity_ReturnsNull_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
@@ -54,8 +55,9 @@ namespace ActivityTests
             var result = await service.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Null(result);
         }
+
         [Fact]
-        public async void GetActivityForUser_ReturnsCorrectType_WhenValidIDProvided()
+        public async void GetActivity_ReturnsCorrectType_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
@@ -73,8 +75,9 @@ namespace ActivityTests
             var result = await service.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.IsType<ActivityForReadDto>(result);
         }
+
         [Fact]
-        public async void CreateActivityForUser_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
+        public async void CreateActivity_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
@@ -99,8 +102,9 @@ namespace ActivityTests
             Assert.IsType<ActivityForReadDto>(result);
             Assert.Equal("Test", result.Name);
         }
+
         [Fact]
-        public async void UpdateActivityForUser_Returns404_WhenNonExistentIDProvided()
+        public async void UpdateActivity_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync(() => null);
@@ -108,8 +112,9 @@ namespace ActivityTests
             var result = await service.UpdateActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new ActivityForUpdateDto { });
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
-        public async void UpdateActivityForUser_Returns204_WhenValidIDProvided()
+        public async void UpdateActivity_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync
@@ -127,8 +132,9 @@ namespace ActivityTests
             var result = await service.UpdateActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new ActivityForUpdateDto { });
             Assert.Equal(204, result.StatusCode);
         }
+
         [Fact]
-        public async void PartiallyUpdateActivityForUser_Returns404_WhenNonExistentIDProvided()
+        public async void PartiallyUpdateActivity_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                 .ReturnsAsync(() => null);
@@ -136,8 +142,9 @@ namespace ActivityTests
             var result = await service.PartiallyUpdateActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<ActivityForUpdateDto> { });
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
-        public async void PartiallyUpdateActivityForUser_Returns204_WhenValidIDProvided()
+        public async void PartiallyUpdateActivity_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), true))
                .ReturnsAsync
@@ -155,8 +162,9 @@ namespace ActivityTests
             var result = await service.PartiallyUpdateActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new Marvin.JsonPatch.JsonPatchDocument<ActivityForUpdateDto> { });
             Assert.Equal(204, result.StatusCode);
         }
+
         [Fact]
-        public async void DeleteActivityForUser_Returns404_WhenNonExistentIDProvided()
+        public async void DeleteActivity_Returns404_WhenNonExistentIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
@@ -164,8 +172,9 @@ namespace ActivityTests
             var result = await service.DeleteActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
-        public async void DeleteAcitivityForUser_Returns204_WhenValidIDProvided()
+        public async void DeleteAcitivity_Returns204_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                .ReturnsAsync
@@ -183,6 +192,7 @@ namespace ActivityTests
             var result = await service.DeleteActivityAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Equal(204, result.StatusCode);
         }
+
         private IEnumerable<Activity> GetActivitiesForUser(int num)
         {
             var activities = new List<Activity>();
