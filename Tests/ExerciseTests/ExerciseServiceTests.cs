@@ -24,6 +24,7 @@ namespace ExerciseTests
             configuration = new MapperConfiguration(cfg => cfg.AddProfile(profile));
             mapper = new Mapper(configuration);
         }
+
         public void Dispose()
         {
             mockRepo = null;
@@ -41,6 +42,7 @@ namespace ExerciseTests
             var result = await service.GetExercisesPaginationAsync(1, 5, "");
             Assert.Empty(result);
         }
+
         [Fact]
         public async void GetAllExercises_ReturnsOneItem_WhenDBHasOneResource()
         {
@@ -50,6 +52,7 @@ namespace ExerciseTests
             var result = await service.GetExercisesPaginationAsync(1, 5, "");
             Assert.Single(result);
         }
+
         [Fact]
         public async void GetExercise_ReturnsNull_WhenNonExistentIDProvided()
         {
@@ -59,6 +62,7 @@ namespace ExerciseTests
             var result = await service.GetExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
             Assert.Null(result);
         }
+
         [Fact]
         public async void GetExercise_ReturnsCorrectTypeAndObject_WhenValidIDProvided()
         {
@@ -78,6 +82,7 @@ namespace ExerciseTests
             Assert.Equal("Pull-ups", result.Name);
             Assert.IsType<ExerciseForReadDto>(result);
         }
+
         [Fact]
         public async void CreateExercise_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
         {
@@ -102,6 +107,7 @@ namespace ExerciseTests
             Assert.IsType<ExerciseForReadDto>(result);
             Assert.Equal("Test", result.Name);
         }
+
         [Fact]
         public async void UpdateExercise_Returns404_WhenNonExistentIDProvided()
         {
@@ -111,6 +117,7 @@ namespace ExerciseTests
             var result = await service.UpdateExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"), new ExerciseForUpdateDto { });
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
         public async void UpdateExercise_Returns204_WhenValidIDProvided()
         {
@@ -134,6 +141,7 @@ namespace ExerciseTests
             });
             Assert.Equal(204, result.StatusCode);
         }
+
         [Fact]
         public async void PartiallyUpdateExercise_Returns404_WhenNonExistentIDProvided()
         {
@@ -144,6 +152,7 @@ namespace ExerciseTests
                 new Marvin.JsonPatch.JsonPatchDocument<ExerciseForUpdateDto> { });
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
         public async void PartiallyUpdateExercise_Returns204_WhenValidIDProvided()
         {
@@ -163,6 +172,7 @@ namespace ExerciseTests
                 new Marvin.JsonPatch.JsonPatchDocument<ExerciseForUpdateDto> { });
             Assert.Equal(204, result.StatusCode);
         }
+
         [Fact]
         public async void DeleteIngredient_Returns404_WhenNonExistentIDProvided()
         {
@@ -172,6 +182,7 @@ namespace ExerciseTests
             var result = await service.DeleteExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
         public async void DeleteIngredient_Returns204_WhenValidIDProvided()
         {
@@ -190,6 +201,7 @@ namespace ExerciseTests
             var result = await service.DeleteExerciseAsync(new Guid("7c2a51b6-ffd3-4f82-8e21-92ca4053a37e"));
             Assert.Equal(204, result.StatusCode);
         }
+
         private IEnumerable<Exercise> GetExercises(int num)
         {
             var exercises = new List<Exercise>();

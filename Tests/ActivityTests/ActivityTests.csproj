@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Calorie-Tracker\ExerciseMicroService\ExerciseMicroService.csproj" />
+    <ProjectReference Include="..\..\Calorie-Tracker\ActivityMicroService\ActivityMicroService.csproj" />
   </ItemGroup>
 
 </Project>
