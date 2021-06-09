@@ -24,6 +24,7 @@ namespace IngredientTests
             configuration = new MapperConfiguration(cfg => cfg.AddProfile(profile));
             mapper = new Mapper(configuration);
         }
+
         public void Dispose()
         {
             mockRepo = null;
@@ -41,26 +42,29 @@ namespace IngredientTests
             var result = await service.GetIngredientsPaginationAsync(1, 5, "");
             Assert.Empty(result);
         }
+
         [Fact]
         public async void GetAllIngredients_ReturnsOneItem_WhenDBHasOneResource()
         {
             mockRepo.Setup(x => x.GetAllIngredientsPaginationAsync(1, 5, "", false))
-                .ReturnsAsync(GetIngredients(1));
+                .ReturnsAsync(GetIngredients(1));   
             var service = new IngredientService(mockRepo.Object, mapper);
             var result = await service.GetIngredientsPaginationAsync(1, 5, "");
             Assert.Single(result);
         }
+
         [Fact]
         public async void GetIngredient_ReturnsNull_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
+            mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
             var service = new IngredientService(mockRepo.Object, mapper);
             var result = await service.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Null(result);
         }
+
         [Fact]
-        public async void GetIngredient_ReturnsCorrectType_WhenValidIDProvided()
+        public async void GetIngredient_ReturnsCorrectTypeAndObject_WhenValidIDProvided()
         {
             mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync
@@ -80,6 +84,7 @@ namespace IngredientTests
             Assert.Equal("Potato", result.Name);
             Assert.IsType<IngredientForReadDto>(result);
         }
+
         [Fact]
         public async void CreateIngredient_ReturnsCorrectTypeAndObject_WhenValidObjectSubmitted()
         {
@@ -108,15 +113,17 @@ namespace IngredientTests
             Assert.IsType<IngredientForReadDto>(result);
             Assert.Equal("Test", result.Name);
         }
+
         [Fact]
         public async void UpdateIngredient_Returns404_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
+            mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                 .ReturnsAsync(() => null);
             var service = new IngredientService(mockRepo.Object, mapper);
             var result = await service.UpdateIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), new IngredientForUpdateDto { });
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
         public async void UpdateIngredient_Returns204_WhenValidIDProvided()
         {
@@ -144,16 +151,18 @@ namespace IngredientTests
             });
             Assert.Equal(204, result.StatusCode);
         }
+
         [Fact]
         public async void PartiallyUpdateIngredient_Returns404_WhenNonExistentIDProvided()
         {
-            mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991871"), false))
+            mockRepo.Setup(x => x.GetIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), false))
                .ReturnsAsync(() => null);
             var service = new IngredientService(mockRepo.Object, mapper);
             var result = await service.PartiallyUpdateIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
                 new Marvin.JsonPatch.JsonPatchDocument<IngredientForUpdateDto> { });
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
         public async void PartiallyUpdateIngredient_Returns204_WhenValidIDProvided()
         {
@@ -175,6 +184,7 @@ namespace IngredientTests
                 new Marvin.JsonPatch.JsonPatchDocument<IngredientForUpdateDto> { });
             Assert.Equal(204, result.StatusCode);
         }
+
         [Fact]
         public async void DeleteIngredient_Returns404_WhenNonExistentIDProvided()
         {
@@ -184,6 +194,7 @@ namespace IngredientTests
             var result = await service.DeleteIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Equal(404, result.StatusCode);
         }
+
         [Fact]
         public async void DeleteIngredient_Returns204_WhenValidIDProvided()
         {
@@ -204,6 +215,7 @@ namespace IngredientTests
             var result = await service.DeleteIngredientAsync(new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"));
             Assert.Equal(204, result.StatusCode);
         }
+
         private IEnumerable<Ingredient> GetIngredients(int num)
         {
             var ingredients = new List<Ingredient>();
