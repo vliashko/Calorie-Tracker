@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeTests", "..\Tests\RecipeTests\RecipeTests.csproj", "{AF42E68F-C854-4482-9BBF-9BA28C38A5A8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTests", "..\Tests\UserTests\UserTests.csproj", "{DA07CE8E-8341-484F-85CB-8E821124C7A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{AF42E68F-C854-4482-9BBF-9BA28C38A5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF42E68F-C854-4482-9BBF-9BA28C38A5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF42E68F-C854-4482-9BBF-9BA28C38A5A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA07CE8E-8341-484F-85CB-8E821124C7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA07CE8E-8341-484F-85CB-8E821124C7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA07CE8E-8341-484F-85CB-8E821124C7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA07CE8E-8341-484F-85CB-8E821124C7A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{68DA2DFA-C6E6-4B9E-A45F-95711022F183} = {9A65C355-9E13-43F5-8452-DD072F96BAA1}
 		{2ECA29D5-708C-4A61-A4D2-253A69E10C5D} = {9A65C355-9E13-43F5-8452-DD072F96BAA1}
 		{AF42E68F-C854-4482-9BBF-9BA28C38A5A8} = {9A65C355-9E13-43F5-8452-DD072F96BAA1}
+		{DA07CE8E-8341-484F-85CB-8E821124C7A5} = {9A65C355-9E13-43F5-8452-DD072F96BAA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D473E360-EB79-474B-A0ED-A5972ADEA5F1}
