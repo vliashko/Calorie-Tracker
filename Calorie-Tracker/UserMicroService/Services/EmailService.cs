@@ -9,7 +9,7 @@ namespace UserMicroService.Services
     public class EmailService : IEmailService
     {
         private const string emailLogin = "caloriestracker@mail.ru";
-        private const string password = "IteEviSUy43)";
+        private const string password = "Fy35v5FfgiuUcXHc1fm9";
 
         public async Task SendEmailAsync(string email, string subject, string message, MemoryStream stream = null)
         {

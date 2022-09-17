@@ -25,6 +25,6 @@ services:
   db:
     ports:
       - "1433:1433" 
-  front:
-    ports:
-      - "8080:80" 
+  #front:
+  #  ports:
+  #    - "8080:80" 

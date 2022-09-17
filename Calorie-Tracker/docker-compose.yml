@@ -67,10 +67,10 @@ services:
       - user_microservice
       - exercise_microservice
       - ingredient_microservice
-  front:
-    image: clientapp
-    build:
-      context: .
-      dockerfile: ClientApp/Dockerfile
-    depends_on:
-      - gateway
+  #front:
+  #  image: clientapp
+  #  build:
+  #    context: .
+  #    dockerfile: ClientApp/Dockerfile
+  #  depends_on:
+  #    - gateway
